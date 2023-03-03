@@ -1,4 +1,4 @@
-# Money-Mindset-Frontend
+# MoneyMindset-Frontend
 
 ## 재무 관리를 도와주는 심플한 가계부를 소개합니다! 
 Money Mindset의 핵심 기능은 사용 가능한 금액에 대해 명확하고 간결한 요약을 제공하는 `마지노선` 기능입니다.  <br />
