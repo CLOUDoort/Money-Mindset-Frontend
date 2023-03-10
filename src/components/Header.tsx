@@ -11,7 +11,7 @@ const Header = () => {
                     <img onClick={() => navigate("/")} className="h-14 cursor-pointer" src="/MoneyMindsetLogo.png" alt="logo" />
                 </div>
                 <div>
-                    <ul className='flex space-x-4 items-center'>
+                    <ul className='flex space-x-4 items-center text-sm sm:text-lg'>
                         <li className="cursor-pointer">
                             <BsSun size={35} />
                         </li>
