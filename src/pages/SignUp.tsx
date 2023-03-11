@@ -2,10 +2,12 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 
 import { Link } from 'react-router-dom'
 import OAuth from '../components/OAuth'
+import { apiInstance } from '../apis/setting'
 import { useState } from "react"
 
 const SignUp = () => {
     const [showPassword, setShowPassword] = useState(false)
+    const [existEmail, setExistEmail] = useState(false)
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -18,9 +20,25 @@ const SignUp = () => {
             ...formData, [name]: value
         })
     }
-    const submitHandler = (e: React.SyntheticEvent) => {
-        e.preventDefault()
+    const clickVerify = async () => {
+        const verifyEmail = await apiInstance.post(`user/email`, {
+            email
+        })
+        if (verifyEmail.data.isExisted) setExistEmail(true)
 
+    }
+    const submitHandler = async (e: React.SyntheticEvent) => {
+        e.preventDefault()
+        try {
+
+            const submitResponse = await apiInstance.post(`/user/signup`, {
+                email, password, nickname
+            })
+            console.log('submitResponse', submitResponse)
+        }
+        catch (e: any) {
+            console.log(e.response)
+        }
     }
     return (
         <section className='flex justify-center items-center w-full h-full'>
@@ -32,7 +50,8 @@ const SignUp = () => {
                     <h1 className="text-5xl lg:text-6xl text-center mb-14 font-bold">Sign-Up</h1>
                     <form onSubmit={submitHandler}>
                         <div className='text-lg mb-2 font-semibold'>Email</div>
-                        <input autoComplete='off' className="w-full mb-6 px-4 py-2 text-xl bg-white border-gray-400 rounded transition ease-in-out" type="email" name="email" value={email} placeholder="example@google.com" onChange={changeHandler} />
+                        <input autoComplete='off' className="w-full mb-4 px-4 py-2 text-xl bg-white border-gray-400 rounded transition ease-in-out" type="email" name="email" value={email} placeholder="example@google.com" onChange={changeHandler} />
+                        <button onClick={clickVerify} className='text-lg mb-2 font-semibold {}'>Verify</button>
                         <div className='text-lg mb-2 font-semibold'>Password</div>
                         <div className="relative mb-6">
                             <input className="w-full px-4 py-2 text-xl bg-white border-gray-400 rounded transition ease-in-out" type={showPassword ? 'text' : "password"} name="password" value={password} placeholder="password" onChange={changeHandler} />
