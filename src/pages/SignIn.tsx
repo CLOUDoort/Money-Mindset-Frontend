@@ -2,6 +2,7 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 
 import { Link } from 'react-router-dom'
 import OAuth from '../components/OAuth'
+import { apiInstance } from '../apis/setting'
 import { useState } from "react"
 
 const SignIn = () => {
@@ -17,8 +18,16 @@ const SignIn = () => {
             ...formData, [name]: value
         })
     }
-    const submitHandler = (e: React.SyntheticEvent) => {
+    const submitHandler = async (e: React.SyntheticEvent) => {
         e.preventDefault()
+        try {
+            const submitResponse = await apiInstance.post(`/user/signin`, {
+                email, password
+            })
+            console.log('submitResponse', submitResponse)
+        } catch (e: any) {
+            console.log(e.response)
+        }
 
     }
     return (
