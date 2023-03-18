@@ -1,3 +1,5 @@
+import 'react-toastify/dist/ReactToastify.css';
+
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 import Forgot from "./pages/Forgot";
@@ -7,6 +9,7 @@ import MoneyBook from "./pages/MoneyBook";
 import Profile from "./pages/Profile";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
   return (
@@ -21,6 +24,7 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/money-book" element={<MoneyBook />} />
         </Routes>
+        <ToastContainer />
       </Router>
     </>
   )
