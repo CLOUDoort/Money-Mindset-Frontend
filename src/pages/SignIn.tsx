@@ -1,11 +1,16 @@
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
+import { Link, useNavigate } from 'react-router-dom'
 
-import { Link } from 'react-router-dom'
 import OAuth from '../components/OAuth'
+import { accessToken } from '../store/initialState'
 import { apiInstance } from '../apis/setting'
+import { toast } from 'react-toastify'
+import { useSetAtom } from 'jotai'
 import { useState } from "react"
 
 const SignIn = () => {
+    const navigate = useNavigate()
+    const setToken = useSetAtom(accessToken)
     const [showPassword, setShowPassword] = useState(false)
     const [formData, setFormData] = useState({
         email: "",
@@ -24,15 +29,17 @@ const SignIn = () => {
             const submitResponse = await apiInstance.post(`/user/signin`, {
                 email, password
             })
-            console.log('submitResponse', submitResponse)
+            toast("로그인 성공!")
+            navigate('/')
+            setToken(submitResponse.data.accessToken)
         } catch (e: any) {
-            console.log(e.response)
+            toast.error(e.response.data.message)
         }
 
     }
     return (
         <section className='flex justify-center items-center w-full h-full'>
-            <div className="flex w-full justify-center flex-wrap items-center px-6 py-12 max-w-6xl mx-auto ">
+            <div className="flex w-full justify-center flex-wrap items-center px-6 py-12 max-w-7xl mx-auto ">
                 <div className="w-full md:w-[67%] lg:w-[50%] mb-12 md:mb-6">
                     <img src="/MoneyMindsetLogo.png" alt="logo" className="w-full rounded-2xl" />
                 </div>
