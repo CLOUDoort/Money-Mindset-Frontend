@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router'
 const Header = () => {
     const navigate = useNavigate()
     return (
-        <div className='bg-white border-b shadow-sm sticky top-0 z-50 py-3'>
-            <header className='flex justify-between items-center px-3 max-w-6xl mx-auto'>
+        <div className='bg-#FBFBFB border-b shadow-sm sticky top-0 z-50 py-3'>
+            <header className='flex justify-between items-center px-12 max-w-7xl mx-auto'>
                 <div>
                     <img onClick={() => navigate("/")} className="h-14 cursor-pointer" src="/MoneyMindsetLogo.png" alt="logo" />
                 </div>
