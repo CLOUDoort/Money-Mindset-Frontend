@@ -1,9 +1,9 @@
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom'
 
-import OAuth from '../components/OAuth'
-import { accessToken } from '../store/initialState'
-import { apiInstance } from '../apis/setting'
+import OAuth from '../../components/OAuth'
+import { accessToken } from '../../store/initialState'
+import { apiInstance } from '../../apis/setting'
 import { toast } from 'react-toastify'
 import { useSetAtom } from 'jotai'
 import { useState } from "react"
