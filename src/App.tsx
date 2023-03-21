@@ -7,7 +7,7 @@ import Header from "./components/Header";
 import Home from "./pages/Home";
 import MoneyBook from "./pages/MoneyBook";
 import Profile from "./pages/Profile";
-import SignIn from "./pages/SignIn";
+import SignIn from "./pages/SignIn/Index";
 import SignUp from "./pages/SignUp";
 import { ToastContainer } from 'react-toastify';
 
