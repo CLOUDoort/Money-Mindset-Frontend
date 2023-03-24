@@ -1,6 +1,6 @@
 import 'react-toastify/dist/ReactToastify.css';
 
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import Forgot from "./pages/Forgot";
 import Header from "./components/Header";
@@ -14,18 +14,16 @@ import { ToastContainer } from 'react-toastify';
 const App = () => {
   return (
     <>
-      <Router>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/forgot" element={<Forgot />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/money-book" element={<MoneyBook />} />
-        </Routes>
-        <ToastContainer />
-      </Router>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/forgot" element={<Forgot />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/money-book" element={<MoneyBook />} />
+      </Routes>
+      <ToastContainer />
     </>
   )
 }
