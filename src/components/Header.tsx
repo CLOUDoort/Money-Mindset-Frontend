@@ -8,7 +8,7 @@ const Header = () => {
         <div className='bg-#FBFBFB border-b shadow-sm sticky top-0 z-50 py-3'>
             <header className='flex justify-between items-center px-12 max-w-7xl mx-auto'>
                 <div>
-                    <img onClick={() => navigate("/")} className="h-14 cursor-pointer" src="/MoneyMindsetLogo.png" alt="logo" />
+                    <img onClick={() => navigate("/")} className="h-14 cursor-pointer" src="/MoneyMindsetLogo.svg" alt="logo" />
                 </div>
                 <div>
                     <ul className='flex space-x-4 items-center text-sm sm:text-lg'>

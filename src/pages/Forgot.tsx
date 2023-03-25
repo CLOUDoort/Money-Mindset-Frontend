@@ -30,7 +30,7 @@ const Forgot = () => {
             {
                 !valid ? <div className="flex w-full justify-center flex-wrap items-center px-6 py-12 max-w-7xl mx-auto ">
                     <div className="w-full md:w-[67%] lg:w-[50%] mb-12 md:mb-6">
-                        <img src="/MoneyMindsetLogo.png" alt="logo" className="w-full rounded-2xl" />
+                        <img src="/MoneyMindsetLogo.svg" alt="logo" className="w-full rounded-2xl" />
                     </div>
                     <div className="flex w-full flex-col md:w-[67%] lg:w-[40%] ml-0 lg:ml-20">
                         <h1 className="text-5xl lg:text-6xl text-center mb-14 font-bold">Forgot</h1>

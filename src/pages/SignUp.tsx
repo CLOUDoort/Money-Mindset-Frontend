@@ -62,7 +62,7 @@ const SignUp = () => {
         <section className='flex justify-center items-center w-full h-full'>
             <div className="flex w-full justify-center flex-wrap items-center px-6 py-12 max-w-7xl mx-auto ">
                 <div className="w-full md:w-[67%] lg:w-[50%] mb-12 md:mb-6">
-                    <img src="/MoneyMindsetLogo.png" alt="logo" className="w-full rounded-2xl" />
+                    <img src="/MoneyMindsetLogo.svg" alt="logo" className="w-full rounded-2xl" />
                 </div>
                 <div className="flex w-full flex-col md:w-[67%] lg:w-[40%] ml-0 lg:ml-20">
                     <h1 className="text-5xl lg:text-6xl text-center mb-14 font-bold">Sign-Up</h1>
@@ -73,7 +73,7 @@ const SignUp = () => {
                         </div>
                         <div className='flex items-center justify-center'>
                             <input autoComplete='off' className="w-full mb-4 px-4 py-2 text-xl bg-white border-gray-400 rounded transition ease-in-out" type="email" name="email" value={email} placeholder="example@google.com" onChange={changeHandler} />
-                            <button type='button' onClick={clickVerify} className={`text-lg mb-4 font-semibold ml-4 border py-3 px-3 rounded bg-gray-300  hover:bg-gray-400 active:bg-gray-500  transition duration 150`}>Verify</button>
+                            <button type='button' onClick={clickVerify} className={`text-lg mb-4 font-semibold ml-4 border py-3 px-3 rounded bg-gray-300  hover:bg-gray-400 active:bg-gray-500  transition duration 150 ease-in-out`}>Verify</button>
                         </div>
                         <div className='text-lg mb-2 font-semibold'>Password</div>
                         <div className="relative mb-6">
