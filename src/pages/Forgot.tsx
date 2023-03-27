@@ -3,10 +3,13 @@ import ModifyPassword from '../components/ModifyPassword'
 import OAuth from '../components/OAuth'
 import { apiInstance } from '../apis/setting'
 import { toast } from 'react-toastify'
+import { useSetAtom } from 'jotai'
 import { useState } from "react"
+import { userEmail } from '../store/initialState'
 
 const Forgot = () => {
     const [email, setEmail] = useState('')
+    const setUserEmail = useSetAtom(userEmail)
     const [valid, setValid] = useState(false);
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value)
@@ -17,7 +20,11 @@ const Forgot = () => {
             const verifyEmail = await apiInstance.post(`user/email`, {
                 email
             })
-            if (verifyEmail.data.isExisted) setValid(true);
+            setUserEmail(email)
+            if (verifyEmail.data.isExisted) {
+                setValid(true);
+                toast.success("Success!")
+            }
             else {
                 toast.error("No email")
             }
