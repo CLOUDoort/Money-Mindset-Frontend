@@ -65,7 +65,7 @@ const SignUpForm = () => {
                     <img src="/MoneyMindsetLogo.svg" alt="logo" className="w-full rounded-2xl" />
                 </div>
                 <div className="flex w-full flex-col md:w-[67%] lg:w-[40%] ml-0 lg:ml-20">
-                    <h1 className="mb-10 font-bold text-center lg:text-5xl">Sign-Up</h1>
+                    <h1 className="mb-10 text-5xl font-bold text-center lg:text-5xl">Sign-Up</h1>
                     <form onSubmit={submitHandler}>
                         <div className='flex bl-4'>
                             <div className='mb-2 mr-2 text-lg font-semibold'>Email</div>

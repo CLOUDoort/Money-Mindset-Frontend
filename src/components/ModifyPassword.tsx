@@ -42,7 +42,7 @@ const ModifyPassword = () => {
                     <img src="/MoneyMindsetLogo.svg" alt="logo" className="w-full rounded-2xl" />
                 </div>
                 <div className="flex w-full flex-col md:w-[67%] lg:w-[40%] ml-0 lg:ml-20">
-                    <h1 className="mb-10 font-bold text-center lg:text-5xl">Modify Password</h1>
+                    <h1 className="mb-10 text-5xl font-bold text-center lg:text-5xl">Modify Password</h1>
                     <form onSubmit={submitHandler}>
                         <div className='mb-2 text-lg font-semibold'>Password</div>
                         <input className="w-full px-4 py-2 mb-6 text-xl transition ease-in-out bg-white border-gray-400 rounded" type="password" name="password" value={password} placeholder="password" onChange={changeHandler} />
