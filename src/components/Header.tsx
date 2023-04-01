@@ -4,12 +4,18 @@ import { BsSun } from 'react-icons/bs'
 import { Fragment } from 'react'
 import { IoIosNotificationsOutline } from 'react-icons/io'
 import { apiInstance } from '../apis/setting'
+import { toast } from 'react-toastify'
 
 const Header = () => {
     const navigate = useNavigate()
     const clickLogout = async () => {
-        const response = await apiInstance.post(`/user/logout/3`)
-        console.log('response', response.data)
+        try {
+            const response = await apiInstance.post(`/user/logout/3`)
+            toast.success("로그아웃!")
+
+        } catch (e: any) {
+            toast.error(e.response)
+        }
     }
     return (
         <Fragment>

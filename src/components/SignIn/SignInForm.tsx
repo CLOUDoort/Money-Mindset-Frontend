@@ -29,7 +29,7 @@ const SignInForm = () => {
             const submitResponse = await apiInstance.post(`/user/signin`, {
                 email, password
             })
-            toast("로그인 성공!")
+            toast.success("로그인 성공!")
             console.log('submitResponse', submitResponse.data)
             navigate('/')
             setToken(submitResponse.data.accessToken)

@@ -73,7 +73,7 @@ const SignUpForm = () => {
                         </div>
                         <div className='flex items-center justify-center'>
                             <input autoComplete='off' className="w-full px-4 py-2 mb-4 text-xl transition ease-in-out bg-white border-gray-400 rounded" type="email" name="email" value={email} placeholder="example@google.com" onChange={changeHandler} />
-                            <button type='button' onClick={clickVerify} className={`text-lg mb-4 font-semibold ml-4 border py-3 px-3 rounded bg-gray-300  hover:bg-gray-400 active:bg-gray-500  transition duration 150 ease-in-out`}>Verify</button>
+                            <button type='button' onClick={clickVerify} className={`text-lg mb-4 font-semibold ml-4 border py-3 px-3 rounded bg-gray-200  hover:bg-gray-300 active:bg-gray-200  transition duration 150 ease-in-out`}>Verify</button>
                         </div>
                         <div className='mb-2 text-lg font-semibold'>Password</div>
                         <div className="relative mb-6">
