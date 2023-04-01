@@ -35,12 +35,12 @@ const ForgotForm = () => {
     return (
         <section className='flex items-center justify-center w-full h-full'>
             {
-                !valid ? <div className="flex flex-wrap items-center justify-center w-full px-6 py-12 mx-auto max-w-7xl ">
+                !valid ? <div className="flex flex-wrap items-center justify-center w-full max-w-6xl px-6 py-12 mx-auto ">
                     <div className="w-full md:w-[67%] lg:w-[50%] mb-12 md:mb-6">
                         <img src="/MoneyMindsetLogo.svg" alt="logo" className="w-full rounded-2xl" />
                     </div>
                     <div className="flex w-full flex-col md:w-[67%] lg:w-[40%] ml-0 lg:ml-20">
-                        <h1 className="text-5xl font-bold text-center lg:text-6xl mb-14">Forgot</h1>
+                        <h1 className="mb-10 font-bold text-center lg:text-5xl">Forgot</h1>
                         <form onSubmit={submitHandler}>
                             <div className='mb-2 text-lg font-semibold'>Email</div>
                             <input autoComplete='off' className="w-full px-4 py-2 mb-6 text-xl transition ease-in-out bg-white border-gray-400 rounded" type="email" name="email" value={email} placeholder="example@google.com" onChange={changeHandler} />

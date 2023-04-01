@@ -14,12 +14,12 @@ const Header = () => {
     return (
         <Fragment>
             <div className='bg-#FBFBFB border-b shadow-sm sticky top-0 z-50 py-3'>
-                <header className='flex justify-between items-center px-12 max-w-7xl mx-auto'>
+                <header className='flex items-center justify-between max-w-6xl px-12 mx-auto'>
                     <div>
-                        <img onClick={() => navigate("/")} className="h-14 cursor-pointer" src="/MoneyMindsetLogo.svg" alt="logo" />
+                        <img onClick={() => navigate("/")} className="cursor-pointer h-14" src="/MoneyMindsetLogo.svg" alt="logo" />
                     </div>
                     <div>
-                        <ul className='flex space-x-4 items-center text-sm sm:text-lg'>
+                        <ul className='flex items-center space-x-4 text-sm sm:text-lg'>
                             <li className="cursor-pointer">
                                 <BsSun size={35} />
                             </li>

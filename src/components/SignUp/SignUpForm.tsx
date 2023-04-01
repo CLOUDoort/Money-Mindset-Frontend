@@ -60,12 +60,12 @@ const SignUpForm = () => {
     }
     return (
         <section className='flex items-center justify-center w-full h-full'>
-            <div className="flex flex-wrap items-center justify-center w-full px-6 py-12 mx-auto max-w-7xl ">
+            <div className="flex flex-wrap items-center justify-center w-full max-w-6xl px-6 py-12 mx-auto ">
                 <div className="w-full md:w-[67%] lg:w-[50%] mb-12 md:mb-6">
                     <img src="/MoneyMindsetLogo.svg" alt="logo" className="w-full rounded-2xl" />
                 </div>
                 <div className="flex w-full flex-col md:w-[67%] lg:w-[40%] ml-0 lg:ml-20">
-                    <h1 className="text-5xl font-bold text-center lg:text-6xl mb-14">Sign-Up</h1>
+                    <h1 className="mb-10 font-bold text-center lg:text-5xl">Sign-Up</h1>
                     <form onSubmit={submitHandler}>
                         <div className='flex bl-4'>
                             <div className='mb-2 mr-2 text-lg font-semibold'>Email</div>
