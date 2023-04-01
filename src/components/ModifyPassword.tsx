@@ -36,19 +36,19 @@ const ModifyPassword = () => {
 
     }
     return (
-        <section className='flex justify-center items-center w-full h-full'>
-            <div className="flex w-full justify-center flex-wrap items-center px-6 py-12 max-w-7xl mx-auto ">
+        <section className='flex items-center justify-center w-full h-full'>
+            <div className="flex flex-wrap items-center justify-center w-full px-6 py-12 mx-auto max-w-7xl ">
                 <div className="w-full md:w-[67%] lg:w-[50%] mb-12 md:mb-6">
                     <img src="/MoneyMindsetLogo.svg" alt="logo" className="w-full rounded-2xl" />
                 </div>
                 <div className="flex w-full flex-col md:w-[67%] lg:w-[40%] ml-0 lg:ml-20">
-                    <h1 className="text-5xl lg:text-6xl text-center mb-14 font-bold">Modify Password</h1>
+                    <h1 className="text-5xl font-bold text-center lg:text-6xl mb-14">Modify Password</h1>
                     <form onSubmit={submitHandler}>
-                        <div className='text-lg mb-2 font-semibold'>Password</div>
-                        <input className="w-full mb-6 px-4 py-2 text-xl bg-white border-gray-400 rounded transition ease-in-out" type="password" name="password" value={password} placeholder="password" onChange={changeHandler} />
-                        <div className='text-lg mb-2 font-semibold'>Password Check</div>
-                        <input className="w-full px-4 py-2 text-xl mb-6 bg-white border-gray-400 rounded transition ease-in-out" type="password" name="checkPassword" value={checkPassword} placeholder="password check" onChange={changeHandler} />
-                        <button className='w-full uppercase bg-blue-600 text-white px-7 py-3 text-lg font-semibold rounded hover:bg-blue-700 active:bg-blue-800 shadow-md hover:shadow-lg transition duration 150' type='submit'>Modify</button>
+                        <div className='mb-2 text-lg font-semibold'>Password</div>
+                        <input className="w-full px-4 py-2 mb-6 text-xl transition ease-in-out bg-white border-gray-400 rounded" type="password" name="password" value={password} placeholder="password" onChange={changeHandler} />
+                        <div className='mb-2 text-lg font-semibold'>Password Check</div>
+                        <input className="w-full px-4 py-2 mb-6 text-xl transition ease-in-out bg-white border-gray-400 rounded" type="password" name="checkPassword" value={checkPassword} placeholder="password check" onChange={changeHandler} />
+                        <button className='w-full py-3 text-lg font-semibold text-white uppercase transition bg-blue-600 rounded shadow-md px-7 hover:bg-blue-700 active:bg-blue-800 hover:shadow-lg duration 150' type='submit'>Modify</button>
                     </form>
                 </div>
             </div>

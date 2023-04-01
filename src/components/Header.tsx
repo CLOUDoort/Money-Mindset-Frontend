@@ -3,9 +3,14 @@ import { Outlet, useNavigate } from 'react-router'
 import { BsSun } from 'react-icons/bs'
 import { Fragment } from 'react'
 import { IoIosNotificationsOutline } from 'react-icons/io'
+import { apiInstance } from '../apis/setting'
 
 const Header = () => {
     const navigate = useNavigate()
+    const clickLogout = async () => {
+        const response = await apiInstance.post(`/user/logout/3`)
+        console.log('response', response.data)
+    }
     return (
         <Fragment>
             <div className='bg-#FBFBFB border-b shadow-sm sticky top-0 z-50 py-3'>
@@ -21,7 +26,8 @@ const Header = () => {
                             <li className="cursor-pointer">
                                 <IoIosNotificationsOutline size={35} />
                             </li>
-                            <li onClick={() => navigate("/sign-in")} className="cursor-pointer">Sign-in</li>
+                            <li onClick={() => navigate("/sign-in")} className="cursor-pointer whitespace-nowrap">Sign-in</li>
+                            <li onClick={clickLogout} className="cursor-pointer whitespace-nowrap">Logout</li>
                         </ul>
                     </div>
                 </header>
