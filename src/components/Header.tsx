@@ -12,6 +12,7 @@ const Header = () => {
         try {
             const response = await apiInstance.post(`/user/logout/3`)
             toast.success("로그아웃!")
+            navigate('/')
 
         } catch (e: any) {
             toast.error(e.response)
