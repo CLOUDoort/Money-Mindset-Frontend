@@ -1,7 +1,7 @@
+import Index from "../components/Index"
+
 const Home = () => {
-    return (
-        <div></div>
-    )
+    return <Index />
 }
 
 export default Home
