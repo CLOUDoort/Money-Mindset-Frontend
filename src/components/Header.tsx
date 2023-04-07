@@ -1,13 +1,40 @@
 import { Outlet, useNavigate } from 'react-router'
 
 import { BsSun } from 'react-icons/bs'
-import { Fragment } from 'react'
+import { Fragment, useEffect } from 'react'
 import { IoIosNotificationsOutline } from 'react-icons/io'
 import { apiInstance } from '../apis/setting'
 import { toast } from 'react-toastify'
+import { useSetAtom } from 'jotai'
+import { accessToken, userEmail, userIdx, userNickname } from '../store/initialState'
 
 const Header = () => {
     const navigate = useNavigate()
+    const setAccessToken = useSetAtom(accessToken)
+    const setIdx = useSetAtom(userIdx)
+    const setEmail = useSetAtom(userEmail)
+    const setNickname = useSetAtom(userNickname)
+    useEffect(() => {
+        const getToken = async () => {
+            try {
+                const tokenResponse = await apiInstance.get('/user/refresh')
+                setAccessToken(tokenResponse.data.accessToken)
+                const userData = await apiInstance.get('user/validate', {
+                    headers: {
+                        Authorization: 'Bearer ' + tokenResponse.data.accessToken
+                    }
+                })
+                const { idx, email, nickname } = userData.data
+                setIdx(idx);
+                setEmail(email)
+                setNickname(nickname)
+            }
+            catch (e: any) {
+                console.error(e.response)
+            }
+        }
+        getToken()
+    }, [])
     const clickLogout = async () => {
         try {
             const response = await apiInstance.post(`/user/logout/3`)
