@@ -3,7 +3,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Route, Routes } from "react-router-dom";
 
 import Forgot from "./pages/Forgot";
-import GoogleRedirect from './components/SignIn/GoogleRedirect';
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import MoneyBook from "./pages/MoneyBook";
@@ -23,7 +22,6 @@ const App = () => {
           <Route path="/forgot" element={<Forgot />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/money-book" element={<MoneyBook />} />
-          <Route path="/sign-in/google" element={<GoogleRedirect />} />
         </Route>
       </Routes>
       <ToastContainer />
