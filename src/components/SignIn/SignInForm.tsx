@@ -47,11 +47,11 @@ const SignInForm = () => {
                 <div className="flex w-full flex-col md:w-[67%] lg:w-[40%] ml-0 lg:ml-20">
                     <h1 className="mb-10 text-5xl font-bold text-center lg:text-5xl">Sign-in</h1>
                     <form onSubmit={submitHandler}>
-                        <div className='mb-2 text-lg font-semibold'>Email</div>
-                        <input autoComplete='off' className="w-full px-4 py-2 mb-6 text-xl transition ease-in-out bg-white border-gray-400 rounded" type="email" name="email" value={email} placeholder="example@google.com" onChange={changeHandler} />
-                        <div className='mb-2 text-lg font-semibold'>password</div>
+                        <label className='mb-2 text-lg font-semibold'>Email</label>
+                        <input required autoComplete='off' className="w-full px-4 py-2 mb-6 text-xl transition ease-in-out bg-white border-gray-400 rounded" type="email" name="email" value={email} placeholder="example@google.com" onChange={changeHandler} />
+                        <label className='mb-2 text-lg font-semibold'>password</label>
                         <div className="relative mb-6">
-                            <input className="w-full px-4 py-2 text-xl transition ease-in-out bg-white border-gray-400 rounded" type={showPassword ? 'text' : "password"} name="password" value={password} placeholder="password" onChange={changeHandler} />
+                            <input required className="w-full px-4 py-2 text-xl transition ease-in-out bg-white border-gray-400 rounded" type={showPassword ? 'text' : "password"} name="password" value={password} placeholder="password" onChange={changeHandler} />
                             {showPassword ? <AiFillEyeInvisible onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-3' /> : <AiFillEye onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-3' />}
                         </div>
                         <div className='flex justify-between text-sm whitespace-nowrap sm:text-lg'>
