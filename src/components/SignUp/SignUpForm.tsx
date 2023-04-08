@@ -69,15 +69,15 @@ const SignUpForm = () => {
                     <h1 className="mb-10 text-5xl font-bold text-center lg:text-5xl">Sign-Up</h1>
                     <form onSubmit={submitHandler}>
                         <div className='flex bl-4'>
-                            <label className='mb-2 mr-2 text-lg font-semibold'>Email</label>
+                            <div className='mb-2 mr-2 text-lg font-semibold'>Email</div>
                             {existEmail === 2 ? <p className='mb-2 text-lg text-red-600'>Already exists. Back to <Link to={"/sign-in"} className='text-blue-600'>Sing in</Link></p> : existEmail === 1 ? <p className='mb-2 text-lg text-green-600'>Valid</p> : null}
                         </div>
                         <div className='flex items-center justify-center'>
                             <InputForm type="email" name="email" value={email} placeholder="example@google.com" onChange={changeHandler} />
                             <button type='button' onClick={clickVerify} className={`text-lg mb-4 font-semibold ml-4 border py-3 px-3 rounded bg-gray-200  hover:bg-gray-300 active:bg-gray-200  transition duration 150 ease-in-out`}>Verify</button>
                         </div>
-                        <label className='mb-2 text-lg font-semibold'>Password</label>
-                        <div className="relative mb-6">
+                        <div className='mb-2 text-lg font-semibold'>Password</div>
+                        <div className="relative mb-2">
                             <InputForm type={showPassword ? 'text' : "password"} name="password" value={password} placeholder="password" onChange={changeHandler} />
                             {showPassword ? <AiFillEyeInvisible onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-3' /> : <AiFillEye onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-3' />}
                         </div>
