@@ -1,6 +1,6 @@
 const MoneyBookMaginotLine = () => {
     return (
-        <div className="w-full">
+        <div>
             Maginot
         </div>
     )

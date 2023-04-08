@@ -2,8 +2,9 @@ import { Fragment } from "react"
 
 const MoneyBookDashboard = () => {
     return (
-        <Fragment>
-        </Fragment>
+        <div>
+            dashboard
+        </div>
     )
 }
 

@@ -1,5 +1,9 @@
 const MoneyBookExpense = () => {
-    return <></>
+    return (
+        <div>
+            Expense
+        </div>
+    )
 }
 
 export default MoneyBookExpense

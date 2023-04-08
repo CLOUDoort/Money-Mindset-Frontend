@@ -1,5 +1,9 @@
 const MoneyBookStatistics = () => {
-    return <></>
+    return (
+        <>
+            statistics
+        </>
+    )
 }
 
 export default MoneyBookStatistics
