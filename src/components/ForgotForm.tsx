@@ -6,6 +6,7 @@ import { toast } from 'react-toastify'
 import { useSetAtom } from 'jotai'
 import { useState } from "react"
 import { userEmail } from '../store/initialState'
+import InputForm from './InputForm'
 
 const ForgotForm = () => {
     const [email, setEmail] = useState('')
@@ -43,7 +44,7 @@ const ForgotForm = () => {
                         <h1 className="mb-10 text-5xl font-bold text-center lg:text-5xl">Forgot</h1>
                         <form onSubmit={submitHandler}>
                             <label className='mb-2 text-lg font-semibold'>Email</label>
-                            <input required autoComplete='off' className="w-full px-4 py-2 mb-6 text-xl transition ease-in-out bg-white border-gray-400 rounded" type="email" name="email" value={email} placeholder="example@google.com" onChange={changeHandler} />
+                            <InputForm type="email" name="email" value={email} placeholder="example@google.com" onChange={changeHandler} />
                             <div className='flex justify-between text-sm whitespace-nowrap sm:text-lg'>
                                 <p className='mb-6'>
                                     Don't have a account?

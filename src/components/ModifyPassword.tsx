@@ -4,6 +4,7 @@ import { useAtomValue } from 'jotai'
 import { useNavigate } from 'react-router-dom'
 import { useState } from "react"
 import { userEmail } from '../store/initialState'
+import InputForm from './InputForm'
 
 const ModifyPassword = () => {
     const navigate = useNavigate()
@@ -45,9 +46,9 @@ const ModifyPassword = () => {
                     <h1 className="mb-10 text-5xl font-bold text-center lg:text-5xl">Modify Password</h1>
                     <form onSubmit={submitHandler}>
                         <div className='mb-2 text-lg font-semibold'>Password</div>
-                        <input className="w-full px-4 py-2 mb-6 text-xl transition ease-in-out bg-white border-gray-400 rounded" type="password" name="password" value={password} placeholder="password" onChange={changeHandler} />
+                        <InputForm type="password" name="password" value={password} placeholder="password" onChange={changeHandler} />
                         <div className='mb-2 text-lg font-semibold'>Password Check</div>
-                        <input className="w-full px-4 py-2 mb-6 text-xl transition ease-in-out bg-white border-gray-400 rounded" type="password" name="checkPassword" value={checkPassword} placeholder="password check" onChange={changeHandler} />
+                        <InputForm type="password" name="checkPassword" value={checkPassword} placeholder="password check" onChange={changeHandler} />
                         <button className='w-full py-3 text-lg font-semibold text-white uppercase transition bg-blue-600 rounded shadow-md px-7 hover:bg-blue-700 active:bg-blue-800 hover:shadow-lg duration 150' type='submit'>Modify</button>
                     </form>
                 </div>

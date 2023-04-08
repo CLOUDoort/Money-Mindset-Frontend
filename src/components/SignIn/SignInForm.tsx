@@ -7,6 +7,7 @@ import { apiInstance } from '../../apis/setting'
 import { toast } from 'react-toastify'
 import { useSetAtom } from 'jotai'
 import { useState } from "react"
+import InputForm from '../InputForm'
 
 const SignInForm = () => {
     const navigate = useNavigate()
@@ -48,10 +49,10 @@ const SignInForm = () => {
                     <h1 className="mb-10 text-5xl font-bold text-center lg:text-5xl">Sign-in</h1>
                     <form onSubmit={submitHandler}>
                         <label className='mb-2 text-lg font-semibold'>Email</label>
-                        <input required autoComplete='off' className="w-full px-4 py-2 mb-6 text-xl transition ease-in-out bg-white border-gray-400 rounded" type="email" name="email" value={email} placeholder="example@google.com" onChange={changeHandler} />
+                        <InputForm type="email" name="email" value={email} placeholder="example@google.com" onChange={changeHandler} />
                         <label className='mb-2 text-lg font-semibold'>password</label>
                         <div className="relative mb-6">
-                            <input required className="w-full px-4 py-2 text-xl transition ease-in-out bg-white border-gray-400 rounded" type={showPassword ? 'text' : "password"} name="password" value={password} placeholder="password" onChange={changeHandler} />
+                            <InputForm type={showPassword ? 'text' : "password"} name="password" value={password} placeholder="password" onChange={changeHandler} />
                             {showPassword ? <AiFillEyeInvisible onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-3' /> : <AiFillEye onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-3' />}
                         </div>
                         <div className='flex justify-between text-sm whitespace-nowrap sm:text-lg'>

@@ -7,6 +7,7 @@ import { apiInstance } from '../../apis/setting'
 import { toast } from 'react-toastify'
 import { useSetAtom } from 'jotai'
 import { useState } from "react"
+import InputForm from '../InputForm'
 
 const SignUpForm = () => {
     const setEmail = useSetAtom(userEmail);
@@ -72,16 +73,16 @@ const SignUpForm = () => {
                             {existEmail === 2 ? <p className='mb-2 text-lg text-red-600'>Already exists. Back to <Link to={"/sign-in"} className='text-blue-600'>Sing in</Link></p> : existEmail === 1 ? <p className='mb-2 text-lg text-green-600'>Valid</p> : null}
                         </div>
                         <div className='flex items-center justify-center'>
-                            <input required autoComplete='off' className="w-full px-4 py-2 mb-4 text-xl transition ease-in-out bg-white border-gray-400 rounded" type="email" name="email" value={email} placeholder="example@google.com" onChange={changeHandler} />
+                            <InputForm type="email" name="email" value={email} placeholder="example@google.com" onChange={changeHandler} />
                             <button type='button' onClick={clickVerify} className={`text-lg mb-4 font-semibold ml-4 border py-3 px-3 rounded bg-gray-200  hover:bg-gray-300 active:bg-gray-200  transition duration 150 ease-in-out`}>Verify</button>
                         </div>
                         <label className='mb-2 text-lg font-semibold'>Password</label>
                         <div className="relative mb-6">
-                            <input required className="w-full px-4 py-2 text-xl transition ease-in-out bg-white border-gray-400 rounded" type={showPassword ? 'text' : "password"} name="password" value={password} placeholder="password" onChange={changeHandler} />
+                            <InputForm type={showPassword ? 'text' : "password"} name="password" value={password} placeholder="password" onChange={changeHandler} />
                             {showPassword ? <AiFillEyeInvisible onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-3' /> : <AiFillEye onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-3' />}
                         </div>
                         <div className='mb-2 text-lg font-semibold'>Nickname</div>
-                        <input required autoComplete='off' className="w-full px-4 py-2 mb-6 text-xl transition ease-in-out bg-white border-gray-400 rounded" type="text" name="nickname" value={nickname} placeholder="nickname" onChange={changeHandler} />
+                        <InputForm type="text" name="nickname" value={nickname} placeholder="nickname" onChange={changeHandler} />
                         <div className='flex justify-between text-sm whitespace-nowrap sm:text-lg'>
                             <p className='mb-6'>
                                 Have a account?
