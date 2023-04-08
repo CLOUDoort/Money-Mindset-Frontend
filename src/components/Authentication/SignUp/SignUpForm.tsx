@@ -1,13 +1,13 @@
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom'
-import { userEmail, userIdx, userNickname } from '../../store/initialState'
+import { userEmail, userIdx, userNickname } from '../../../store/initialState'
 
-import SignInGoogle from '../SignIn/GoogleAuth'
-import { apiInstance } from '../../apis/setting'
+import InputForm from '../../InputForm'
+import SignInGoogle from '../GoogleAuth'
+import { apiInstance } from '../../../apis/setting'
 import { toast } from 'react-toastify'
 import { useSetAtom } from 'jotai'
 import { useState } from "react"
-import InputForm from '../InputForm'
 
 const SignUpForm = () => {
     const setEmail = useSetAtom(userEmail);

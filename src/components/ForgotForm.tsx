@@ -1,12 +1,12 @@
+import InputForm from './InputForm'
 import { Link } from 'react-router-dom'
 import ModifyPassword from './ModifyPassword'
-import SignInGoogle from './SignIn/GoogleAuth'
+import SignInGoogle from './Authentication/GoogleAuth'
 import { apiInstance } from '../apis/setting'
 import { toast } from 'react-toastify'
 import { useSetAtom } from 'jotai'
 import { useState } from "react"
 import { userEmail } from '../store/initialState'
-import InputForm from './InputForm'
 
 const ForgotForm = () => {
     const [email, setEmail] = useState('')
