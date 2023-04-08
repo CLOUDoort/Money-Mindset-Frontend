@@ -50,7 +50,7 @@ const SignInForm = () => {
                     <form onSubmit={submitHandler}>
                         <label className='mb-2 text-lg font-semibold'>Email</label>
                         <InputForm type="email" name="email" value={email} placeholder="example@google.com" onChange={changeHandler} />
-                        <label className='mb-2 text-lg font-semibold'>password</label>
+                        <label className='mb-2 text-lg font-semibold'>Password</label>
                         <div className="relative mb-6">
                             <InputForm type={showPassword ? 'text' : "password"} name="password" value={password} placeholder="password" onChange={changeHandler} />
                             {showPassword ? <AiFillEyeInvisible onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-3' /> : <AiFillEye onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-3' />}
