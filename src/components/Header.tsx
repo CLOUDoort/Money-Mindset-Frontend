@@ -1,12 +1,12 @@
+import { Fragment, useEffect } from 'react'
 import { Outlet, useNavigate } from 'react-router'
+import { accessToken, userEmail, userIdx, userNickname } from '../store/initialState'
 
 import { BsSun } from 'react-icons/bs'
-import { Fragment, useEffect } from 'react'
 import { IoIosNotificationsOutline } from 'react-icons/io'
 import { apiInstance } from '../apis/setting'
 import { toast } from 'react-toastify'
 import { useSetAtom } from 'jotai'
-import { accessToken, userEmail, userIdx, userNickname } from '../store/initialState'
 
 const Header = () => {
     const navigate = useNavigate()
@@ -48,7 +48,7 @@ const Header = () => {
     return (
         <Fragment>
             <div className='bg-#FBFBFB border-b shadow-sm sticky top-0 z-50 py-3'>
-                <header className='flex items-center justify-between max-w-6xl px-12 mx-auto'>
+                <header className='flex items-center justify-between max-w-6xl px-4 mx-auto'>
                     <div>
                         <img onClick={() => navigate("/")} className="cursor-pointer h-14" src="/MoneyMindsetLogo.svg" alt="logo" />
                     </div>
