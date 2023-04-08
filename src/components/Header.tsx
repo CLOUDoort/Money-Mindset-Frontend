@@ -61,6 +61,7 @@ const Header = () => {
                                 <IoIosNotificationsOutline size={35} />
                             </li>
                             <li onClick={() => navigate("/sign-in")} className="cursor-pointer whitespace-nowrap">Sign-in</li>
+                            <li onClick={() => navigate("/money-book/dashboard")} className="cursor-pointer whitespace-nowrap">Service</li>
                             <li onClick={clickLogout} className="cursor-pointer whitespace-nowrap">Logout</li>
                         </ul>
                     </div>

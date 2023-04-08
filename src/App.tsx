@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import Forgot from "./pages/Forgot";
 import Header from "./components/Header";
 import Home from "./pages/Home";
-import MoneyBook from "./pages/MoneyBook";
+import MoneyBook from "./pages/MoenyBook/MoneyBook";
 import Profile from "./pages/Profile";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
@@ -21,7 +21,7 @@ const App = () => {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/forgot" element={<Forgot />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/money-book" element={<MoneyBook />} />
+          <Route path="/money-book/dashboard" element={<MoneyBook />} />
         </Route>
       </Routes>
       <ToastContainer />
