@@ -48,7 +48,7 @@ const Header = () => {
     return (
         <Fragment>
             <div className='bg-#FBFBFB border-b shadow-sm sticky top-0 z-50 py-3'>
-                <header className='flex items-center justify-between max-w-6xl px-4 mx-auto'>
+                <header className='flex items-center justify-between px-4'>
                     <div>
                         <img onClick={() => navigate("/")} className="cursor-pointer h-14" src="/MoneyMindsetLogo.svg" alt="logo" />
                     </div>
