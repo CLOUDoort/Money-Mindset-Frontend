@@ -8,7 +8,7 @@ import { MdDashboard } from 'react-icons/md'
 
 const DashNav = () => {
     return (
-        <div className="flex h-full max-w-6xl">
+        <div className="flex h-full">
             <nav className="sticky left-0 flex flex-col items-center border-r w-60">
                 <ul className="py-4 w-52">
                     <li className="flex items-center gap-2 p-4 whitespace-nowrap">
