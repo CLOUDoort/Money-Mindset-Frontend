@@ -1,7 +1,7 @@
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom'
 
-import InputForm from '../../InputForm'
+import Input from '../../InputForm'
 import SignInGoogle from '../GoogleAuth'
 import { accessToken } from '../../../store/initialState'
 import { apiInstance } from '../../../apis/setting'
@@ -49,10 +49,10 @@ const SignInForm = () => {
                     <h1 className="mb-10 text-5xl font-bold text-center lg:text-5xl">Sign-in</h1>
                     <form onSubmit={submitHandler}>
                         <label className='mb-2 text-lg font-semibold'>Email</label>
-                        <InputForm type="email" name="email" value={email} placeholder="example@google.com" onChange={changeHandler} />
+                        <Input type="email" name="email" value={email} placeholder="example@google.com" onChange={changeHandler} />
                         <label className='mb-2 text-lg font-semibold'>Password</label>
                         <div className="relative mb-6">
-                            <InputForm type={showPassword ? 'text' : "password"} name="password" value={password} placeholder="password" onChange={changeHandler} />
+                            <Input type={showPassword ? 'text' : "password"} name="password" value={password} placeholder="password" onChange={changeHandler} />
                             {showPassword ? <AiFillEyeInvisible onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-3' /> : <AiFillEye onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-3' />}
                         </div>
                         <div className='flex justify-between text-sm whitespace-nowrap sm:text-lg'>

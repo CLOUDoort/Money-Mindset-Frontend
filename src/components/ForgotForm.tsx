@@ -1,4 +1,4 @@
-import InputForm from './InputForm'
+import Input from './InputForm'
 import { Link } from 'react-router-dom'
 import ModifyPassword from './ModifyPassword'
 import SignInGoogle from './Authentication/GoogleAuth'
@@ -44,7 +44,7 @@ const ForgotForm = () => {
                         <h1 className="mb-10 text-5xl font-bold text-center lg:text-5xl">Forgot</h1>
                         <form onSubmit={submitHandler}>
                             <label className='mb-2 text-lg font-semibold'>Email</label>
-                            <InputForm type="email" name="email" value={email} placeholder="example@google.com" onChange={changeHandler} />
+                            <Input type="email" name="email" value={email} placeholder="example@google.com" onChange={changeHandler} />
                             <div className='flex justify-between text-sm whitespace-nowrap sm:text-lg'>
                                 <p className='mb-6'>
                                     Don't have a account?

@@ -2,7 +2,7 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom'
 import { userEmail, userIdx, userNickname } from '../../../store/initialState'
 
-import InputForm from '../../InputForm'
+import Input from '../../InputForm'
 import SignInGoogle from '../GoogleAuth'
 import { apiInstance } from '../../../apis/setting'
 import { toast } from 'react-toastify'
@@ -73,16 +73,16 @@ const SignUpForm = () => {
                             {existEmail === 2 ? <p className='mb-2 text-lg text-red-600'>Already exists. Back to <Link to={"/sign-in"} className='text-blue-600'>Sing in</Link></p> : existEmail === 1 ? <p className='mb-2 text-lg text-green-600'>Valid</p> : null}
                         </div>
                         <div className='flex items-center justify-center'>
-                            <InputForm type="email" name="email" value={email} placeholder="example@google.com" onChange={changeHandler} />
+                            <Input type="email" name="email" value={email} placeholder="example@google.com" onChange={changeHandler} />
                             <button type='button' onClick={clickVerify} className={`text-lg mb-4 font-semibold ml-4 border py-3 px-3 rounded bg-gray-200  hover:bg-gray-300 active:bg-gray-200  transition duration 150 ease-in-out`}>Verify</button>
                         </div>
                         <div className='mb-2 text-lg font-semibold'>Password</div>
                         <div className="relative mb-2">
-                            <InputForm type={showPassword ? 'text' : "password"} name="password" value={password} placeholder="password" onChange={changeHandler} />
+                            <Input type={showPassword ? 'text' : "password"} name="password" value={password} placeholder="password" onChange={changeHandler} />
                             {showPassword ? <AiFillEyeInvisible onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-3' /> : <AiFillEye onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-3' />}
                         </div>
                         <div className='mb-2 text-lg font-semibold'>Nickname</div>
-                        <InputForm type="text" name="nickname" value={nickname} placeholder="nickname" onChange={changeHandler} />
+                        <Input type="text" name="nickname" value={nickname} placeholder="nickname" onChange={changeHandler} />
                         <div className='flex justify-between text-sm whitespace-nowrap sm:text-lg'>
                             <p className='mb-6'>
                                 Have a account?
