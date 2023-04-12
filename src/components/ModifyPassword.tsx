@@ -38,15 +38,15 @@ const ModifyPassword = () => {
     }
     return (
         <section className='flex items-center justify-center w-full h-full'>
-            <div className="flex flex-wrap items-center justify-center w-full max-w-6xl px-6 py-12 mx-auto ">
-                <div className="flex w-full flex-col md:w-[67%] lg:w-[40%] ml-0 lg:ml-20">
-                    <h1 className="mb-10 text-5xl font-bold text-center lg:text-5xl">Modify Password</h1>
+            <div className="flex flex-wrap items-center justify-center w-full max-w-6xl mx-auto ">
+                <div className="flex w-full flex-col md:w-[67%] lg:w-[40%]">
+                    <h1 className="mb-8 text-4xl font-bold text-center lg:text-4xl">Modify Password</h1>
                     <form onSubmit={submitHandler}>
-                        <div className='mb-2 text-lg font-semibold'>Password</div>
+                        <div className='mb-2 font-semibold'>Password</div>
                         <Input type="password" name="password" value={password} placeholder="password" onChange={changeHandler} />
-                        <div className='mb-2 text-lg font-semibold'>Password Check</div>
+                        <div className='mb-2 font-semibold'>Password Check</div>
                         <Input type="password" name="checkPassword" value={checkPassword} placeholder="password check" onChange={changeHandler} />
-                        <button className='w-full py-3 text-lg font-semibold text-white uppercase transition bg-blue-600 rounded shadow-md px-7 hover:bg-blue-700 active:bg-blue-800 hover:shadow-lg duration 150' type='submit'>Modify</button>
+                        <button className='w-full py-3 font-semibold text-white uppercase transition bg-blue-600 rounded shadow-md px-7 hover:bg-blue-700 active:bg-blue-800 hover:shadow-lg duration 150' type='submit'>Modify</button>
                     </form>
                 </div>
             </div>

@@ -36,16 +36,13 @@ const ForgotForm = () => {
     return (
         <section className='flex items-center justify-center w-full h-full'>
             {
-                !valid ? <div className="flex flex-wrap items-center justify-center w-full max-w-6xl px-6 py-12 mx-auto ">
-                    <div className="w-full md:w-[67%] lg:w-[50%] mb-12 md:mb-6">
-                        <img src="/MoneyMindsetLogo.svg" alt="logo" className="w-full rounded-2xl" />
-                    </div>
-                    <div className="flex w-full flex-col md:w-[67%] lg:w-[40%] ml-0 lg:ml-20">
-                        <h1 className="mb-10 text-5xl font-bold text-center lg:text-5xl">Forgot</h1>
+                !valid ? <div className="flex flex-wrap items-center justify-center w-full max-w-6xl p-5 mx-auto">
+                    <div className="flex w-full flex-col md:w-[67%] lg:w-[40%]">
+                        <h1 className="mb-8 text-4xl font-bold text-center lg:text-4xl">Forgot</h1>
                         <form onSubmit={submitHandler}>
-                            <label className='mb-2 text-lg font-semibold'>Email</label>
+                            <div className='mb-2 font-semibold'>Email</div>
                             <Input type="email" name="email" value={email} placeholder="example@google.com" onChange={changeHandler} />
-                            <div className='flex justify-between text-sm whitespace-nowrap sm:text-lg'>
+                            <div className='flex justify-between text-sm whitespace-nowrap'>
                                 <p className='mb-6'>
                                     Don't have a account?
                                     <Link className='ml-1 text-red-600 transition ease-in-out hover:text-red-700 duration 150' to="/sign-up">
@@ -56,9 +53,9 @@ const ForgotForm = () => {
                                     <Link to="/sign-in">Sign in</Link>
                                 </p>
                             </div>
-                            <button className='w-full py-3 text-lg font-semibold text-white uppercase transition bg-blue-600 rounded shadow-md px-7 hover:bg-blue-700 active:bg-blue-800 hover:shadow-lg duration 150' type='submit'>check email</button>
-                            <div className='flex items-center my-4 before:border-t before:border-gray-300 before:flex-1 after:border-t after:border-gray-300 after:flex-1'>
-                                <p className='mx-4 font-semibold text-center'>OR</p>
+                            <button className='w-full py-3 font-semibold text-white uppercase transition bg-blue-600 rounded shadow-md px-7 hover:bg-blue-700 active:bg-blue-800 hover:shadow-lg duration 150' type='submit'>check email</button>
+                            <div className='flex items-center my-3 before:border-t before:border-gray-300 before:flex-1 after:border-t after:border-gray-300 after:flex-1'>
+                                <p className='mx-3 font-semibold text-center'>OR</p>
                             </div>
                             <SignInGoogle />
                         </form>
