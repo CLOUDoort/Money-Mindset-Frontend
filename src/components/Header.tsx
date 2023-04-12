@@ -5,7 +5,6 @@ import { accessToken, userEmail, userIdx, userNickname } from '../store/initialS
 import { BsSun } from 'react-icons/bs'
 import { IoIosNotificationsOutline } from 'react-icons/io'
 import { apiInstance } from '../apis/setting'
-import { toast } from 'react-toastify'
 import { useSetAtom } from 'jotai'
 
 const Header = () => {
@@ -34,17 +33,8 @@ const Header = () => {
             }
         }
         getToken()
-    }, [])
-    const clickLogout = async () => {
-        try {
-            const response = await apiInstance.post(`/user/logout/3`)
-            toast.success("로그아웃!")
-            navigate('/')
+    }, [setAccessToken, setEmail, setIdx, setNickname])
 
-        } catch (e: any) {
-            toast.error(e.response)
-        }
-    }
     return (
         <Fragment>
             <div className='bg-#FBFBFB border-b shadow-sm sticky top-0 z-50 py-3'>
@@ -61,8 +51,7 @@ const Header = () => {
                                 <IoIosNotificationsOutline size={35} />
                             </li>
                             <li onClick={() => navigate("/sign-in")} className="cursor-pointer whitespace-nowrap">Sign-in</li>
-                            <li onClick={() => navigate("/money-book/dashboard")} className="cursor-pointer whitespace-nowrap">Service</li>
-                            <li onClick={clickLogout} className="cursor-pointer whitespace-nowrap">Logout</li>
+                            <li onClick={() => navigate("/sign-up")} className="cursor-pointer whitespace-nowrap">Sign-up</li>
                         </ul>
                     </div>
                 </header>
