@@ -37,7 +37,7 @@ const ForgotForm = () => {
         <section className='flex items-center justify-center w-full h-full'>
             {
                 !valid ? <div className="flex flex-wrap items-center justify-center w-full max-w-6xl p-5 mx-auto">
-                    <div className="flex w-full flex-col md:w-[67%] lg:w-[40%]">
+                    <div className="flex w-full flex-col md:w-[55%] lg:w-[40%]">
                         <h1 className="mb-8 text-4xl font-bold text-center lg:text-4xl">Forgot</h1>
                         <form onSubmit={submitHandler}>
                             <div className='mb-2 font-semibold'>Email</div>
