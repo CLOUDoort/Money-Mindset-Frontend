@@ -10,7 +10,7 @@ import Forgot from "./pages/Forgot";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import MaginotLine from './pages/MoneyBook/MaginotLine';
-import Profile from "./pages/Profile";
+import Setting from './pages/MoneyBook/Setting';
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Statistics from './pages/MoneyBook/Statistics';
@@ -25,14 +25,14 @@ const App = () => {
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/forgot" element={<Forgot />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route element={<DashNav />}>
-            <Route path="/money-book/dashboard" element={<Dashboard />} />
-            <Route path="/money-book/expense" element={<Expense />} />
-            <Route path="/money-book/maginot-line" element={<MaginotLine />} />
-            <Route path="/money-book/calendar" element={<Calendar />} />
-            <Route path="/money-book/statistics" element={<Statistics />} />
-          </Route>
+        </Route>
+        <Route element={<DashNav />}>
+          <Route path="/money-book/setting" element={<Setting />} />
+          <Route path="/money-book/dashboard" element={<Dashboard />} />
+          <Route path="/money-book/expense" element={<Expense />} />
+          <Route path="/money-book/maginot-line" element={<MaginotLine />} />
+          <Route path="/money-book/calendar" element={<Calendar />} />
+          <Route path="/money-book/statistics" element={<Statistics />} />
         </Route>
       </Routes>
       <ToastContainer />
