@@ -53,7 +53,7 @@ const DashNav = () => {
                 <ul className="flex flex-col items-start justify-center py-4 w-52">
                     <li className="flex gap-2 p-4 whitespace-nowrap">
                         <IoSettingsSharp size={25} />
-                        <button onClick={() => navigate('/money-book/setting')}>Setting</button>
+                        <Link to='/money-book/setting'>Setting</Link>
                     </li>
                     <li className="flex gap-2 p-4 whitespace-nowrap">
                         <IoExitOutline size={25} />
