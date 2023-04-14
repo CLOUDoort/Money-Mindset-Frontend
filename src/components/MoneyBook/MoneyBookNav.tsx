@@ -5,22 +5,20 @@ import { AiTwotoneCalendar } from 'react-icons/ai'
 import { GiGoalKeeper } from 'react-icons/gi'
 import { ImFileOpenoffice } from 'react-icons/im'
 import { MdDashboard } from 'react-icons/md'
-import { apiInstance } from "../../apis/setting"
 import { toast } from "react-toastify"
-import { useAtomValue } from "jotai"
-import { userIdx } from "../../store/initialState"
+import { useSetAtom } from "jotai"
+import { accessToken } from "../../store/initialState"
 import { IoExitOutline } from 'react-icons/io5'
 import { IoSettingsSharp } from 'react-icons/io5'
 
 const DashNav = () => {
     const navigate = useNavigate()
-    const idx = useAtomValue(userIdx)
+    const setToken = useSetAtom(accessToken)
     const clickLogout = async () => {
         try {
-            await apiInstance.post(`/user/logout/${idx}`)
-            toast.success("로그아웃!")
+            setToken("")
+            toast.success("Sign Out!")
             navigate('/')
-
         } catch (e: any) {
             toast.error(e.response)
         }

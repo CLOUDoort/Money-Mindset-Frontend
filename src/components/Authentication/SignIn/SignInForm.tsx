@@ -32,7 +32,6 @@ const SignInForm = () => {
             })
             toast.success("로그인 성공!")
             navigate('/money-book/dashboard')
-            console.log('submit', submitResponse.data)
             setToken(submitResponse.data.accessToken)
         } catch (e: any) {
             toast.error(e.response.data.message)
