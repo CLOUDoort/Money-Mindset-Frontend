@@ -16,11 +16,12 @@ const SignUpForm = () => {
     const navigate = useNavigate()
     const [showPassword, setShowPassword] = useState(false)
     const [formData, setFormData] = useState({
+        nickname: "",
         email: "",
         password: "",
-        nickname: ""
+        passwordCheck: ""
     })
-    const { email, password, nickname } = formData
+    const { nickname, email, password, passwordCheck } = formData
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
         setFormData({
@@ -29,23 +30,28 @@ const SignUpForm = () => {
     }
     const submitHandler = async (e: React.SyntheticEvent) => {
         e.preventDefault()
-        try {
-            const verifyEmail = await apiInstance.post(`user/email`, {
-                email
-            })
-            if (verifyEmail.data.isExisted) toast.error("Already email existed!")
-            const submitResponse = await apiInstance.post(`/user/signup`, {
-                email, password, nickname
-            })
-            toast.success('회원가입 성공!')
-            setAccessToken(submitResponse.data.accessToken)
-            setEmail(submitResponse.data.user.email)
-            setIdx(submitResponse.data.user.idx)
-            navigate('/money-book/dashboard')
+        if (password === passwordCheck) {
+            try {
+                const verifyEmail = await apiInstance.post(`user/email`, {
+                    email
+                })
+                if (!verifyEmail.data.isExisted) {
+                    const submitResponse = await apiInstance.post(`/user/signup`, {
+                        email, password, nickname
+                    })
+                    toast.success('회원가입 성공!')
+                    setAccessToken(submitResponse.data.accessToken)
+                    setEmail(submitResponse.data.user.email)
+                    setIdx(submitResponse.data.user.idx)
+                    navigate('/money-book/dashboard')
+                }
+                else toast.error("Already email existed!")
+            }
+            catch (e: any) {
+                console.log(e.response)
+            }
         }
-        catch (e: any) {
-            console.log(e.response)
-        }
+        else toast.error("Password dose not match!")
     }
     return (
         <section className='flex items-center justify-center w-full h-full'>
@@ -53,6 +59,8 @@ const SignUpForm = () => {
                 <div className="flex w-full flex-col md:w-[55%] lg:w-[40%]">
                     <h1 className="mb-8 text-4xl font-bold text-center lg:text-4xl">Sign-Up</h1>
                     <form onSubmit={submitHandler}>
+                        <div className='mb-2 font-semibold'>Nickname</div>
+                        <Input type="text" name="nickname" value={nickname} placeholder="nickname" onChange={changeHandler} />
                         <div className='mb-2 font-semibold'>Email</div>
                         <Input type="email" name="email" value={email} placeholder="example@google.com" onChange={changeHandler} />
                         <div className='mb-2 font-semibold'>Password</div>
@@ -60,8 +68,11 @@ const SignUpForm = () => {
                             <Input type={showPassword ? 'text' : "password"} name="password" value={password} placeholder="password" onChange={changeHandler} />
                             {showPassword ? <AiFillEyeInvisible onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-3' /> : <AiFillEye onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-3' />}
                         </div>
-                        <div className='mb-2 font-semibold'>Nickname</div>
-                        <Input type="text" name="nickname" value={nickname} placeholder="nickname" onChange={changeHandler} />
+                        <div className='mb-2 font-semibold'>Password Check</div>
+                        <div className="relative">
+                            <Input type={showPassword ? 'text' : "password"} name="passwordCheck" value={passwordCheck} placeholder="password check" onChange={changeHandler} />
+                            {showPassword ? <AiFillEyeInvisible onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-3' /> : <AiFillEye onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-3' />}
+                        </div>
                         <div className='flex justify-between text-sm whitespace-nowrap'>
                             <p className='mb-6'>
                                 Have a account?
