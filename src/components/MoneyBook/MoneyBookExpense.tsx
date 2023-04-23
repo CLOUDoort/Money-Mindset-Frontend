@@ -1,7 +1,12 @@
+import MoneyBookNav from "./MoneyBookNav"
+
 const MoneyBookExpense = () => {
     return (
-        <div>
-            Expense
+        <div className="flex w-full h-full">
+            <MoneyBookNav />
+            <div className="flex-1">
+                Expense
+            </div>
         </div>
     )
 }

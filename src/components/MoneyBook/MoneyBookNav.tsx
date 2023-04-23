@@ -4,12 +4,12 @@ import { AiOutlineBarChart } from 'react-icons/ai'
 import { AiTwotoneCalendar } from 'react-icons/ai'
 import { GiGoalKeeper } from 'react-icons/gi'
 import { ImFileOpenoffice } from 'react-icons/im'
-import { MdDashboard } from 'react-icons/md'
-import { toast } from "react-toastify"
-import { useSetAtom } from "jotai"
-import { accessToken } from "../../store/initialState"
 import { IoExitOutline } from 'react-icons/io5'
 import { IoSettingsSharp } from 'react-icons/io5'
+import { MdDashboard } from 'react-icons/md'
+import { accessToken } from "../../store/initialState"
+import { toast } from "react-toastify"
+import { useSetAtom } from "jotai"
 
 const DashNav = () => {
     const navigate = useNavigate()

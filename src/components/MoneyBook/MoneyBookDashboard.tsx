@@ -1,6 +1,7 @@
 import { accessToken, userEmail, userIdx } from "../../store/initialState"
 import { useAtom, useAtomValue } from "jotai"
 
+import MoneyBookNav from "./MoneyBookNav"
 import { apiInstance } from "../../apis/setting"
 import { useEffect } from "react"
 
@@ -27,11 +28,14 @@ const MoneyBookDashboard = () => {
         getToken()
     }, [setEmail, setIdx, token])
     return (
-        <div>
-            dashboard
-            idx = {idx}
-            token = {token}
-            email = {email}
+        <div className="flex w-full h-full">
+            <MoneyBookNav />
+            <div className="flex-1">
+                dashboard
+                idx = {idx}
+                token = {token}
+                email = {email}
+            </div>
         </div>
     )
 }

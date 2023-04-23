@@ -1,8 +1,13 @@
+import MoneyBookNav from "./MoneyBookNav"
+
 const MoneyBookCalendar = () => {
     return (
-        <>
-            calendar
-        </>
+        <div className="flex w-full h-full">
+            <MoneyBookNav />
+            <div className="flex-1">
+                calendar
+            </div>
+        </div>
     )
 }
 

@@ -1,9 +1,11 @@
 import Input from "../../InputForm"
+import MoneyBookNav from "../MoneyBookNav"
 
 const MoneyBookMaginotLine = () => {
     return (
-        <div className="w-2/3 h-full mx-auto">
-            <div className="flex flex-col items-center">
+        <div className="flex w-full h-full">
+            <MoneyBookNav />
+            <div className="flex flex-col items-center flex-1">
                 <div>
                     chart
                 </div>
