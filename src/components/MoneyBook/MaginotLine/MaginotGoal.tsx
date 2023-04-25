@@ -26,7 +26,7 @@ const MaginotGoal = () => {
     const handleSubmit = async (e: React.SyntheticEvent) => {
         e.preventDefault()
         try {
-            const response = await apiInstance.post(`/maginot/user/2`, {
+            const response = await apiInstance.post(`/maginot/user/${idx}`, {
                 ranking: Number(ranking),
                 goal,
                 amount: Number(amount)
