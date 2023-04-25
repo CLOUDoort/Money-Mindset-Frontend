@@ -16,6 +16,7 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Statistics from './pages/MoneyBook/Statistics';
 import { ToastContainer } from 'react-toastify';
+import Welcome from './pages/Welcome';
 import { queryClient } from './react-query/queryClient';
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/forgot" element={<Forgot />} />
           </Route>
+          <Route path="/welcome" element={<Welcome />} />
           <Route path="/money-book/setting" element={<Setting />} />
           <Route path="/money-book/dashboard" element={<Dashboard />} />
           <Route path="/money-book/expense" element={<Expense />} />

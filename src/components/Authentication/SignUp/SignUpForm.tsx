@@ -43,7 +43,7 @@ const SignUpForm = () => {
                     setAccessToken(submitResponse.data.accessToken)
                     setEmail(submitResponse.data.user.email)
                     setIdx(submitResponse.data.user.idx)
-                    navigate('/money-book/dashboard')
+                    navigate('/welcome')
                 }
                 else toast.error("Already email existed!")
             }
