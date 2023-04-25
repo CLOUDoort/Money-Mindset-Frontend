@@ -3,7 +3,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Route, Routes } from "react-router-dom";
 
 import Calendar from './pages/MoneyBook/Calendar';
-import DashNav from './components/MoneyBook/MoneyBookNav';
 import Dashboard from './pages/MoneyBook/Dashboard';
 import Expense from './pages/MoneyBook/Expense';
 import Forgot from "./pages/Forgot";
@@ -23,7 +22,6 @@ const App = () => {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools />
         <Routes>
           <Route path='/' element={<Header />}>
             <Route index element={<Home />} />
@@ -38,6 +36,7 @@ const App = () => {
           <Route path="/money-book/calendar" element={<Calendar />} />
           <Route path="/money-book/statistics" element={<Statistics />} />
         </Routes>
+        {/* <ReactQueryDevtools /> */}
         <ToastContainer />
       </QueryClientProvider>
     </>
