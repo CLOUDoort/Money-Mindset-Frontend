@@ -1,8 +1,6 @@
-import useGetGoalData from "../../../react-query/MaginotData/MaginotGoalData"
-
 const MaginotItem = () => {
-    const { data } = useGetGoalData(2)
-    console.log('data', data?.data)
+    // const { data } = useGetGoalData(2)
+    // console.log('data', data?.data)
     return (
         <div className="flex my-3">
             <div>1차목표</div>
