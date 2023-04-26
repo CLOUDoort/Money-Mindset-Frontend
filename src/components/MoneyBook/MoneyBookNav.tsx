@@ -1,5 +1,5 @@
 import { Link, Outlet, useNavigate } from "react-router-dom"
-import { accessToken, userEmail, userIdx, userNickname } from "../../store/initialState"
+import { accessToken, userAsset, userEmail, userIdx, userNickname } from "../../store/initialState"
 import { useAtom, useSetAtom } from "jotai"
 
 import { AiOutlineBarChart } from 'react-icons/ai'
@@ -16,9 +16,10 @@ import { useEffect } from "react"
 const DashNav = () => {
     const navigate = useNavigate()
     const [token, setToken] = useAtom(accessToken)
-    const setIdx = useSetAtom(userIdx)
+    const [idx, setIdx] = useAtom(userIdx)
     const setEmail = useSetAtom(userEmail)
     const setNickname = useSetAtom(userNickname)
+    const setAsset = useSetAtom(userAsset)
 
     useEffect(() => {
         const getToken = async () => {
@@ -51,6 +52,13 @@ const DashNav = () => {
         }
         getToken()
     }, [setEmail, setIdx, setNickname, token])
+    useEffect(() => {
+        const response = async () => {
+            const getAsset = await apiInstance.get(`/asset/user/${idx}`)
+            console.log('asset', getAsset.data)
+        }
+        response()
+    }, [idx])
 
     const clickLogout = async () => {
         try {

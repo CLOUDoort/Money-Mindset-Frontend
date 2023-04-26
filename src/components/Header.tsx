@@ -1,26 +1,38 @@
 import { Fragment, useEffect } from 'react'
 import { Outlet, useNavigate } from 'react-router'
-import { accessToken } from '../store/initialState'
+import { accessToken, userEmail, userIdx, userNickname } from '../store/initialState'
 
 import { apiInstance } from '../apis/setting'
-import { useAtom } from 'jotai'
+import { useAtom, useSetAtom } from 'jotai'
 import { toast } from 'react-toastify'
 
 const Header = () => {
     const navigate = useNavigate()
     const [token, setToken] = useAtom(accessToken)
+    const setIdx = useSetAtom(userIdx)
+    const setEmail = useSetAtom(userEmail)
+    const setNickname = useSetAtom(userNickname)
     useEffect(() => {
         const getToken = async () => {
             try {
                 const tokenResponse = await apiInstance.get('/user/refresh')
                 setToken(tokenResponse.data.accessToken)
+                const userData = await apiInstance.get('user/validate', {
+                    headers: {
+                        Authorization: 'Bearer ' + tokenResponse.data.accessToken
+                    }
+                })
+                const { idx, email, nickname } = userData.data
+                setIdx(idx);
+                setEmail(email)
+                setNickname(nickname)
             }
             catch (e: any) {
                 console.error(e.response)
             }
         }
         getToken()
-    }, [setToken])
+    }, [setToken, setEmail, setIdx, setNickname])
 
     const clickSignIn = () => {
         if (token) {
