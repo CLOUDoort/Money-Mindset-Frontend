@@ -55,7 +55,7 @@ const DashNav = () => {
     const clickLogout = async () => {
         try {
             setToken("")
-            setIdx(null)
+            setIdx(0)
             setEmail("")
             setNickname("")
             toast.success("Sign Out!")
