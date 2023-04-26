@@ -68,7 +68,6 @@ const DashNav = () => {
         <div className="flex h-full">
             <nav className="sticky left-0 flex-col justify-between hidden border-r lg:flex w-52">
                 <ul className="flex flex-col items-start justify-center py-2">
-                    token: {token}
                     <li className="flex gap-2 p-4 whitespace-nowrap">
                         <MdDashboard size={25} />
                         <Link to='/money-book/dashboard'>Dashboard</Link>
@@ -102,7 +101,7 @@ const DashNav = () => {
                 </ul>
             </nav>
             {/* 1024px 이하 아이콘만 표시 */}
-            <nav className="sticky left-0 flex flex-col justify-between w-16 border-r lg:hidden lg:w-52">
+            <nav className="sticky left-0 flex flex-col justify-between border-r w-14 lg:hidden lg:w-52">
                 <ul className="flex flex-col items-start justify-center py-2">
                     <li className="relative flex items-center gap-2 p-4 group whitespace-nowrap">
                         <Link to='/money-book/dashboard'>
@@ -145,7 +144,7 @@ const DashNav = () => {
                         </div>
                     </li>
                 </ul>
-                <ul className="flex flex-col items-start justify-center w-16 py-2">
+                <ul className="flex flex-col items-start justify-center py-2 w-14">
                     <li className="relative flex items-center gap-2 p-4 group whitespace-nowrap">
                         <Link to='/money-book/setting'>
                             <IoSettingsSharp size={25} />

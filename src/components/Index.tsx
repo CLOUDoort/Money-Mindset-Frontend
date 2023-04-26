@@ -1,11 +1,7 @@
-import { accessToken } from "../store/initialState"
-import { useAtomValue } from "jotai"
-
 const Index = () => {
-    const token = useAtomValue(accessToken)
     return (
-        <div>
-            token: {token}
+        <div className="flex items-center justify-center w-full h-full">
+            Main
         </div>
     )
 }
