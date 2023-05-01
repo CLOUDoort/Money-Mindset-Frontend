@@ -11,7 +11,7 @@ const MoneyBookSetting = () => {
         <>{modify ? <ModifyPassword /> :
             <div className='flex w-full h-full'>
                 <MoneyBookNav />
-                <div className='flex-1'>
+                <div className='flex flex-col items-center justify-center flex-1 p-10'>
                     <div>
                         setting
                         <button className="border" onClick={clickModifyPassword}>Modify password</button>
