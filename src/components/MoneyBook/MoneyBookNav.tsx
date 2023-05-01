@@ -13,7 +13,7 @@ import { apiInstance } from "../../apis/setting"
 import { toast } from "react-toastify"
 import { useEffect } from "react"
 
-const DashNav = () => {
+const MoneyBookNav = () => {
     const navigate = useNavigate()
     const [token, setToken] = useAtom(accessToken)
     const [idx, setIdx] = useAtom(userIdx)
@@ -55,10 +55,11 @@ const DashNav = () => {
     useEffect(() => {
         const response = async () => {
             const getAsset = await apiInstance.get(`/asset/user/${idx}`)
+            setAsset(getAsset.data.amount)
             console.log('asset', getAsset.data)
         }
         response()
-    }, [idx])
+    }, [setAsset, idx])
 
     const clickLogout = async () => {
         try {
@@ -66,6 +67,7 @@ const DashNav = () => {
             setIdx(0)
             setEmail("")
             setNickname("")
+            setAsset(0)
             toast.success("Sign Out!")
             navigate('/')
         } catch (e: any) {
@@ -176,4 +178,4 @@ const DashNav = () => {
     )
 }
 
-export default DashNav
+export default MoneyBookNav

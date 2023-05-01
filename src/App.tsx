@@ -31,12 +31,12 @@ const App = () => {
             <Route path="/forgot" element={<Forgot />} />
             <Route path="/welcome" element={<Welcome />} />
           </Route>
-          <Route path="/money-book/setting" element={<Setting />} />
           <Route path="/money-book/dashboard" element={<Dashboard />} />
           <Route path="/money-book/expense" element={<Expense />} />
           <Route path="/money-book/maginot-line" element={<MaginotLine />} />
           <Route path="/money-book/calendar" element={<Calendar />} />
           <Route path="/money-book/statistics" element={<Statistics />} />
+          <Route path="/money-book/setting" element={<Setting />} />
         </Routes>
         {/* <ReactQueryDevtools /> */}
         <ToastContainer />
