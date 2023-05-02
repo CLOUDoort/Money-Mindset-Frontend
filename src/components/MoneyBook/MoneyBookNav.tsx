@@ -35,28 +35,37 @@ const MoneyBookNav = () => {
     }, [setToken])
     useEffect(() => {
         const getToken = async () => {
-            try {
-                const userData = await apiInstance.get('user/validate', {
-                    headers: {
-                        Authorization: 'Bearer ' + token
-                    }
-                })
-                const { idx, email, nickname } = userData.data
-                setIdx(idx);
-                setEmail(email)
-                setNickname(nickname)
-            }
-            catch (e: any) {
-                console.error(e.response)
+            if (token) {
+                try {
+                    const userData = await apiInstance.get('user/validate', {
+                        headers: {
+                            Authorization: 'Bearer ' + token
+                        }
+                    })
+                    const { idx, email, nickname } = userData.data
+                    setIdx(idx);
+                    setEmail(email)
+                    setNickname(nickname)
+                }
+                catch (e: any) {
+                    console.error(e.response)
+                }
             }
         }
         getToken()
     }, [setEmail, setIdx, setNickname, token])
     useEffect(() => {
         const response = async () => {
-            const getAsset = await apiInstance.get(`/asset/user/${idx}`)
-            setAsset(getAsset.data.amount)
-            console.log('asset', getAsset.data)
+            if (idx) {
+                try {
+                    const getAsset = await apiInstance.get(`/asset/user/${idx}`)
+                    setAsset(getAsset.data.amount)
+                    console.log('asset', getAsset.data)
+                }
+                catch (e: any) {
+                    console.log(e.message)
+                }
+            }
         }
         response()
     }, [setAsset, idx])

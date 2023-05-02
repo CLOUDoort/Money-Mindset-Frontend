@@ -8,9 +8,9 @@ import { useAtomValue } from "jotai"
 import { userIdx } from "../../../store/initialState"
 
 const defaultValue = {
-    ranking: 0,
+    ranking: "",
     goal: "",
-    amount: 0
+    amount: ""
 }
 
 const MaginotGoal = () => {
@@ -40,7 +40,7 @@ const MaginotGoal = () => {
         }
     }
     return (
-        <div className="flex flex-col mb-10">
+        <div className="flex flex-col m-5">
             <div className="mb-2 text-2xl font-semibold">목표 항목</div>
             <form onSubmit={handleSubmit}>
                 <table >
@@ -54,13 +54,13 @@ const MaginotGoal = () => {
                     <tbody>
                         <tr>
                             <td>
-                                <Input type="number" value={ranking} name="ranking" onChange={handleChange} />
+                                <Input type="number" value={ranking} placeholder="우선순위" name="ranking" onChange={handleChange} />
                             </td>
                             <td>
                                 <Input type="text" placeholder="목표" value={goal} name="goal" onChange={handleChange} />
                             </td>
                             <td>
-                                <Input type="number" value={amount} name="amount" onChange={handleChange} />
+                                <Input type="number" value={amount} name="amount" onChange={handleChange} placeholder="금액" />
                             </td>
                         </tr>
                     </tbody>
