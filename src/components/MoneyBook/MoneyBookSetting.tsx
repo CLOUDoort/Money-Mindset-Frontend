@@ -1,7 +1,6 @@
 import { BsSun } from 'react-icons/bs'
 import { IoIosNotificationsOutline } from 'react-icons/io'
 import ModifyPassword from "../ModifyPassword"
-import MoneyBookNav from "./MoneyBookNav"
 import { useState } from "react"
 
 const MoneyBookSetting = () => {
@@ -9,8 +8,7 @@ const MoneyBookSetting = () => {
     const clickModifyPassword = () => setModify(!modify)
     return (
         <>{modify ? <ModifyPassword /> :
-            <div className='flex w-full h-full'>
-                <MoneyBookNav />
+            <div className='flex-1 lg:ml-52 ml-14 bg-[#fbfbfb] min-w-[52rem]'>
                 <div className='flex flex-col items-center justify-center flex-1 p-10'>
                     <div>
                         setting

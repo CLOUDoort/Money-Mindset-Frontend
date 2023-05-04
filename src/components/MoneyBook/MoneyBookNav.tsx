@@ -84,8 +84,8 @@ const MoneyBookNav = () => {
         }
     }
     return (
-        <div className="flex h-full">
-            <nav className="sticky left-0 flex-col justify-between hidden border-r lg:flex w-52">
+        <div className="flex w-full bg-[#fbfbfb]">
+            <nav className="fixed top-0 left-0 z-40 flex-col justify-between hidden h-full border-r lg:flex w-52">
                 <ul className="flex flex-col items-start justify-center py-2">
                     <li className="flex gap-2 p-4 whitespace-nowrap">
                         <MdDashboard size={25} />
@@ -120,7 +120,7 @@ const MoneyBookNav = () => {
                 </ul>
             </nav>
             {/* 1024px 이하 아이콘만 표시 */}
-            <nav className="sticky left-0 flex flex-col justify-between border-r w-14 lg:hidden lg:w-52">
+            <nav className="fixed top-0 left-0 z-40 flex flex-col justify-between h-full border-r w-14 lg:hidden lg:w-52">
                 <ul className="flex flex-col items-start justify-center py-2">
                     <li className="relative flex items-center gap-2 p-4 group whitespace-nowrap">
                         <Link to='/money-book/dashboard'>

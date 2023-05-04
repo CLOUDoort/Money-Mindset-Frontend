@@ -9,6 +9,7 @@ import Forgot from "./pages/Forgot";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import MaginotLine from './pages/MoneyBook/MaginotLine';
+import MoneyBookNav from './components/MoneyBook/MoneyBookNav';
 import { QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools'
 import Setting from './pages/MoneyBook/Setting';
@@ -31,16 +32,18 @@ const App = () => {
             <Route path="/forgot" element={<Forgot />} />
             <Route path="/welcome" element={<Welcome />} />
           </Route>
-          <Route path="/money-book/dashboard" element={<Dashboard />} />
-          <Route path="/money-book/expense" element={<Expense />} />
-          <Route path="/money-book/maginot-line" element={<MaginotLine />} />
-          <Route path="/money-book/calendar" element={<Calendar />} />
-          <Route path="/money-book/statistics" element={<Statistics />} />
-          <Route path="/money-book/setting" element={<Setting />} />
+          <Route element={<MoneyBookNav />}>
+            <Route path="/money-book/dashboard" element={<Dashboard />} />
+            <Route path="/money-book/expense" element={<Expense />} />
+            <Route path="/money-book/maginot-line" element={<MaginotLine />} />
+            <Route path="/money-book/calendar" element={<Calendar />} />
+            <Route path="/money-book/statistics" element={<Statistics />} />
+            <Route path="/money-book/setting" element={<Setting />} />
+          </Route>
         </Routes>
         {/* <ReactQueryDevtools /> */}
-        <ToastContainer />
       </QueryClientProvider>
+      <ToastContainer />
     </>
   )
 }

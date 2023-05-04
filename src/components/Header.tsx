@@ -1,10 +1,10 @@
-import { Fragment, useEffect } from 'react'
 import { Outlet, useNavigate } from 'react-router'
 import { accessToken, userEmail, userIdx, userNickname } from '../store/initialState'
+import { useAtom, useSetAtom } from 'jotai'
 
 import { apiInstance } from '../apis/setting'
-import { useAtom, useSetAtom } from 'jotai'
 import { toast } from 'react-toastify'
+import { useEffect } from 'react'
 
 const Header = () => {
     const navigate = useNavigate()
@@ -42,7 +42,7 @@ const Header = () => {
         else navigate("/sign-in")
     }
     return (
-        <Fragment>
+        <div className='flex flex-col h-full'>
             <div className='bg-#FBFBFB border-b shadow-sm sticky top-0 z-50 py-3'>
                 <header className='flex items-center justify-between max-w-6xl px-3 mx-auto'>
                     <div>
@@ -57,7 +57,7 @@ const Header = () => {
                 </header>
             </div>
             <Outlet />
-        </Fragment>
+        </div>
     )
 }
 
