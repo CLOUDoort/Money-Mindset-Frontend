@@ -1,4 +1,6 @@
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-date-range/dist/styles.css'
+import 'react-date-range/dist/theme/default.css'
 
 import { Route, Routes } from "react-router-dom";
 
@@ -41,7 +43,7 @@ const App = () => {
             <Route path="/money-book/setting" element={<Setting />} />
           </Route>
         </Routes>
-        {/* <ReactQueryDevtools /> */}
+        <ReactQueryDevtools />
       </QueryClientProvider>
       <ToastContainer />
     </>
