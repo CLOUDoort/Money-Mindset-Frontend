@@ -1,10 +1,11 @@
-import Input from "./InputForm"
-import { useState } from "react"
 import { useAtomValue, useSetAtom } from "jotai"
 import { userAsset, userIdx, userNickname } from "../store/initialState"
+
+import Input from "./InputForm"
 import { apiInstance } from "../apis/setting"
 import { toast } from "react-toastify"
 import { useNavigate } from "react-router"
+import { useState } from "react"
 
 const WelcomePage = () => {
     const [asset, setAsset] = useState("")
@@ -31,7 +32,7 @@ const WelcomePage = () => {
                 <div className="mb-2 text-xl">현재 자산 입력</div>
                 <div className="flex items-center justify-center">
                     <Input type="number" min="0" name="asset" value={asset} onChange={changeHandler} ></Input>
-                    <button onClick={clickHandler} className="py-2 mb-4 ml-2 text-xl font-semibold text-white uppercase transition bg-blue-600 rounded shadow-md whitespace-nowrap px-7 hover:bg-blue-700 active:bg-blue-800 hover:shadow-lg duration 150'">저장</button>
+                    <button onClick={clickHandler} className="py-2 mb-2 ml-2 text-xl font-semibold text-white uppercase transition bg-blue-600 rounded shadow-md whitespace-nowrap px-7 hover:bg-blue-700 active:bg-blue-800 hover:shadow-lg duration 150'">저장</button>
                 </div>
             </div>
         </div>

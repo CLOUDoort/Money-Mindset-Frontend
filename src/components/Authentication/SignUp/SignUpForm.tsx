@@ -66,12 +66,12 @@ const SignUpForm = () => {
                         <div className='mb-2 font-semibold'>Password</div>
                         <div className="relative">
                             <Input type={showPassword ? 'text' : "password"} name="password" value={password} placeholder="password" onChange={changeHandler} />
-                            {showPassword ? <AiFillEyeInvisible onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-3' /> : <AiFillEye onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-3' />}
+                            {showPassword ? <AiFillEyeInvisible onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-6' /> : <AiFillEye onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-6' />}
                         </div>
                         <div className='mb-2 font-semibold'>Password Check</div>
                         <div className="relative">
                             <Input type={showPassword ? 'text' : "password"} name="passwordCheck" value={passwordCheck} placeholder="password check" onChange={changeHandler} />
-                            {showPassword ? <AiFillEyeInvisible onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-3' /> : <AiFillEye onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-3' />}
+                            {showPassword ? <AiFillEyeInvisible onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-6' /> : <AiFillEye onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-6' />}
                         </div>
                         <div className='flex justify-between text-sm whitespace-nowrap'>
                             <p className='mb-6'>
