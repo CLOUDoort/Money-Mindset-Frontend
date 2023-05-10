@@ -42,8 +42,8 @@ const Header = () => {
         else navigate("/sign-in")
     }
     return (
-        <div className='flex flex-col h-full'>
-            <div className='bg-#FBFBFB border-b shadow-sm sticky top-0 z-50 py-3'>
+        <div className='flex flex-col justify-between h-full'>
+            <div className='bg-#FBFBFB border-b shadow-sm sticky top-0 z-9999 py-3'>
                 <header className='flex items-center justify-between max-w-6xl px-3 mx-auto'>
                     <div>
                         <img onClick={() => navigate("/")} className="cursor-pointer h-14" src="/MoneyMindsetLogo.svg" alt="logo" />
