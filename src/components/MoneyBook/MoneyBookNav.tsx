@@ -1,5 +1,5 @@
 import { Link, Outlet, useNavigate } from "react-router-dom"
-import { accessToken, userAsset, userEmail, userIdx, userNickname } from "../../store/initialState"
+import { accessToken, finalMaginot, userAsset, userEmail, userIdx, userNickname } from "../../store/initialState"
 import { useAtom, useSetAtom } from "jotai"
 
 import { AiOutlineBarChart } from 'react-icons/ai'
@@ -20,7 +20,8 @@ const MoneyBookNav = () => {
     const setEmail = useSetAtom(userEmail)
     const setNickname = useSetAtom(userNickname)
     const setAsset = useSetAtom(userAsset)
-
+    const setMaginot = useSetAtom(finalMaginot)
+    // 토큰
     useEffect(() => {
         const getToken = async () => {
             try {
@@ -33,6 +34,7 @@ const MoneyBookNav = () => {
         }
         getToken()
     }, [setToken])
+    // 토큰으로부터 데이터 저장
     useEffect(() => {
         const getToken = async () => {
             if (token) {
@@ -54,12 +56,14 @@ const MoneyBookNav = () => {
         }
         getToken()
     }, [setEmail, setIdx, setNickname, token])
+    // 추출한 idx로 자산 업데이트
     useEffect(() => {
         const response = async () => {
             if (idx) {
                 try {
                     const getAsset = await apiInstance.get(`/asset/user/${idx}`)
                     setAsset(getAsset.data.amount)
+                    setMaginot(getAsset.data.amount - getAsset.data.fixedExpenditureAmount)
                     console.log('asset', getAsset.data)
                 }
                 catch (e: any) {
@@ -68,7 +72,7 @@ const MoneyBookNav = () => {
             }
         }
         response()
-    }, [setAsset, idx])
+    }, [setAsset, idx, setMaginot])
 
     const clickLogout = async () => {
         try {
