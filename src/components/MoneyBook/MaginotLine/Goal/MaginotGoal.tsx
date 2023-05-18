@@ -1,9 +1,9 @@
+import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai"
 import React, { useState } from "react"
+import { useGetGoalData, usePostGoalData } from "../../../../react-query/MaginotData/MaginotGoalData"
 
 import Input from "../../../InputForm"
-import { useGetGoalData, usePostGoalData } from "../../../../react-query/MaginotData/MaginotGoalData"
 import MaginotGoalItem from "./MaginotGoalItem"
-import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai"
 
 const defaultValue = {
     ranking: "",
