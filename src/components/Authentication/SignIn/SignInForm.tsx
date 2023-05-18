@@ -44,9 +44,9 @@ const SignInForm = () => {
                 <div className="flex w-full flex-col md:w-[55%] lg:w-[40%]">
                     <h1 className="mb-8 text-4xl font-bold text-center lg:text-4xl">Sign-in</h1>
                     <form onSubmit={submitHandler}>
-                        <div className='mb-2 font-semibold'>Email</div>
+                        <div className='font-semibold'>Email</div>
                         <Input type="email" name="email" value={email} placeholder="example@google.com" onChange={changeHandler} />
-                        <div className='mb-2 font-semibold'>Password</div>
+                        <div className='font-semibold'>Password</div>
                         <div className="relative">
                             <Input type={showPassword ? 'text' : "password"} name="password" value={password} placeholder="password" onChange={changeHandler} />
                             {showPassword ? <AiFillEyeInvisible onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-6' /> : <AiFillEye onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-6' />}
