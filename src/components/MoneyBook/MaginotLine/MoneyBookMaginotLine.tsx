@@ -20,23 +20,28 @@ const MoneyBookMaginotLine = () => {
     const [line, setLine] = useState([])
     useEffect(() => {
         let sum = 0;
-        const lineData = data?.data.map((line: GoalData) => {
-            sum += line.amount
-            return {
-                "legend": line.goal,
-                "value": finalLine - sum,
-            }
-        })
-        lineData.unshift({ "legend": "생존", "value": finalLine })
-        setLine(lineData)
+        try {
+            const lineData = data?.data.map((line: GoalData) => {
+                sum += line.amount
+                return {
+                    "legend": line.goal,
+                    "value": finalLine - sum,
+                }
+            })
+            lineData.unshift({ "legend": "생존", "value": finalLine })
+            setLine(lineData)
+        }
+        catch (e: any) {
+            console.log(e)
+        }
     }, [data?.data, finalLine])
     return (
-        <div className="lg:ml-52 ml-14 bg-[#fbfbfb] min-w-[30rem] w-full flex justify-center items-center">
-            <div className="flex flex-col items-center justify-center lg:w-[75%] w-[80%] p-5 lg:p-10">
+        <div className="lg:ml-52 ml-14 bg-[#fbfbfb] min-w-[35rem] w-full flex justify-center items-center">
+            <div className="flex flex-col items-center justify-center lg:w-[75%] max-w-[70rem] w-[80%] lg:p-10">
                 <div className="my-5 text-3xl font-semibold">현재 자산 : {asset} 원</div>
                 {line && line.map((line: LineData, index) => {
                     return (
-                        <div className="my-5 text-2xl font-semibold">{line.legend} 방어선 : {line.value} 원</div>
+                        <div key={line.value} className="my-5 text-2xl font-semibold">{line.legend} 방어선 : {line.value} 원</div>
                     )
                 })}
                 <MaginotChart line={line} />

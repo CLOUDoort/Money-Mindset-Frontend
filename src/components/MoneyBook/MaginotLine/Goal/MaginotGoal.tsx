@@ -49,7 +49,7 @@ const MaginotGoal = () => {
             </div>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <div className="flex p-3 my-4 text-center">
+                    <div className="flex p-3 my-1 text-center">
                         <div className="w-[33%]">우선순위</div>
                         <div className="w-[34%]">목표</div>
                         <div className="w-[33%]">금액(원)</div>
