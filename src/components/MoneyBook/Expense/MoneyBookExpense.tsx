@@ -7,6 +7,7 @@ import ExpenseItemList from "./ExpenseItemList"
 import Input from "../../InputForm"
 import ko from "date-fns/locale/ko"
 import moment from 'moment'
+import { toast } from 'react-toastify'
 
 const today = moment().toDate()
 const defaultValue = {
@@ -50,6 +51,10 @@ const MoneyBookExpense = () => {
     const handleSubmit = async (e: React.SyntheticEvent) => {
         e.preventDefault()
         try {
+            if (!flow_id || !amount || !flow_date) {
+                toast.error('항목을 모두 채워주세요!')
+                return
+            }
             mutate({ flow_id, amount: Number(amount), flow_date })
             setFlow(defaultValue)
             setDate(today)
@@ -72,25 +77,24 @@ const MoneyBookExpense = () => {
             ...flow, [name]: value
         })
     }
-    console.log('flow', flow_data)
     return (
-        <div className="lg:ml-52 ml-14 bg-[#fbfbfb] min-w-[35rem] w-full flex flex-col justify-center items-center" onClick={clickFalse}>
-            <div className="flex flex-col items-center justify-center lg:w-[75%] max-w-[70rem] w-[80%] lg:p-10">
-                <div className="flex flex-col w-full p-10 mt-10 border rounded">
+        <div className="lg:ml-52 ml-14 relative bg-[#fbfbfb] min-w-[35rem] w-full flex flex-col justify-center items-center" onClick={clickFalse}>
+            <div className="flex flex-col items-center justify-center lg:w-[75%] max-w-[70rem] w-[80%]">
+                <div className="flex flex-col w-full p-10 m-10 border rounded">
                     <div className="flex items-center mb-2 text-2xl font-semibold">
                         <span>수입 - 지출</span>
                     </div>
                     <form onSubmit={handleSubmit}>
                         <div>
                             <div className="flex py-3 my-1 text-center">
-                                <div className="w-[33%]">날짜</div>
+                                <div className="w-[33%] pl-3">날짜</div>
                                 <div className="w-[34%]">사용내역</div>
-                                <div className="w-[33%]">금액(원)</div>
+                                <div className="w-[33%] pl-3">금액(원)</div>
                             </div>
                         </div>
                         <div className="flex flex-col">
                             <div className="relative flex items-center justify-center gap-3">
-                                <div className="w-[33%] z-50" onClick={(e) => e.stopPropagation()}>
+                                <div className="w-[33%]" onClick={(e) => e.stopPropagation()}>
                                     {showCalendar && (
                                         <Calendar className="absolute top-16" locale={ko} months={1} date={date} onChange={onChangeDate} dateDisplayFormat={'yyyy.mm.dd'} />
                                     )}
@@ -102,7 +106,8 @@ const MoneyBookExpense = () => {
                                         {data?.data.map((item: FLOW_DATA) => (
                                             <div className="p-2 transition-colors rounded cursor-pointer hover:bg-gray-200" onClick={() => flowClick(item.id, item.name)} key={item.id}>
                                                 <div className="flex items-center gap-2">
-                                                    {item.name} {item.id > 4 ? <CgMathMinus /> : <CgMathPlus />}
+                                                    {item.id > 4 ? <CgMathMinus /> : <CgMathPlus />}
+                                                    {item.name}
                                                 </div>
                                             </div>
                                         ))}
