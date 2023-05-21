@@ -30,6 +30,12 @@ export const useGetFlowData = (value: FlowPeriod) => {
     return useQuery([queryKeys.flowData], () => getFlowData(idx, value))
 }
 
+export const usePrefetchFlowData = (value: FlowPeriod) => {
+    const queryClient = useQueryClient()
+    const idx = useAtomValue(userIdx)
+    queryClient.prefetchQuery(queryKeys.flowData, () => getFlowData(idx, value))
+}
+
 const postFlow = async (user_idx: number, value: FlowType) => apiInstance.post(`/flow/user/${user_idx}`, value)
 
 export const usePostFlow = () => {
