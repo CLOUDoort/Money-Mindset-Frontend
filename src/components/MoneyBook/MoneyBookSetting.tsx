@@ -9,7 +9,7 @@ const MoneyBookSetting = () => {
     return (
         <>{modify ? <ModifyPassword /> :
             <div className='flex-1 lg:ml-52 ml-14 bg-[#fbfbfb] min-w-[35rem]'>
-                <div className='flex flex-col items-center justify-center lg:w-[75%] max-w-[70rem] w-[80%] lg:p-10'>
+                <div className='flex flex-col items-center justify-center lg:w-[75%] max-w-[70rem] w-[80%] lg:p-5'>
                     <div>
                         setting
                         <button className="border" onClick={clickModifyPassword}>Modify password</button>
