@@ -50,3 +50,17 @@ export const usePostFlow = () => {
     })
     return mutate
 }
+
+const deleteFlow = async (itemIdx: number) => apiInstance.delete(`/flow/${itemIdx}`)
+
+export const useDeleteFlow = () => {
+    const queryClient = useQueryClient()
+    const notifySuccess = () => toast.success("삭제 완료")
+    const { mutate } = useMutation(deleteFlow, {
+        onSuccess: () => {
+            queryClient.invalidateQueries([queryKeys.flowData])
+            notifySuccess()
+        }
+    })
+    return mutate
+}
