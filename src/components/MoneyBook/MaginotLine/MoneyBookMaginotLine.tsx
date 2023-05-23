@@ -39,7 +39,7 @@ const MoneyBookMaginotLine = () => {
         <div className="lg:ml-52 ml-14 bg-[#fbfbfb] min-w-[45rem] w-full flex justify-center items-center">
             <div className="flex flex-col items-center justify-center lg:w-[75%] max-w-[70rem] w-[80%] lg:p-5">
                 <div className="my-5 text-3xl font-semibold">현재 자산 : {asset} 원</div>
-                {line && line.map((line: LineData, index) => {
+                {line && line.map((line: LineData) => {
                     return (
                         <div key={line.value} className="my-5 text-2xl font-semibold">{line.legend} 방어선 : {line.value} 원</div>
                     )
