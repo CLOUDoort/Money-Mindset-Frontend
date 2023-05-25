@@ -1,39 +1,25 @@
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai"
-import React, { useState } from "react"
+import { useState } from "react"
 import { useGetGoalData, usePostGoalData } from "../../../../react-query/MaginotData/MaginotGoalData"
 
-import Input from "../../../InputForm"
 import MaginotGoalItem from "./MaginotGoalItem"
-
-const defaultValue = {
-    ranking: "",
-    goal: "",
-    amount: ""
-}
+import { useForm } from "react-hook-form"
 
 const MaginotGoal = () => {
-    const [goalValue, setValue] = useState(defaultValue)
-    const { ranking, goal, amount } = goalValue
     const { data } = useGetGoalData()
     const [plus, setPlus] = useState(false)
     const handlePlus = () => setPlus(!plus)
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { value, name } = e.target
-        setValue({
-            ...goalValue, [name]: value
-        })
-    }
+    const { register, handleSubmit, reset } = useForm()
     const mutate = usePostGoalData()
-    const handleSubmit = async (e: React.SyntheticEvent) => {
-        e.preventDefault()
+    const clickSubmit = async (formValues: any) => {
         try {
             mutate({
-                ranking: Number(ranking),
-                goal,
-                amount: Number(amount)
+                ranking: Number(formValues.ranking),
+                goal: String(formValues.goal),
+                amount: Number(formValues.amount)
             })
-            setValue(defaultValue)
+            reset()
         }
         catch (e: any) {
             console.log(e.message)
@@ -47,7 +33,7 @@ const MaginotGoal = () => {
                     <AiOutlinePlusCircle className="ml-4 cursor-pointer" size={30} onClick={handlePlus} />
                 </div> : <AiOutlineMinusCircle className="ml-4 cursor-pointer" size={30} onClick={handlePlus} />}
             </div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit(clickSubmit)}>
                 <div>
                     <div className="flex p-3 my-1 text-center">
                         <div className="w-[33%]">우선순위</div>
@@ -63,9 +49,9 @@ const MaginotGoal = () => {
                 {plus &&
                     <div className="flex flex-col">
                         <div className="flex gap-3">
-                            <Input type="number" value={ranking} placeholder="우선순위" name="ranking" onChange={handleChange} />
-                            <Input type="text" placeholder="목표" value={goal} name="goal" onChange={handleChange} />
-                            <Input type="number" value={amount} name="amount" onChange={handleChange} placeholder="금액" />
+                            <input autoComplete='off' required className="w-full h-12 px-4 py-2 mt-2 mb-4 text-center transition ease-in-out bg-white border-gray-400 rounded" type="number" placeholder="우선순위" {...register("ranking")} />
+                            <input autoComplete='off' required className="w-full h-12 px-4 py-2 mt-2 mb-4 text-center transition ease-in-out bg-white border-gray-400 rounded" type="text" placeholder="목표" {...register("goal")} />
+                            <input autoComplete='off' required className="w-full h-12 px-4 py-2 mt-2 mb-4 text-center transition ease-in-out bg-white border-gray-400 rounded" type="number" placeholder="금액" {...register("amount")} />
                         </div>
                         <button type="submit" className="w-full py-3 my-3 font-semibold text-white uppercase transition bg-blue-600 rounded shadow-md px-7 hover:bg-blue-700 active:bg-blue-800 hover:shadow-lg duration 150">저장</button>
                     </div>
