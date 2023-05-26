@@ -1,6 +1,5 @@
 import ExpenseItem from "./ExpenseItem"
-import ExpenseItemModal from "./ExpenseItemModal"
-import _ from "lodash"
+import ExpenseModal from "./ExpenseModal"
 import { useState } from "react"
 
 export interface FlowItemType {
@@ -23,10 +22,10 @@ const ExpenseItemList = ({ data }: any) => {
     return (
         <>
             <div className="flex items-center justify-center lg:w-[75%] max-w-[70rem] w-[80%] gap-3">
-                <div className="flex flex-col w-[50%] p-10 mb-10 border rounded h-[30rem]">
-                    <div className="flex items-center justify-between mb-5 font-semibold">
+                <div className="flex flex-col w-[55%] mb-10 border rounded h-[26rem]">
+                    <div className="flex items-center justify-between px-10 pt-10 pb-5 font-semibold">
                         <div className="text-2xl">수입</div>
-                        <div className="cursor-pointer" onClick={() => clickModal("수입")}>목록 및 통계</div>
+                        <div className="cursor-pointer" onClick={() => clickModal("수입")}>전체목록 및 수정</div>
                     </div>
                     <div className="overflow-y-scroll">
                         {income_list.map((item: any) => (
@@ -34,10 +33,10 @@ const ExpenseItemList = ({ data }: any) => {
                         ))}
                     </div>
                 </div>
-                <div className="flex flex-col w-[50%] p-10 mb-10 border rounded h-[30rem]">
-                    <div className="flex items-center justify-between mb-5 font-semibold">
+                <div className="flex flex-col w-[55%] mb-10 border rounded h-[26rem]">
+                    <div className="flex items-center justify-between px-10 pt-10 pb-5 font-semibold">
                         <div className="text-2xl">지출</div>
-                        <div className="cursor-pointer" onClick={() => clickModal("지출")}>목록 및 통계</div>
+                        <div className="cursor-pointer" onClick={() => clickModal("지출")}>전체목록 및 수정</div>
                     </div>
                     <div className="overflow-y-scroll">
                         {outcome_list.map((item: any) => (
@@ -46,7 +45,7 @@ const ExpenseItemList = ({ data }: any) => {
                     </div>
                 </div>
             </div>
-            {modal && (modalData === "수입" ? <ExpenseItemModal setModal={setModal} item={income_list} modalData={modalData} /> : <ExpenseItemModal setModal={setModal} item={outcome_list} modalData={modalData} />)}
+            {modal && (modalData === "수입" ? <ExpenseModal setModal={setModal} item={income_list} modalData={modalData} /> : <ExpenseModal setModal={setModal} item={outcome_list} modalData={modalData} />)}
 
         </>
     )
