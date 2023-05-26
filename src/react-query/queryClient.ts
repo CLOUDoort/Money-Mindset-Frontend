@@ -9,7 +9,7 @@ function queryErrorHandler(error: unknown): void {
 
   // prevent duplicate toasts
 //   toast.closeAll();
-  toast.error(title);
+  console.error(title);
 }
 
 export function generateQueryClient(): QueryClient {

@@ -1,7 +1,8 @@
-import { AiOutlineDelete } from "react-icons/ai"
-import { useAtom, useAtomValue } from "jotai"
 import { finalMaginot, userIdx } from "../../../../store/initialState"
+import { useAtom, useAtomValue } from "jotai"
 import { useDeleteFixedData, usePatchFixedData } from "../../../../react-query/MaginotData/MaginotFixedData"
+
+import { IoIosRemoveCircleOutline } from "react-icons/io"
 import { useState } from "react"
 
 const defaultState = {
@@ -51,11 +52,11 @@ const MaginotFixedItem = ({ item }: any) => {
                 {!first ? <div className="w-[33%] cursor-pointer" onClick={() => handleClick("first")}>{expenditure_date} 일</div> : <input required autoComplete='off' className="w-[33%] transition ease-in-out bg-white border-gray-400 rounded text-center h-12 px-4 py-2" type="number" value={newExpenditure_date} placeholder="지출 날짜" name="newExpenditure_date" onChange={handleChange}></input>}
                 {!second ? <div className="w-[34%] cursor-pointer" onClick={() => handleClick("second")}>{fixed_expenditure}</div> : <input required autoComplete='off' className="w-[33%] transition ease-in-out bg-white border-gray-400 rounded text-center h-12 px-4 py-2" type="text" value={newFixed_expenditure} placeholder="지출 항목" name="newFixed_expenditure" onChange={handleChange}></input>}
                 {!third ? <div className="w-[33%] cursor-pointer" onClick={() => handleClick("third")}>{expenditure_amount} 원</div> : <input required autoComplete='off' className="w-[33%] transition ease-in-out bg-white border-gray-400 rounded text-center h-12 px-4 py-2" type="number" value={newExpenditure_amount} placeholder="지출 금액" name="newExpenditure_amount" onChange={handleChange}></input>}
-                {(!first && !second && !third) && <AiOutlineDelete onClick={() => {
+                {(!first && !second && !third) && <IoIosRemoveCircleOutline onClick={() => {
                     deleteItem(idx)
                     setFinalLine(finalLine + expenditure_amount)
                 }
-                } size={25} className="absolute hidden cursor-pointer right-2 group-hover:block" />}
+                } size={25} className="absolute hidden cursor-pointer right-2 group-hover:block hover:text-red-500" />}
             </div>
             {(first || second || third) && <div className="flex justify-around gap-3 mb-4">
                 <button type="button" onClick={() => setState(defaultState)} className="w-full py-3 font-semibold text-white uppercase transition bg-blue-600 rounded shadow-md hover:bg-blue-700 active:bg-blue-800 hover:shadow-lg duration 150">취소</button>
