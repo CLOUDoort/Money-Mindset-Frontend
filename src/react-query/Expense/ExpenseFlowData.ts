@@ -18,7 +18,7 @@ type FlowType = {
     flow_date: string
 }
 
-type FlowPeriod = {
+export type FlowPeriod = {
     start_date: number,
     end_date: number
 }
@@ -44,7 +44,7 @@ export const usePostFlow = () => {
     const notifySuccess = () => toast.success("추가 완료")
     const { mutate } = useMutation((value: FlowType) => postFlow(idx, value), {
         onSuccess: () => {
-            queryClient.invalidateQueries([queryKeys.flowData])
+            queryClient.invalidateQueries([queryKeys.flowData, queryKeys.chartData])
             notifySuccess()
         }
     })
@@ -58,7 +58,7 @@ export const usePatchFlow = (itemIdx: number) => {
     const notifySuccess = () => toast.success("수정 완료")
     const { mutate } = useMutation((value: FlowType) => patchFlow(itemIdx, value), {
         onSuccess: () => {
-            queryClient.invalidateQueries([queryKeys.flowData])
+            queryClient.invalidateQueries([queryKeys.flowData, queryKeys.chartData])
             notifySuccess()
         }
     })
@@ -72,7 +72,7 @@ export const useDeleteFlow = () => {
     const notifySuccess = () => toast.success("삭제 완료")
     const { mutate } = useMutation(deleteFlow, {
         onSuccess: () => {
-            queryClient.invalidateQueries([queryKeys.flowData])
+            queryClient.invalidateQueries([queryKeys.flowData, queryKeys.chartData])
             notifySuccess()
         }
     })

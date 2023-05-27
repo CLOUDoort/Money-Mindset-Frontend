@@ -62,8 +62,8 @@ const MoneyBookNav = () => {
             if (idx) {
                 try {
                     const getAsset = await apiInstance.get(`/asset/user/${idx}`)
-                    setAsset(getAsset.data.amount)
-                    setMaginot(getAsset.data.amount - getAsset.data.fixedExpenditureAmount)
+                    setAsset(getAsset.data.amount + getAsset.data.userFlowSum)
+                    setMaginot(getAsset.data.amount - getAsset.data.fixedExpenditureAmount + getAsset.data.userFlowSum)
                     console.log('asset', getAsset.data)
                 }
                 catch (e: any) {
