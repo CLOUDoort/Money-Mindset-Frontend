@@ -23,22 +23,28 @@ const ExpenseItemList = ({ data }: any) => {
         <>
             <div className="flex items-center justify-center lg:w-[75%] max-w-[70rem] w-[80%] gap-3 h-[45rem]">
                 <div className="flex flex-col w-full h-full mb-10 border rounded">
-                    <div className="flex items-center justify-between px-10 pt-10 pb-5 font-semibold">
-                        <div className="text-2xl">수입 {income_list.length}</div>
+                    <div className="flex items-center justify-between px-5 pt-10 pb-5 font-semibold">
+                        <div className="flex gap-5 text-2xl">
+                            <p>수입</p>
+                            <div>{income_list.length}</div>
+                        </div>
                         <div className="cursor-pointer" onClick={() => clickModal("수입")}>수정 및 통계</div>
                     </div>
-                    <div className="overflow-y-scroll">
+                    <div className="overflow-y-auto">
                         {income_list.map((item: any) => (
                             <ExpenseItem key={item.idx} data={item} />
                         ))}
                     </div>
                 </div>
                 <div className="flex flex-col w-full h-full mb-10 border rounded">
-                    <div className="flex items-center justify-between px-10 pt-10 pb-5 font-semibold">
-                        <div className="text-2xl">지출 {outcome_list.length}</div>
+                    <div className="flex items-center justify-between px-5 pt-10 pb-5 font-semibold">
+                        <div className="flex gap-5 text-2xl">
+                            <p>지출</p>
+                            <div>{outcome_list.length}</div>
+                        </div>
                         <div className="cursor-pointer" onClick={() => clickModal("지출")}>수정 및 통계</div>
                     </div>
-                    <div className="overflow-y-scroll">
+                    <div className="overflow-y-auto">
                         {outcome_list.map((item: any) => (
                             <ExpenseItem key={item.idx} data={item} />
                         ))}
