@@ -1,44 +1,14 @@
 import { LineData } from './MoneyBookMaginotLine'
 import { ResponsiveLine } from '@nivo/line'
 import { finalMaginot } from '../../../store/initialState'
+import moment from 'moment'
 import { useAtomValue } from 'jotai'
+import { useGetChartData } from '../../../react-query/Expense/ExpenseChartData'
 
-const data = [
-    {
-        "id": "지출",
-        "color": 'hsl(331, 70%, 50%)',
-        "data": [
-            {
-                "x": "0",
-                "y": 0
-            },
-            {
-                "x": "2일",
-                "y": 100000
-            },
-            {
-                "x": "4일",
-                "y": 230000
-            },
-            {
-                "x": "12일",
-                "y": 400000
-            },
-            {
-                "x": "14일",
-                "y": 500000
-            },
-            {
-                "x": "20일",
-                "y": 520000
-            },
-            {
-                "x": "29일",
-                "y": 640000
-            },
-        ]
-    },
-]
+const today = moment().toDate()
+const start_date = new Date(today.getFullYear(), today.getMonth(), 1).getTime()
+const end_date = new Date(today.getFullYear(), today.getMonth() + 1, 0).getTime()
+
 
 const color = [
     "#ff0000",
@@ -52,6 +22,15 @@ const color = [
 
 const MaginotChart = ({ line }: any) => {
     const finalLine = useAtomValue(finalMaginot)
+    const { data: flow_data } = useGetChartData({ start_date, end_date })
+    console.log('flow', flow_data?.data)
+    const data = [
+        {
+            "id": "지출",
+            "color": 'hsl(331, 70%, 50%)',
+            "data": flow_data?.data
+        },
+    ]
     const markers = line.map((element: LineData, index: number) => {
         return {
             "axis": 'y',
