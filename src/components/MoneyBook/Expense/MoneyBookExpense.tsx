@@ -77,6 +77,19 @@ const MoneyBookExpense = () => {
             ...flow, [name]: value
         })
     }
+
+    let income_sum = 0;
+    const incomeSum = flow_data?.data.filter((item: any) => {
+        if (item.flow_id <= 4) {
+            income_sum += item.amount
+        }
+    })
+    let outcome_sum = 0;
+    const outcomeSum = flow_data?.data.filter((item: any) => {
+        if (item.flow_id > 4) {
+            outcome_sum += item.amount
+        }
+    })
     return (
         <div className="lg:ml-52 ml-14 relative bg-[#fbfbfb] min-w-[47rem] w-full flex flex-col justify-center items-center" onClick={clickFalse}>
             <div className="flex flex-col items-center justify-center lg:w-[75%] max-w-[70rem] w-[80%]">
@@ -123,6 +136,10 @@ const MoneyBookExpense = () => {
                 </div>
             </div>
             {flow_data && <ExpenseItemList data={flow_data?.data} />}
+            <div className='flex items-center lg:w-[75%] mb-10 max-w-[70rem] w-[80%] text-2xl gap-3 font-semibold'>
+                <div className='text-start w-[50%] text-blue-500'>수입: {income_sum} 원</div>
+                <div className='text-start w-[50%] text-red-500'>지출: {outcome_sum} 원</div>
+            </div>
         </div>
     )
 }
