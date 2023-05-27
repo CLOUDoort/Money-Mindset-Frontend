@@ -51,6 +51,20 @@ export const usePostFlow = () => {
     return mutate
 }
 
+const patchFlow = async (itemIdx: number, value: FlowType) => apiInstance.patch(`/flow/${itemIdx}`, value)
+
+export const usePatchFlow = (itemIdx: number) => {
+    const queryClient = useQueryClient()
+    const notifySuccess = () => toast.success("수정 완료")
+    const { mutate } = useMutation((value: FlowType) => patchFlow(itemIdx, value), {
+        onSuccess: () => {
+            queryClient.invalidateQueries([queryKeys.flowData])
+            notifySuccess()
+        }
+    })
+    return mutate
+}
+
 const deleteFlow = async (itemIdx: number) => apiInstance.delete(`/flow/${itemIdx}`)
 
 export const useDeleteFlow = () => {
