@@ -12,7 +12,7 @@ const ExpenseItem = ({ data }: any) => {
     const date = getDay(temp)
     const deleteItem = useDeleteFlow()
     return (
-        <div className="relative flex items-center p-3text-center border-collapse transition-colors hover:bg-gray-100 group h-[74px] whitespace-nowrap border-b border-b-zinc-500">
+        <div className="relative flex items-center p-3text-center border-collapse transition-colors hover:bg-gray-100 group h-[4.6rem] whitespace-nowrap border-b border-b-zinc-500">
             <div className="flex w-full gap-3 px-10 group">
                 <div className="w-10">{date}</div>
                 <div className="w-16"> {flowName}</div>
