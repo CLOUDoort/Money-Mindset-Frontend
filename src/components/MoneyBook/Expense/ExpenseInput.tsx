@@ -27,7 +27,11 @@ const ExpenseInput = ({ showCalendar, setShowCalendar, handleFlowList, data, set
     const { flow_id, amount, flow_date } = flow
     const onChangeDate = useCallback((date: Date): void | undefined => {
         if (!date) return
-        const ISO_DATE = date.toISOString().slice(0, 10).replace(/-/g, '-')
+        const ISO_DATE = date.toLocaleString('en-us', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+        }).replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2')
         setDate(date)
         setFlow({ ...flow, flow_date: ISO_DATE })
         setShowCalendar(false)

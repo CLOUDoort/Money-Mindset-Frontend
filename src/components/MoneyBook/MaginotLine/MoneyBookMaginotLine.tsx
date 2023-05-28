@@ -15,15 +15,17 @@ export type LineData = {
 }
 
 const today = moment().toDate()
-const start_date_string = new Date(today.getFullYear(), today.getMonth(), 1).toLocaleDateString()
-const end_date_string = new Date(today.getFullYear(), today.getMonth() + 1, 0).toLocaleDateString()
+export const start_date_string = new Date(today.getFullYear(), today.getMonth(), 1).toLocaleDateString()
+export const end_date_string = new Date(today.getFullYear(), today.getMonth() + 1, 0).toLocaleDateString()
 
 const MoneyBookMaginotLine = () => {
     const asset = useAtomValue(userAsset)
     const finalLine = useAtomValue(finalMaginot)
     const { data } = useGetGoalData()
     const [line, setLine] = useState([])
+
     useEffect(() => {
+        console.log("data", data?.data)
         let sum = 0;
         try {
             const lineData = data?.data?.map((line: GoalData) => {
@@ -53,7 +55,7 @@ const MoneyBookMaginotLine = () => {
                         <div key={line.value} className="my-5 text-2xl font-semibold">{line.legend} 방어선 : {line.value} 원</div>
                     )
                 })}
-                <MaginotChart line={line} />
+                {line && <MaginotChart line={line} />}
                 <MaginotGoal />
                 <MaginotFixed />
             </div>

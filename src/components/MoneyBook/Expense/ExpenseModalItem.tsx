@@ -24,6 +24,11 @@ const ExpenseModalItem = ({ data }: any) => {
         })
     }
 
+    const getDay = (dateIn: Date) => {
+        var dd = dateIn.getDate()
+        return String(dd + '일 ')
+    }
+
     const temp = new Date(flow_date)
     const [curDate, setCurDate] = useState(temp)
     const defaultValue = {
@@ -36,7 +41,12 @@ const ExpenseModalItem = ({ data }: any) => {
     const [showCalendar, setShowCalendar] = useState(false)
     const onChangeDate = useCallback((date: Date): void | undefined => {
         if (!date) return
-        const ISO_DATE = date.toISOString().slice(0, 10).replace(/-/g, '-')
+        console.log("data", date)
+        const ISO_DATE = date.toLocaleString('en-us', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+        }).replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2')
         setCurDate(date)
         setNewValue({ ...newValue, new_date: ISO_DATE })
         setShowCalendar(false)
@@ -70,9 +80,6 @@ const ExpenseModalItem = ({ data }: any) => {
             flow_date: new_date
         })
         setState(defaultState)
-        setNewValue(defaultValue)
-        setNewFlowName(flowName)
-        setCurDate(temp)
     }
     return (
         <div className="flex flex-col">
@@ -82,10 +89,10 @@ const ExpenseModalItem = ({ data }: any) => {
                     {showCalendar && (
                         <Calendar className="absolute left-0 z-40 top-16" locale={ko} months={1} date={curDate} onChange={onChangeDate} dateDisplayFormat={'yyyy.mm.dd'} />
                     )}
-                    {!first ? <div className="w-full cursor-pointer" onClick={() => clickState("first")}>{temp.toLocaleDateString()}</div> : <div className={`w-full h-12 py-3 text-center whitespace-nowrap transition ease-in-out bg-white border border-gray-400 rounded cursor-pointer`} onClick={() => {
+                    {!first ? <div className="w-full cursor-pointer" onClick={() => clickState("first")}>{getDay(temp)}</div> : <div className={`w-full h-12 py-3 text-center whitespace-nowrap transition ease-in-out bg-white border border-gray-400 rounded cursor-pointer`} onClick={() => {
                         setShowCalendar(!showCalendar)
                         setFlowList(false)
-                    }}>{curDate.toLocaleDateString()}</div>}
+                    }}>{getDay(curDate)}</div>}
                 </div>
 
                 {/* 항목 */}

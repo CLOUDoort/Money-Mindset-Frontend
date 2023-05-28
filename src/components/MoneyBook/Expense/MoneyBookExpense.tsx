@@ -2,14 +2,11 @@ import { useGetFlowData, useGetFlowList, } from "../../../react-query/Expense/Ex
 
 import ExpenseInput from './ExpenseInput'
 import ExpenseItemList from "./ExpenseItemList"
-import moment from 'moment'
 import { useState } from "react"
-
-const today = moment().toDate()
-const start_date_string = new Date(today.getFullYear(), today.getMonth(), 1).toLocaleDateString()
-const end_date_string = new Date(today.getFullYear(), today.getMonth() + 1, 0).toLocaleDateString()
-const start_date = new Date(today.getFullYear(), today.getMonth(), 1).getTime()
-const end_date = new Date(today.getFullYear(), today.getMonth() + 1, 0).getTime()
+import { start_date_string } from "../MaginotLine/MoneyBookMaginotLine"
+import { end_date_string } from "../MaginotLine/MoneyBookMaginotLine"
+import { start_date } from "../MoneyBookDashboard"
+import { end_date } from "../MoneyBookDashboard"
 
 const MoneyBookExpense = () => {
     const { data } = useGetFlowList()
