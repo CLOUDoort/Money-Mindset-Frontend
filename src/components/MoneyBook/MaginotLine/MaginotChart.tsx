@@ -28,7 +28,7 @@ const MaginotChart = ({ line }: any) => {
         {
             "id": "지출",
             "color": 'hsl(331, 70%, 50%)',
-            "data": flow_data?.data
+            "data": flow_data?.data.length ? flow_data?.data : [{ "x": 0, "y": 0 }]
         },
     ]
     const markers = line.map((element: LineData, index: number) => {
