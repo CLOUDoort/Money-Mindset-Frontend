@@ -8,27 +8,19 @@ import { apiInstance } from '../../../apis/setting'
 import { toast } from 'react-toastify'
 import { useSetAtom } from 'jotai'
 import { useState } from "react"
+import { useForm } from 'react-hook-form'
+
 
 const SignInForm = () => {
     const navigate = useNavigate()
     const setToken = useSetAtom(accessToken)
     const [showPassword, setShowPassword] = useState(false)
-    const [formData, setFormData] = useState({
-        email: "",
-        password: ""
-    })
-    const { email, password } = formData
-    const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target
-        setFormData({
-            ...formData, [name]: value
-        })
-    }
-    const submitHandler = async (e: React.SyntheticEvent) => {
-        e.preventDefault()
+    const { register, handleSubmit } = useForm()
+    const clickSubmit = async (FieldValues: any) => {
         try {
             const submitResponse = await apiInstance.post(`/user/signin`, {
-                email, password
+                email: FieldValues.email,
+                password: FieldValues.password
             })
             toast.success("로그인 성공!")
             navigate('/money-book/dashboard')
@@ -43,12 +35,12 @@ const SignInForm = () => {
             <div className="flex flex-wrap items-center justify-center w-full max-w-6xl p-5 mx-auto ">
                 <div className="flex w-full flex-col md:w-[55%] lg:w-[40%]">
                     <h1 className="mb-8 text-4xl font-bold text-center lg:text-4xl">Sign-in</h1>
-                    <form onSubmit={submitHandler}>
+                    <form onSubmit={handleSubmit(clickSubmit)}>
                         <div className='font-semibold'>Email</div>
-                        <Input type="email" name="email" value={email} placeholder="example@google.com" onChange={changeHandler} />
+                        <Input type="email" placeholder="example@google.com" register={{ ...register("email") }} />
                         <div className='font-semibold'>Password</div>
                         <div className="relative">
-                            <Input type={showPassword ? 'text' : "password"} name="password" value={password} placeholder="password" onChange={changeHandler} />
+                            <Input type={showPassword ? 'text' : "password"} placeholder="password" register={{ ...register("password") }} />
                             {showPassword ? <AiFillEyeInvisible onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-6' /> : <AiFillEye onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-6' />}
                         </div>
                         <div className='flex justify-between text-sm whitespace-nowrap'>
