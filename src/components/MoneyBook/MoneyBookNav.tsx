@@ -12,8 +12,19 @@ import { MdDashboard } from 'react-icons/md'
 import { apiInstance } from "../../apis/setting"
 import { toast } from "react-toastify"
 import { useEffect } from "react"
+import { usePrefetchChartData } from "../../react-query/Expense/ExpenseChartData"
+import { usePrefetchFixedData } from "../../react-query/MaginotData/MaginotFixedData"
+import { usePrefetchFlowData } from "../../react-query/Expense/ExpenseFlowData"
+import { usePrefetchGoalData } from "../../react-query/MaginotData/MaginotGoalData"
+const today = new Date()
+export const start_date = new Date(today.getFullYear(), today.getMonth(), 1).getTime()
+export const end_date = new Date(today.getFullYear(), today.getMonth() + 1, 0).getTime()
 
 const MoneyBookNav = () => {
+    usePrefetchGoalData()
+    usePrefetchFixedData()
+    usePrefetchFlowData({ start_date, end_date })
+    usePrefetchChartData({ start_date, end_date })
     const navigate = useNavigate()
     const [token, setToken] = useAtom(accessToken)
     const [idx, setIdx] = useAtom(userIdx)
