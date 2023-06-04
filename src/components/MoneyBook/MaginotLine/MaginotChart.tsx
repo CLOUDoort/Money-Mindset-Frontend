@@ -8,8 +8,6 @@ import { useGetChartData } from '../../../react-query/Expense/ExpenseChartData'
 const today = moment().toDate()
 const start_date = new Date(today.getFullYear(), today.getMonth(), 1).getTime()
 const end_date = new Date(today.getFullYear(), today.getMonth() + 1, 0).getTime()
-
-
 const color = [
     "#ff0000",
     "#490184",
@@ -23,8 +21,7 @@ const color = [
 const MaginotChart = ({ line }: any) => {
     const finalLine = useAtomValue(finalMaginot)
     const { data: flow_data } = useGetChartData({ start_date, end_date })
-    console.log('flow', flow_data?.data)
-    const data = [
+    const chart_data = [
         {
             "id": "지출",
             "color": 'hsl(331, 70%, 50%)',
@@ -46,7 +43,7 @@ const MaginotChart = ({ line }: any) => {
     return (
         <div className='h-[30rem] w-full'>
             <ResponsiveLine
-                data={data}
+                data={chart_data}
                 margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
                 xScale={{ type: 'point' }}
                 yScale={{

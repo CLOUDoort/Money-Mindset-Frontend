@@ -5,8 +5,8 @@ import ExpenseItemList from "./ExpenseItemList"
 import { useState } from "react"
 import { start_date_string } from "../MaginotLine/MoneyBookMaginotLine"
 import { end_date_string } from "../MaginotLine/MoneyBookMaginotLine"
-import { start_date } from "../MoneyBookDashboard"
-import { end_date } from "../MoneyBookDashboard"
+import Loading from "../../Loading"
+import { end_date, start_date } from "../MoneyBookNav"
 
 const MoneyBookExpense = () => {
     const { data } = useGetFlowList()
@@ -28,26 +28,29 @@ const MoneyBookExpense = () => {
             outcome_sum += item.amount
         }
     })
+    console.log("flow_data", flow_data)
     return (
-        <div className="lg:ml-52 ml-14 relative bg-[#fbfbfb] min-w-[47rem] w-full flex flex-col justify-center items-center" onClick={clickFalse}>
-            <div className='flex items-center lg:w-[75%] mt-10 max-w-[70rem] w-[80%] text-2xl gap-3 font-semibold'>
-                <div>{start_date_string} ~</div>
-                <div>{end_date_string}</div>
-            </div>
-            <div className="flex flex-col items-center justify-center lg:w-[75%] max-w-[70rem] w-[80%]">
-                <div className="flex flex-col w-full p-10 m-10 border rounded">
-                    <div className="flex items-center mb-2 text-2xl font-semibold">
-                        <span>수입 - 지출</span>
-                    </div>
-                    <ExpenseInput showCalendar={showCalendar} setShowCalendar={setShowCalendar} handleFlowList={handleFlowList} data={data} setFlowList={setFlowList} flowList={flowList} />
+        <>
+            {flow_data ? <div className="lg:ml-52 ml-14 relative bg-[#fbfbfb] min-w-[47rem] w-full flex flex-col justify-center items-center" onClick={clickFalse}>
+                <div className='flex items-center lg:w-[75%] mt-10 max-w-[70rem] w-[80%] text-2xl gap-3 font-semibold'>
+                    <div>{start_date_string} ~</div>
+                    <div>{end_date_string}</div>
                 </div>
-            </div>
-            {flow_data && <ExpenseItemList data={flow_data?.data} />}
-            <div className='flex items-center lg:w-[75%] mb-10 max-w-[70rem] w-[80%] text-2xl gap-3 font-semibold'>
-                <div className='text-start w-[50%] text-blue-500'>수입: {income_sum} 원</div>
-                <div className='text-start w-[50%] text-red-500'>지출: {outcome_sum} 원</div>
-            </div>
-        </div>
+                <div className="flex flex-col items-center justify-center lg:w-[75%] max-w-[70rem] w-[80%]">
+                    <div className="flex flex-col w-full p-10 m-10 border rounded">
+                        <div className="flex items-center mb-2 text-2xl font-semibold">
+                            <span>수입 - 지출</span>
+                        </div>
+                        <ExpenseInput showCalendar={showCalendar} setShowCalendar={setShowCalendar} handleFlowList={handleFlowList} data={data} setFlowList={setFlowList} flowList={flowList} />
+                    </div>
+                </div>
+                {flow_data && <ExpenseItemList data={flow_data?.data} />}
+                <div className='flex items-center lg:w-[75%] mb-10 max-w-[70rem] w-[80%] text-2xl gap-3 font-semibold'>
+                    <div className='text-start w-[50%] text-blue-500'>수입: {income_sum} 원</div>
+                    <div className='text-start w-[50%] text-red-500'>지출: {outcome_sum} 원</div>
+                </div>
+            </div> : <Loading />}
+        </>
     )
 }
 
