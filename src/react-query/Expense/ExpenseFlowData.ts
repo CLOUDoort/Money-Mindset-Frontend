@@ -23,7 +23,7 @@ export type FlowPeriod = {
     end_date: number
 }
 
-const getFlowData = async (user_idx: number, value: FlowPeriod ) => apiInstance.get(`/flow/user/${user_idx}`, { params: value })
+const getFlowData = async (user_idx: number, value: FlowPeriod ) => await apiInstance.get(`/flow/user/${user_idx}`, { params: value })
 
 export const useGetFlowData = (value: FlowPeriod) => {
     const idx = useAtomValue(userIdx)

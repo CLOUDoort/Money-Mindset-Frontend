@@ -6,7 +6,7 @@ import { queryKeys } from "../constants";
 import { useAtomValue } from "jotai";
 import { userIdx } from "../../store/initialState";
 
-const getChartData = async (user_idx: number, value: FlowPeriod) => apiInstance.get(`/flow/chart/${user_idx}`, { params: value })
+const getChartData = async (user_idx: number, value: FlowPeriod) => await apiInstance.get(`/flow/chart/${user_idx}`, { params: value })
 
 export const useGetChartData = (value: FlowPeriod) => {
     const idx = useAtomValue(userIdx)
