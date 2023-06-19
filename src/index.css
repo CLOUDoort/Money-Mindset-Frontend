@@ -7,7 +7,10 @@ html, body {
     width: 100%;
     font-family: 'Open Sans', sans-serif;
     background-color: #FBFBFB;
-
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none
 }
 
 #root {
