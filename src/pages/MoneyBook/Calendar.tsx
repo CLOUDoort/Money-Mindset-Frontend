@@ -1,4 +1,4 @@
-import MoneyBookCalendar from "../../components/MoneyBook/MoneyBookCalendar"
+import MoneyBookCalendar from "../../components/MoneyBook/Calendar/MoneyBookCalendar"
 
 const Calendar = () => {
     return <MoneyBookCalendar />
