@@ -99,7 +99,7 @@ const MoneyBookNav = () => {
         }
     }
     return (
-        <div className="flex w-full bg-[#fbfbfb]">
+        <div className="flex w-full h-full bg-[#fbfbfb]">
             <nav className="fixed top-0 left-0 z-40 flex-col justify-between hidden h-full border-r lg:flex w-52">
                 <ul className="flex flex-col items-start justify-center py-2">
                     <li className="flex gap-2 p-4 whitespace-nowrap">
