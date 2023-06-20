@@ -32,6 +32,7 @@ specifiers:
   react-error-boundary: ^4.0.4
   react-hook-form: ^7.43.5
   react-icons: ^4.8.0
+  react-kakao-maps-sdk: ^1.1.9
   react-loading-skeleton: ^3.2.1
   react-query: ^3.39.3
   react-router: ^6.8.2
@@ -71,6 +72,7 @@ dependencies:
   react-error-boundary: 4.0.4_react@18.2.0
   react-hook-form: 7.43.5_react@18.2.0
   react-icons: 4.8.0_react@18.2.0
+  react-kakao-maps-sdk: 1.1.9_biqbaboplfbrettd7655fr4n2y
   react-loading-skeleton: 3.2.1_react@18.2.0
   react-query: 3.39.3_biqbaboplfbrettd7655fr4n2y
   react-router: 6.8.2_react@18.2.0
@@ -7486,6 +7488,10 @@ packages:
       object.assign: 4.1.4
     dev: false
 
+  /kakao.maps.d.ts/0.1.38:
+    resolution: {integrity: sha512-ub3ITsp/XfM7OikRvnsQiK6oZgyqVKVvGm9bmChudfDRjFa6xrS2O/bLNs0EyFCQZufVBXLLJK9+T06LOYxNiw==}
+    dev: false
+
   /kind-of/6.0.3:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}
     engines: {node: '>=0.10.0'}
@@ -9217,6 +9223,17 @@ packages:
 
   /react-is/18.2.0:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
+    dev: false
+
+  /react-kakao-maps-sdk/1.1.9_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-9bm4mS7eCRpIQ5tRdd0U0fN9XC10sdkr1Fbh4/y+Eik8eQVPVkguRPwmd8Cn7IuJZyaF4gyjOILdDeDrqcbveg==}
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+    dependencies:
+      kakao.maps.d.ts: 0.1.38
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /react-lifecycles-compat/3.0.4:
