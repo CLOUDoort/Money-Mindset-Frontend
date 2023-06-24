@@ -16,6 +16,7 @@ import { usePrefetchChartData } from "../../react-query/Expense/ExpenseChartData
 import { usePrefetchFixedData } from "../../react-query/MaginotData/MaginotFixedData"
 import { usePrefetchFlowData } from "../../react-query/Expense/ExpenseFlowData"
 import { usePrefetchGoalData } from "../../react-query/MaginotData/MaginotGoalData"
+import { usePrefetchExpenseStatisticsIncomeData, usePrefetchExpenseStatisticsOutComeData } from "../../react-query/Expense/ExpenseStatisticsData"
 const today = new Date()
 export const start_date = new Date(today.getFullYear(), today.getMonth(), 1).getTime()
 export const end_date = new Date(today.getFullYear(), today.getMonth() + 1, 0).getTime()
@@ -25,6 +26,8 @@ const MoneyBookNav = () => {
     usePrefetchFixedData()
     usePrefetchFlowData({ start_date, end_date })
     usePrefetchChartData({ start_date, end_date })
+    usePrefetchExpenseStatisticsIncomeData({ start_date, end_date, flow_type: 0 })
+    usePrefetchExpenseStatisticsOutComeData({ start_date, end_date, flow_type: 1 })
     const navigate = useNavigate()
     const [token, setToken] = useAtom(accessToken)
     const [idx, setIdx] = useAtom(userIdx)

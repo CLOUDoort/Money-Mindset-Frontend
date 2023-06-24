@@ -1,6 +1,18 @@
-import { ResponsivePie } from '@nivo/pie'
 import { AiOutlineArrowRight } from 'react-icons/ai'
+import { ResponsivePie } from '@nivo/pie'
+import { useGetExpenseStatisticsData } from '../../../react-query/Expense/ExpenseStatisticsData'
+import { end_date, start_date } from '../MoneyBookNav'
+import { useEffect, useState } from 'react'
 
+const color = [
+    "#ff0000",
+    "#490184",
+    "#1d039d",
+    "#3e6ab0",
+    "#135607",
+    "#d9f409",
+    "#ee8803",
+]
 const data = [
     {
         "id": "erlang",
@@ -34,13 +46,33 @@ const data = [
     }
 ]
 
-const ExpenseStatistics = ({ click }: any) => {
+type StatisticsType = {
+    id: number,
+    label: string,
+    value: number,
+}
+
+const ExpenseStatistics = ({ click, modalData }: { click: () => void, modalData: number }) => {
+    const { data: statistic } = useGetExpenseStatisticsData({ start_date, end_date, flow_type: modalData })
+    console.log('static', modalData)
+    const [stData, setData] = useState([])
+    useEffect(() => {
+        const statistic_data = statistic?.data.map((element: StatisticsType, index: number) => {
+            return {
+                id: element.label,
+                label: element.label,
+                value: element.value,
+                color: color[index]
+            }
+        })
+        setData(statistic_data)
+    }, [statistic])
     return (
         <div className='w-[50rem] relative flex justify-center'>
             <AiOutlineArrowRight className='absolute cursor-pointer right-5 top-5' size={25} onClick={click} />
             <div className='h-[40rem] w-[45rem]'>
                 <ResponsivePie
-                    data={data}
+                    data={stData}
                     margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
                     innerRadius={0.5}
                     padAngle={0.7}
