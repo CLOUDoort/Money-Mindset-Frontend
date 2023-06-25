@@ -1,8 +1,7 @@
+import { useEffect, useState } from 'react'
+
 import { AiOutlineArrowRight } from 'react-icons/ai'
 import { ResponsivePie } from '@nivo/pie'
-import { useGetExpenseStatisticsData } from '../../../react-query/Expense/ExpenseStatisticsData'
-import { end_date, start_date } from '../MoneyBookNav'
-import { useEffect, useState } from 'react'
 
 const color = [
     "#ff0000",
@@ -12,38 +11,13 @@ const color = [
     "#135607",
     "#d9f409",
     "#ee8803",
-]
-const data = [
-    {
-        "id": "erlang",
-        "label": "erlang",
-        "value": 397,
-        "color": "hsl(85, 70%, 50%)"
-    },
-    {
-        "id": "rust",
-        "label": "rust",
-        "value": 523,
-        "color": "hsl(162, 70%, 50%)"
-    },
-    {
-        "id": "lisp",
-        "label": "lisp",
-        "value": 259,
-        "color": "hsl(42, 70%, 50%)"
-    },
-    {
-        "id": "javascript",
-        "label": "javascript",
-        "value": 260,
-        "color": "hsl(171, 70%, 50%)"
-    },
-    {
-        "id": "hack",
-        "label": "hack",
-        "value": 335,
-        "color": "hsl(170, 70%, 50%)"
-    }
+    "#d60101",
+    "#694e80",
+    "#50487c",
+    "#3b4e6d",
+    "#3f5d3a",
+    "#dde3ad",
+    "#f1d6b1",
 ]
 
 type StatisticsType = {
@@ -52,12 +26,10 @@ type StatisticsType = {
     value: number,
 }
 
-const ExpenseStatistics = ({ click, modalData }: { click: () => void, modalData: number }) => {
-    const { data: statistic } = useGetExpenseStatisticsData({ start_date, end_date, flow_type: modalData })
-    console.log('static', modalData)
+const ExpenseStatistics = ({ click, data }: { click: () => void, data: any }) => {
     const [stData, setData] = useState([])
     useEffect(() => {
-        const statistic_data = statistic?.data.map((element: StatisticsType, index: number) => {
+        const statistic_data = data?.data.map((element: StatisticsType, index: number) => {
             return {
                 id: element.label,
                 label: element.label,
@@ -66,7 +38,7 @@ const ExpenseStatistics = ({ click, modalData }: { click: () => void, modalData:
             }
         })
         setData(statistic_data)
-    }, [statistic])
+    }, [data?.data])
     return (
         <div className='w-[50rem] relative flex justify-center'>
             <AiOutlineArrowRight className='absolute cursor-pointer right-5 top-5' size={25} onClick={click} />
@@ -102,76 +74,6 @@ const ExpenseStatistics = ({ click, modalData }: { click: () => void, modalData:
                             ]
                         ]
                     }}
-                    defs={[
-                        {
-                            id: 'dots',
-                            type: 'patternDots',
-                            background: 'inherit',
-                            color: 'rgba(255, 255, 255, 0.3)',
-                            size: 4,
-                            padding: 1,
-                            stagger: true
-                        },
-                        {
-                            id: 'lines',
-                            type: 'patternLines',
-                            background: 'inherit',
-                            color: 'rgba(255, 255, 255, 0.3)',
-                            rotation: -45,
-                            lineWidth: 6,
-                            spacing: 10
-                        }
-                    ]}
-                    fill={[
-                        {
-                            match: {
-                                id: 'ruby'
-                            },
-                            id: 'dots'
-                        },
-                        {
-                            match: {
-                                id: 'c'
-                            },
-                            id: 'dots'
-                        },
-                        {
-                            match: {
-                                id: 'go'
-                            },
-                            id: 'dots'
-                        },
-                        {
-                            match: {
-                                id: 'python'
-                            },
-                            id: 'dots'
-                        },
-                        {
-                            match: {
-                                id: 'scala'
-                            },
-                            id: 'lines'
-                        },
-                        {
-                            match: {
-                                id: 'lisp'
-                            },
-                            id: 'lines'
-                        },
-                        {
-                            match: {
-                                id: 'elixir'
-                            },
-                            id: 'lines'
-                        },
-                        {
-                            match: {
-                                id: 'javascript'
-                            },
-                            id: 'lines'
-                        }
-                    ]}
                     legends={[
                         {
                             anchor: 'bottom',
