@@ -3,14 +3,11 @@ import { addMonths, format, subMonths } from "date-fns"
 import CalendarCells from "./CalendarCells"
 import CalendarDays from "./CalendarDays"
 import CalendarHeader from "./CalendarHeader"
-import CalendarModal from "./CalendarModal"
 import { useState } from "react"
 
 const MoneyBookCalendar = () => {
     const [currentMonth, setCurrentMonth] = useState(new Date())
     const [selectedDate, setSelectedDate] = useState("")
-    const [click, setModal] = useState(false)
-    const clickModal = () => setModal(!click)
     const preMonth = () => setCurrentMonth(subMonths(currentMonth, 1))
     const nextMonth = () => setCurrentMonth(addMonths(currentMonth, 1))
     const goToday = () => setCurrentMonth(new Date())
@@ -22,8 +19,8 @@ const MoneyBookCalendar = () => {
             <div className="min-h-[55rem]">
                 <CalendarHeader currentMonth={currentMonth} preMonth={preMonth} nextMonth={nextMonth} goToday={goToday} />
                 <CalendarDays />
-                <CalendarCells clickModal={clickModal} currentMonth={currentMonth} onDateClick={onDateClick} />
-                {click && <CalendarModal clickModal={clickModal} select={selectedDate} />}
+                <CalendarCells currentMonth={currentMonth} onDateClick={onDateClick} selectedDate={selectedDate} />
+
             </div>
         </div>
     )

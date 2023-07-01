@@ -28,7 +28,6 @@ const MoneyBookExpense = () => {
             outcome_sum += item.amount
         }
     })
-    console.log("flow_data", flow_data)
     return (
         <>
             {flow_data ? <div className="lg:ml-52 ml-14 relative bg-[#fbfbfb] min-w-[47rem] w-full flex flex-col justify-center items-center" onClick={clickFalse}>
@@ -38,9 +37,6 @@ const MoneyBookExpense = () => {
                 </div>
                 <div className="flex flex-col items-center justify-center lg:w-[75%] max-w-[70rem] w-[80%]">
                     <div className="flex flex-col w-full p-10 m-10 border rounded">
-                        <div className="flex items-center mb-2 text-2xl font-semibold">
-                            <span>수입 - 지출</span>
-                        </div>
                         <ExpenseInput showCalendar={showCalendar} setShowCalendar={setShowCalendar} handleFlowList={handleFlowList} data={data} setFlowList={setFlowList} flowList={flowList} />
                     </div>
                 </div>

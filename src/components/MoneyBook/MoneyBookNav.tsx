@@ -1,6 +1,7 @@
 import { Link, Outlet, useNavigate } from "react-router-dom"
 import { accessToken, finalMaginot, userAsset, userEmail, userIdx, userNickname } from "../../store/initialState"
 import { useAtom, useSetAtom } from "jotai"
+import { usePrefetchExpenseStatisticsIncomeData, usePrefetchExpenseStatisticsOutComeData } from "../../react-query/Expense/ExpenseStatisticsData"
 
 import { AiOutlineBarChart } from 'react-icons/ai'
 import { AiTwotoneCalendar } from 'react-icons/ai'
@@ -16,10 +17,10 @@ import { usePrefetchChartData } from "../../react-query/Expense/ExpenseChartData
 import { usePrefetchFixedData } from "../../react-query/MaginotData/MaginotFixedData"
 import { usePrefetchFlowData } from "../../react-query/Expense/ExpenseFlowData"
 import { usePrefetchGoalData } from "../../react-query/MaginotData/MaginotGoalData"
-import { usePrefetchExpenseStatisticsIncomeData, usePrefetchExpenseStatisticsOutComeData } from "../../react-query/Expense/ExpenseStatisticsData"
+
 const today = new Date()
 export const start_date = new Date(today.getFullYear(), today.getMonth(), 1).getTime()
-export const end_date = new Date(today.getFullYear(), today.getMonth() + 1, 0).getTime()
+export const end_date = new Date(today.getFullYear(), today.getMonth() + 1, 1).getTime() - 1
 
 const MoneyBookNav = () => {
     usePrefetchGoalData()
@@ -102,7 +103,7 @@ const MoneyBookNav = () => {
         }
     }
     return (
-        <div className="flex w-full h-full bg-[#fbfbfb]">
+        <div className="flex w-full bg-[#fbfbfb]">
             <nav className="fixed top-0 left-0 z-40 flex-col justify-between hidden h-full border-r lg:flex w-52">
                 <ul className="flex flex-col items-start justify-center py-2">
                     <li className="flex gap-2 p-4 whitespace-nowrap">
