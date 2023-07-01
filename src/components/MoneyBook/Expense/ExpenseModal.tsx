@@ -1,9 +1,10 @@
+import { end_date, start_date } from "../MoneyBookNav"
 import { useEffect, useState } from "react"
 import { useGetExpenseStatisticsIncomeData, useGetExpenseStatisticsOutcomeData } from "../../../react-query/Expense/ExpenseStatisticsData"
-import { end_date, start_date } from "../MoneyBookNav"
 
 import ExpenseModalItem from "./ExpenseModalItem"
 import ExpenseStatistics from "./ExpenseStatistics"
+import { MdOutlineSpeakerNotesOff } from "react-icons/md"
 
 const ExpenseModal = ({ setModal, item, modalData }: any) => {
     const [state, setState] = useState(false)
@@ -31,11 +32,17 @@ const ExpenseModal = ({ setModal, item, modalData }: any) => {
                         <div className="text-2xl">{modalData}</div>
                         <div className="cursor-pointer" onClick={clickStatistics}>통계</div>
                     </div>
-                    <div className="h-full overflow-y-scroll">
-                        {item.map((item: any) => (
-                            <ExpenseModalItem key={item.idx} data={item} />
-                        ))}
-                    </div>
+                    {item.length ?
+                        <div className="h-full overflow-y-scroll">
+                            {item.map((item: any) => (
+                                <ExpenseModalItem key={item.idx} data={item} />
+                            ))}
+                        </div>
+                        : <div className='flex items-center justify-center h-full m-auto text-2xl font-semibold'>
+                            <MdOutlineSpeakerNotesOff size={50} />
+                        </div>
+                    }
+
                 </>}
             </div>
 
