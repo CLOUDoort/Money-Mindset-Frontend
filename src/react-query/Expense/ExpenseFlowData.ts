@@ -46,6 +46,8 @@ export const usePostFlow = () => {
         onSuccess: () => {
             queryClient.invalidateQueries([queryKeys.flowData])
             queryClient.invalidateQueries([queryKeys.chartData])
+            queryClient.invalidateQueries([queryKeys.ExpenseStatisticsIncomeData])
+            queryClient.invalidateQueries([queryKeys.ExpenseStatisticsOutcomeData])
             notifySuccess()
         }
     })
@@ -61,6 +63,8 @@ export const usePatchFlow = (itemIdx: number) => {
         onSuccess: () => {
             queryClient.invalidateQueries([queryKeys.flowData])
             queryClient.invalidateQueries([queryKeys.chartData])
+            queryClient.invalidateQueries([queryKeys.ExpenseStatisticsIncomeData])
+            queryClient.invalidateQueries([queryKeys.ExpenseStatisticsOutcomeData])
             notifySuccess()
         }
     })
@@ -76,6 +80,8 @@ export const useDeleteFlow = () => {
         onSuccess: () => {
             queryClient.invalidateQueries([queryKeys.flowData])
             queryClient.invalidateQueries([queryKeys.chartData])
+            queryClient.invalidateQueries([queryKeys.ExpenseStatisticsIncomeData])
+            queryClient.invalidateQueries([queryKeys.ExpenseStatisticsOutcomeData])
             notifySuccess()
         }
     })
