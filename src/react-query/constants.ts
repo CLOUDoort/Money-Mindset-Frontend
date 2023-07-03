@@ -3,6 +3,7 @@ export const queryKeys = {
     fixedData: "fixedData",
     flowList: "flowList",
     flowData: "flowData",
+    flowDetail: "flowDetail",
     chartData: "chartData",
     ExpenseStatisticsIncomeData: "ExpenseStatisticsIncomeData",
     ExpenseStatisticsOutcomeData: "ExpenseStatisticsOutcomeData",
