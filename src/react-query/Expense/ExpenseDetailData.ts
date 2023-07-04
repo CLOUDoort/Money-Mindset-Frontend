@@ -30,28 +30,28 @@ export const usePostDetailData = (flowIdx:number) => {
     return mutate
 }
 
-const patchFixedData = async (flowIdx:number, value: DetailData) => await apiInstance.patch(`/flow/detail/${flowIdx}`, value)
+const patchDetailData = async (flowIdx:number, value: DetailData) => await apiInstance.patch(`/flow/detail/${flowIdx}`, value)
 
-export const usePatchFixedData = (flowIdx:number) => {
+export const usePatchDetailData = (flowIdx:number) => {
     const queryClient = useQueryClient()
     const notifySuccess = () => toast.success("수정 완료")
-    const { mutate } = useMutation((value: DetailData) => patchFixedData(flowIdx, value), {
+    const { mutate } = useMutation((value: DetailData) => patchDetailData(flowIdx, value), {
         onSuccess: () => {
-            queryClient.invalidateQueries([queryKeys.fixedData])
+            queryClient.invalidateQueries([queryKeys.flowDetail])
             notifySuccess()
         }
     })
     return mutate
 }
 
-const removeFixedData = async (flowIdx:number) => await apiInstance.delete(`/flow/detail/${flowIdx}`)
+const removeDetailData = async (flowIdx:number) => await apiInstance.delete(`/flow/detail/${flowIdx}`)
 
-export const useDeleteFixedData = () => {
+export const useDeleteDetailData = () => {
     const queryClient = useQueryClient()
     const notifySuccess = () => toast.success("삭제 완료")
-    const { mutate } = useMutation(removeFixedData, {
+    const { mutate } = useMutation(removeDetailData, {
         onSuccess: () => {
-            queryClient.invalidateQueries([queryKeys.fixedData])
+            queryClient.invalidateQueries([queryKeys.flowDetail])
             notifySuccess()            
         },
     })
