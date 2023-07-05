@@ -1,38 +1,81 @@
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
+import { useAtom, useSetAtom } from 'jotai';
+import { useEffect, useRef, useState } from 'react';
 
-import { useState } from 'react';
-
-const locations = [
-    { title: '카카오', latlng: { lat: 33.450705, lng: 126.570677 } },
-    { title: '생태연못', latlng: { lat: 33.450936, lng: 126.569477 } },
-    { title: '텃밭', latlng: { lat: 33.450879, lng: 126.56994 } },
-    { title: '근린공원', latlng: { lat: 33.451393, lng: 126.570738 } },
-];
+import { expenseLocation } from '../../store/initialState';
 
 const KakaoMap = () => {
-    const [level, setLevel] = useState(3);
+    const [location, setLoacation] = useState({
+        latitude: 0,
+        longitude: 0
+    }); // 현재 위치를 저장할 상태
+    const { latitude, longitude } = location
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(successHandler, errorHandler); // 성공시 successHandler, 실패시 errorHandler 함수가 실행된다.
+    }, []);
+    const successHandler = (response: { coords: { latitude: number, longitude: number } }) => {
+        console.log(response); // coords: GeolocationCoordinates {latitude: 위도, longitude: 경도, …} timestamp: 1673446873903
+        const { latitude, longitude } = response.coords;
+        setLoacation({ latitude, longitude });
+    };
+
+    const errorHandler = (error: any) => {
+        console.log(error);
+    };
+
+    const locations = [
+        { title: '현재 위치', latlng: { lat: latitude, lng: longitude } },
+    ];
+
+
+    // const [coordinates, setCoordinates] = useState({
+    //     center: {
+    //         lat: "",
+    //         lng: ""
+    //     },
+    // }); // 현재 위치의 좌표값을 저장할 상태
+    // const mapRef = useRef<any>();
+
+    // const getCoordinates = () => {
+    //     const map = mapRef.current;
+
+    //     setCoordinates({
+    //         center: {
+    //             lat: map.getCenter().getLat(),
+    //             lng: map.getCenter().getLng(),
+    //         },
+    //     });
+    // };
+    const [position, setPosition] = useAtom(expenseLocation)
     return (
-        <Map
-            center={{ lat: 33.450701, lng: 126.570667 }}   // 지도의 중심 좌표
-            style={{ width: '800px', height: '600px', margin: "50px" }} // 지도 크기
-            level={level}                                   // 지도 확대 레벨
-        >
-            {locations.map((loc, idx) => (
-                <MapMarker
-                    key={`${loc.title}-${loc.latlng}`}
-                    position={loc.latlng}
-                    image={{
-                        src: 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png',
-                        size: { width: 24, height: 35 },
-                    }}
-                    title={loc.title}
-                />
-            ))}
-            <div className='flex items-center justify-center gap-3'>
-                <button className='px-5 py-2 border rounded' onClick={() => setLevel(level + 1)}>-</button>
-                <button className='px-5 py-2 border rounded' onClick={() => setLevel(level - 1)}>+</button>
-            </div>
-        </Map>);
+        <div className='flex items-center'>
+            {location &&
+                <Map
+                    center={{ lat: latitude, lng: longitude }}
+                    style={{ width: '100%', height: '15rem' }}
+                    level={3}
+                    onClick={(_t, MouseEvent) => setPosition({
+                        lat: MouseEvent.latLng.getLat(),
+                        lng: MouseEvent.latLng.getLng()
+                    })}
+                // ref={mapRef}
+                >
+                    {position && <MapMarker position={position} />}
+                    {locations.map((loc, idx) => (
+                        <MapMarker
+                            key={`${loc.title}-${loc.latlng}`}
+                            position={loc.latlng}
+                            image={{
+                                src: 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png',
+                                size: { width: 24, height: 35 },
+                            }}
+                            title={loc.title}
+                        />
+                    ))}
+                </Map>
+            }
+        </div>
+    )
 };
 
 export default KakaoMap
