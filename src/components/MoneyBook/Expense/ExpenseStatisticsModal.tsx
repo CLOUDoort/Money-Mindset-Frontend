@@ -27,7 +27,7 @@ type StatisticsType = {
     value: number,
 }
 
-const ExpenseStatistics = ({ click, data }: { click: () => void, data: any }) => {
+const ExpenseStatisticsModal = ({ click, data }: { click: () => void, data: any }) => {
     const [stData, setData] = useState([])
     useEffect(() => {
         const statistic_data = data?.data.map((element: StatisticsType, index: number) => {
@@ -112,4 +112,4 @@ const ExpenseStatistics = ({ click, data }: { click: () => void, data: any }) =>
     )
 }
 
-export default ExpenseStatistics
+export default ExpenseStatisticsModal

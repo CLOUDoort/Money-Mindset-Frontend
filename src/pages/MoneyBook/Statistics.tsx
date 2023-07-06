@@ -1,4 +1,4 @@
-import MoneyBookStatistics from "../../components/MoneyBook/MoneyBookStatistics"
+import MoneyBookStatistics from "../../components/MoneyBook/Statistics/MoneyBookStatistics"
 
 const Statistics = () => {
     return <MoneyBookStatistics />

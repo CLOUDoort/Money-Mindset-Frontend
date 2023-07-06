@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { useGetExpenseStatisticsIncomeData, useGetExpenseStatisticsOutcomeData } from "../../../react-query/Expense/ExpenseStatisticsData"
 
 import ExpenseModalItem from "./ExpenseModalItem"
-import ExpenseStatistics from "./ExpenseStatistics"
+import ExpenseStatistics from "./ExpenseStatisticsModal"
 import { MdOutlineSpeakerNotesOff } from "react-icons/md"
 
 const ExpenseModal = ({ setModal, item, modalData }: any) => {
