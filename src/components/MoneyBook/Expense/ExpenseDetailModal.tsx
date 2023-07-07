@@ -1,3 +1,5 @@
+import { useGetDetailData, usePostDetailData } from "../../../react-query/Expense/ExpenseDetailData"
+
 import { AiOutlineArrowRight } from "react-icons/ai"
 import Input from "../../InputForm"
 import KakaoMap from "../KakaoMap"
@@ -5,7 +7,6 @@ import { expenseLocation } from "../../../store/initialState"
 import { format } from "date-fns"
 import { useAtomValue } from "jotai"
 import { useForm } from "react-hook-form"
-import { usePostDetailData } from "../../../react-query/Expense/ExpenseDetailData"
 
 type ItemType = {
     flow_date: string,
@@ -14,12 +15,13 @@ type ItemType = {
     idx: number
 }
 
-const ExpenseItemModal = ({ clickModal, data }: { clickModal: () => void, data: ItemType }) => {
+const ExpenseDetailModal = ({ clickModal, data }: { clickModal: () => void, data: ItemType }) => {
     const { flow_date, flowName, amount, idx } = data
     const date = format(new Date(flow_date), 'yyyy-MM-dd')
     const position = useAtomValue(expenseLocation)
+    const { data: detail_data } = useGetDetailData(idx)
+    console.log('de', detail_data?.data)
     const { register, handleSubmit } = useForm()
-    console.log('position', position)
     const mutate = usePostDetailData(idx)
     const clickSubmit = async (FieldValues: any) => {
         const { detail } = FieldValues
@@ -55,4 +57,4 @@ const ExpenseItemModal = ({ clickModal, data }: { clickModal: () => void, data: 
     )
 }
 
-export default ExpenseItemModal
+export default ExpenseDetailModal
