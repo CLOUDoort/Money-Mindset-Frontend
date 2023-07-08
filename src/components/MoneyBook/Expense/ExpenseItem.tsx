@@ -1,5 +1,6 @@
-import { BsFileEarmarkPlus } from "react-icons/bs"
-import ExpenseItemModal from "./ExpenseItemModal"
+import { BsFileEarmarkPlus, BsFileEarmarkPlusFill } from "react-icons/bs"
+
+import ExpenseDetailModal from "./ExpenseDetailModal"
 import { IoIosRemoveCircleOutline } from "react-icons/io"
 import { useDeleteFlow } from "../../../react-query/Expense/ExpenseFlowData"
 import { useState } from "react"
@@ -21,8 +22,8 @@ const ExpenseItem = ({ data }: any) => {
             <div className="flex w-full gap-3 px-5 group">
                 <div className="w-10">{date}</div>
                 <div className="w-16"> {flowName}</div>
-                <BsFileEarmarkPlus size={25} onClick={clickModal} className="cursor-pointer" />
-                {modal && <ExpenseItemModal clickModal={clickModal} data={data} />}
+                {data?.flowDetail ? <BsFileEarmarkPlusFill size={25} onClick={clickModal} className="cursor-pointer" /> : <BsFileEarmarkPlus size={25} onClick={clickModal} className="cursor-pointer" />}
+                {modal && <ExpenseDetailModal clickModal={clickModal} data={data} />}
                 <div className="flex-1 pr-5 text-right">{amount} 원</div>
                 <IoIosRemoveCircleOutline onClick={() => deleteItem(idx)} size={25} className="absolute hidden transition-colors cursor-pointer right-2 group-hover:block hover:text-red-500" />
             </div>

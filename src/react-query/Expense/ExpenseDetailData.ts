@@ -23,9 +23,10 @@ export const usePostDetailData = (flowIdx:number) => {
     const notifySuccess = () => toast.success("추가 완료")
     const { mutate } = useMutation((value: DetailData) => postDetailData(flowIdx, value), {
         onSuccess: () => {
+            queryClient.invalidateQueries([queryKeys.flowData])
             queryClient.invalidateQueries([queryKeys.flowDetail])
             notifySuccess()
-        }
+        },
     })
     return mutate
 }
@@ -37,6 +38,7 @@ export const usePatchDetailData = (flowIdx:number) => {
     const notifySuccess = () => toast.success("수정 완료")
     const { mutate } = useMutation((value: DetailData) => patchDetailData(flowIdx, value), {
         onSuccess: () => {
+            queryClient.invalidateQueries([queryKeys.flowData])
             queryClient.invalidateQueries([queryKeys.flowDetail])
             notifySuccess()
         }
@@ -51,6 +53,7 @@ export const useDeleteDetailData = () => {
     const notifySuccess = () => toast.success("삭제 완료")
     const { mutate } = useMutation(removeDetailData, {
         onSuccess: () => {
+            queryClient.invalidateQueries([queryKeys.flowData])
             queryClient.invalidateQueries([queryKeys.flowDetail])
             notifySuccess()            
         },
