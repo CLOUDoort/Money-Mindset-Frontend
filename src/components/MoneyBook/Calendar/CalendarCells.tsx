@@ -23,12 +23,14 @@ const CalendarCells = ({ currentMonth, onDateClick, selectedDate }: { currentMon
             formattedDate = format(day, 'yyyy-MM-dd')
             const cloneDay = day
             days.push(
-                <div className={`w-full relative gap-1 border rounded pb-[12%] text-end ${format(currentMonth, 'M') !== format(day, 'M') ? 'bg-black/10' : 'cursor-pointer'}`} key={formattedDate} onClick={() => {
+                <div className={`w-full relative gap-1 border rounded pb-[12%] text-end ${format(currentMonth, 'M') !== format(day, 'M') ? 'bg-gray-100 text-gray-300' : 'cursor-pointer'}`} key={formattedDate} onClick={() => {
                     clickModal()
                     onDateClick(cloneDay)
                 }} >
-                    <span className={`p-1 px-2 ${format(today, 'yyyy-MM-dd') === format(day, 'yyyy-MM-dd') && "text-red-600 font-bold"}`}>{format(day, 'd')}</span>
-                    {click && formattedDate === selectedDate && <CalendarModal clickModal={clickModal} select={selectedDate} />}
+                    <span className={`p-1 px-2 ${format(today, 'yyyy-MM-dd') === format(day, 'yyyy-MM-dd') && "text-red-600 font-bold"}`}>
+                        {format(day, 'd')}
+                    </span>
+                    {click && formattedDate === selectedDate && format(currentMonth, 'M') === format(day, 'M') && <CalendarModal select={selectedDate} day={Number(format(day, 'd'))} />}
                 </div>
             )
             day = addDays(day, 1)
