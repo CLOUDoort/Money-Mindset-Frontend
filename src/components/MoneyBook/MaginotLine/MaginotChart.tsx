@@ -1,13 +1,11 @@
+import { end_date, start_date } from '../MoneyBookNav'
+
 import { LineData } from './MoneyBookMaginotLine'
 import { ResponsiveLine } from '@nivo/line'
 import { finalMaginot } from '../../../store/initialState'
-import moment from 'moment'
 import { useAtomValue } from 'jotai'
 import { useGetChartData } from '../../../react-query/Expense/ExpenseChartData'
 
-const today = moment().toDate()
-const start_date = new Date(today.getFullYear(), today.getMonth(), 1).getTime()
-const end_date = new Date(today.getFullYear(), today.getMonth() + 1, 0).getTime()
 const color = [
     "#ff0000",
     "#490184",
@@ -28,7 +26,7 @@ const MaginotChart = ({ line }: any) => {
             "data": flow_data?.data.length ? flow_data?.data : [{ "x": 0, "y": 0 }]
         },
     ]
-    const markers = line.map((element: LineData, index: number) => {
+    const markers = line?.map((element: LineData, index: number) => {
         return {
             "axis": 'y',
             "legend": element.legend,
@@ -42,7 +40,7 @@ const MaginotChart = ({ line }: any) => {
     })
     return (
         <div className='h-[30rem] w-full'>
-            <ResponsiveLine
+            {chart_data && <ResponsiveLine
                 data={chart_data}
                 margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
                 xScale={{ type: 'point' }}
@@ -103,10 +101,9 @@ const MaginotChart = ({ line }: any) => {
                         ]
                     }
                 ]}
-            />
+            />}
+
         </div>
-
-
     )
 }
 

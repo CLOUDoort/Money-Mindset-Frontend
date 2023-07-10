@@ -15,12 +15,11 @@ const MoneyBookCalendar = () => {
         setSelectedDate(format(day, "yyyy-MM-dd"))
     }
     return (
-        <div className="lg:ml-52 ml-14 bg-[#fbfbfb] min-w-[55rem] w-full flex justify-center items-center my-20">
-            <div className="flex flex-col items-center justify-center max-w-[55rem] min-h-[55rem]">
+        <div className="lg:ml-52 ml-14 bg-[#fbfbfb] w-full flex justify-center items-center my-20 min-w-[55rem] h-full">
+            <div className="flex flex-col items-center justify min-w-[55rem] min-h-[55rem] justify-start">
                 <CalendarHeader currentMonth={currentMonth} preMonth={preMonth} nextMonth={nextMonth} goToday={goToday} />
                 <CalendarDays />
                 <CalendarCells currentMonth={currentMonth} onDateClick={onDateClick} selectedDate={selectedDate} />
-
             </div>
         </div>
     )

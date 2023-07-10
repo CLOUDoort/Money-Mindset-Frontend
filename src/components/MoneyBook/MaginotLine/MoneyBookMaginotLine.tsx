@@ -2,13 +2,13 @@ import { finalMaginot, userAsset } from "../../../store/initialState"
 import { useEffect, useState } from "react"
 
 import { GoalData } from "../../../type/goalData"
+import Loading from "../../Loading"
 import MaginotChart from "./MaginotChart"
 import MaginotFixed from "./Fixed/MaginotFixed"
 import MaginotGoal from "./Goal/MaginotGoal"
 import moment from "moment"
 import { useAtomValue } from "jotai"
 import { useGetGoalData } from "../../../react-query/MaginotData/MaginotGoalData"
-import Loading from "../../Loading"
 
 export type LineData = {
     legend: string,
@@ -46,7 +46,7 @@ const MoneyBookMaginotLine = () => {
     return (
         <>
             {(!isLoading && line) ? <div className="lg:ml-52 ml-14 bg-[#fbfbfb] min-w-[45rem] w-full flex justify-center items-center">
-                <div className="flex flex-col items-center justify-center lg:w-[75%] max-w-[70rem] w-[80%] lg:p-5">
+                <div className="flex flex-col items-center justify-center lg:w-[85%] max-w-[70rem] w-[80%] lg:p-5">
                     <div className='flex items-center w-full gap-3 my-10 text-2xl font-semibold'>
                         <div>{start_date_string} ~</div>
                         <div>{end_date_string}</div>
