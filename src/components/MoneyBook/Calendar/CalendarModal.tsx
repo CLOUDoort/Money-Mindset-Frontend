@@ -43,7 +43,7 @@ const CalendarModal = ({ select, day, date }: { select: string, day: number, dat
         if (flowModal) setFlowModal(false)
     }
     return (
-        <div className={`bg-[#ececec] absolute border z-50 text-center shadow-xl rounded top-0 rounded-b-none w-[9rem] h-[10.9rem]  ${condition ? "animate-fade-right left-[8.5rem]" : "animate-fade-left right-[8.5rem]"} animate-duration-150 cursor-default`} onClick={(e) => e.stopPropagation()}>
+        <div className={`bg-[#ececec] absolute border z-50 text-center shadow-xl rounded top-0 rounded-b-none w-[9rem] h-[11.5rem]  ${condition ? "animate-fade-right left-[8.5rem]" : "animate-fade-left right-[8.5rem]"} animate-duration-150 cursor-default`} onClick={(e) => e.stopPropagation()}>
             <div className={`absolute rotate-45 rounded-l w-7 h-7 bg-[#ececec] ${condition ? "-left-3 top-20" : "-right-3 top-20"}`}></div>
             <div className="p-5 font-semibold border border-t-0 border-b-black/20">
                 {select}
