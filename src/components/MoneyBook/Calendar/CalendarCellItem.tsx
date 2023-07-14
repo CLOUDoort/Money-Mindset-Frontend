@@ -15,10 +15,12 @@ const CalendarCellItem = ({ day }: { day: Date }) => {
         }
         response()
     }, [day, user_idx])
+    const filter_data = data.filter((_: any, index: any) => index < 4)
+    console.log('data', data)
     return (
         <>
-            {data && data.map((item: PropsItem) => (
-                <li className="flex items-center justify-between p-1 text-xs rounded whitespace-nowrap" key={item.idx}>
+            {filter_data && filter_data.map((item: PropsItem) => (
+                <li className={`flex items-center justify-between p-1 px-2 ${item.flow_id <= 4 ? "text-blue-500" : "text-red-500"} text-xs font-semibold rounded whitespace-nowrap" key={item.idx}`}>
                     <span>
                         {item.flowName}
                     </span>
@@ -27,6 +29,7 @@ const CalendarCellItem = ({ day }: { day: Date }) => {
                     </span>
                 </li>
             ))}
+            {data.length > 4 && <div className="pt-2 text-sm font-semibold text-center text-black/50">+{data.length - 4}개...</div>}
         </>
     )
 }

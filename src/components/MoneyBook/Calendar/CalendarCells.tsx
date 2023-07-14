@@ -1,24 +1,26 @@
 import { addDays, endOfMonth, endOfWeek, format, startOfMonth, startOfWeek } from "date-fns"
 
 import CalendarModal from "./CalendarModal"
-import { useState } from "react"
 import CalendarCellItem from "./CalendarCellItem"
 
-const CalendarCells = ({ currentMonth, onDateClick, selectedDate }: { currentMonth: Date, onDateClick: (day: Date) => void, selectedDate: string }) => {
+interface Props {
+    currentMonth: Date,
+    onDateClick: (day: Date) => void,
+    selectedDate: string,
+    clickModal: () => void,
+    click: boolean
+}
+
+const CalendarCells = ({ currentMonth, onDateClick, selectedDate, clickModal, click }: Props) => {
     const monthStart = startOfMonth(currentMonth)
     const monthEnd = endOfMonth(monthStart)
     const startDate = startOfWeek(monthStart)
     const endDate = endOfWeek(monthEnd)
     const today = new Date()
-
     const rows = []
     let days = []
     let day = startDate
     let formattedDate = ''
-
-    const [click, setModal] = useState(false)
-    const clickModal = () => setModal(!click)
-
     while (day <= endDate) {
         for (let i = 0; i < 7; i++) {
             formattedDate = format(day, 'yyyy-MM-dd')
