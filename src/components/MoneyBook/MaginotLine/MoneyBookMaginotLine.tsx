@@ -45,7 +45,7 @@ const MoneyBookMaginotLine = () => {
     }, [data?.data, finalLine])
     return (
         <>
-            {(!isLoading && line) ? <div className="lg:ml-52 ml-14 bg-[#fbfbfb] min-w-[45rem] w-full flex justify-center items-center">
+            {(!isLoading && line) ? <div className="lg:ml-52 ml-14 relative bg-[#fbfbfb] min-w-[47rem] w-full flex flex-col justify-center items-center">
                 <div className="flex flex-col items-center justify-center lg:w-[85%] max-w-[70rem] w-[80%] lg:p-5">
                     <div className='flex items-center w-full gap-3 my-10 text-2xl font-semibold'>
                         <div>{start_date_string} ~</div>

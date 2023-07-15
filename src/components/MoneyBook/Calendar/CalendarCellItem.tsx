@@ -3,7 +3,7 @@ import { useAtomValue } from "jotai"
 import { useEffect, useState } from "react"
 import { apiInstance } from "../../../apis/setting"
 import { userIdx } from "../../../store/initialState"
-import { PropsItem } from "./CalendarModal"
+import { PropsFlowItem } from "./CalendarModal"
 
 const CalendarCellItem = ({ day }: { day: Date }) => {
     const [data, setData] = useState([])
@@ -19,7 +19,7 @@ const CalendarCellItem = ({ day }: { day: Date }) => {
     console.log('data', data)
     return (
         <>
-            {filter_data && filter_data.map((item: PropsItem) => (
+            {filter_data && filter_data.map((item: PropsFlowItem) => (
                 <li className={`flex items-center justify-between p-1 px-2 ${item.flow_id <= 4 ? "text-blue-500" : "text-red-500"} text-xs font-semibold rounded whitespace-nowrap" key={item.idx}`}>
                     <span>
                         {item.flowName}

@@ -6,7 +6,7 @@ import { apiInstance } from "../../../apis/setting"
 import { useAtomValue } from "jotai"
 import { userIdx } from "../../../store/initialState"
 
-export interface PropsItem {
+export interface PropsFlowItem {
     amount: number,
     flowDetail: {
         flow_idx: number,
