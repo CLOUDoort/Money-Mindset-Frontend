@@ -30,7 +30,7 @@ const MoneyBookExpense = () => {
     })
     return (
         <>
-            {flow_data ? <div className="lg:ml-52 ml-14 relative bg-[#fbfbfb] min-w-[47rem] w-full flex flex-col justify-center items-center" onClick={clickFalse}>
+            {flow_data ? <div className="lg:ml-52 ml-14 relative bg-white min-w-[47rem] w-full flex flex-col justify-center items-center" onClick={clickFalse}>
                 <div className='flex items-center lg:w-[75%] mt-10 max-w-[70rem] w-[80%] text-2xl gap-3 font-semibold'>
                     <div>{start_date_string} ~</div>
                     <div>{end_date_string}</div>
