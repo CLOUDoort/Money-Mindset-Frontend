@@ -1,5 +1,5 @@
 import { MdOutlineSpeakerNotesOff } from "react-icons/md"
-import { PropsFlowItem } from "./CalendarModal"
+import { PropsFlowItem } from "../../../type/expenseData"
 
 const CalendarFlow = ({ day, flow_data }: { day: number, flow_data: any }) => {
     const condition = day % 7 >= 2 && day % 7 < 5

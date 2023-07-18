@@ -6,20 +6,7 @@ import { apiInstance } from "../../../apis/setting"
 import { useAtomValue } from "jotai"
 import { userIdx } from "../../../store/initialState"
 
-export interface PropsFlowItem {
-    amount: number,
-    flowDetail: {
-        flow_idx: number,
-        detail: string,
-        lat: number,
-        lng: number
-    } | null,
-    flowName: string,
-    flow_date: Date,
-    flow_id: number,
-    idx: number,
-    user_idx: number
-}
+
 
 const CalendarModal = ({ select, day, date }: { select: string, day: number, date: Date }) => {
     const condition = day % 7 >= 2 && day % 7 < 5

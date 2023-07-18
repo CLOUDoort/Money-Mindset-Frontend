@@ -3,7 +3,7 @@ import { useAtomValue } from "jotai"
 import { useEffect, useState } from "react"
 import { apiInstance } from "../../../apis/setting"
 import { userIdx } from "../../../store/initialState"
-import { PropsFlowItem } from "./CalendarModal"
+import { PropsFlowItem } from "../../../type/expenseData"
 
 const CalendarCellItem = ({ day }: { day: Date }) => {
     const [data, setData] = useState([])
