@@ -4,51 +4,31 @@ import { useGetExpenseStatisticsIncomeData, useGetExpenseStatisticsOutcomeData }
 
 import ExpenseStatistics from "./ExpenseStatistics"
 import KakaoMap from "../KakaoMap"
-import { ResponsiveRadar } from '@nivo/radar'
-
-const data = [
-    {
-        "taste": "fruity",
-        "chardonay": 102,
-        "carmenere": 46,
-        "syrah": 79
-    },
-    {
-        "taste": "bitter",
-        "chardonay": 96,
-        "carmenere": 65,
-        "syrah": 32
-    },
-    {
-        "taste": "heavy",
-        "chardonay": 40,
-        "carmenere": 93,
-        "syrah": 54
-    },
-    {
-        "taste": "strong",
-        "chardonay": 99,
-        "carmenere": 55,
-        "syrah": 85
-    },
-    {
-        "taste": "sunny",
-        "chardonay": 120,
-        "carmenere": 89,
-        "syrah": 47
-    }
-]
+import MaginotChart from "../MaginotLine/MaginotChart"
+import { useGetFlowData } from "../../../react-query/Expense/ExpenseFlowData"
+import { MdOutlineSpeakerNotesOff } from "react-icons/md"
+import { PropsFlowItem } from "../../../type/expenseData"
 
 const MoneyBookStatistics = () => {
     const { data: in_static } = useGetExpenseStatisticsIncomeData({ start_date, end_date, flow_type: 0 })
     const { data: out_static } = useGetExpenseStatisticsOutcomeData({ start_date, end_date, flow_type: 1 })
+    const { data: flow_data } = useGetFlowData({ start_date, end_date })
+    const flowMapData = flow_data?.data.map((item: PropsFlowItem) => {
+        if (item.flowDetail) {
+            return {
+                detail: item.flowDetail,
+                flow_id: item.flow_id
+            }
+        }
+    })
     return (
-        <div className="lg:ml-52 ml-14 bg-[#fbfbfb] min-w-[55rem] w-full flex justify-center items-center">
+        <div className="lg:ml-52 ml-14 bg-white min-w-[55rem] w-full flex justify-center items-center">
             <div className="flex flex-col items-center justify-center max-w-[65rem] lg:p-5 min-w-[50rem]">
-                <div className="flex items-center w-full gap-3 my-5 mt-10 text-2xl font-semibold">
-                    <div>{start_date_string} ~</div>
-                    <div>{end_date_string}</div>
+                <div className="flex flex-col w-full gap-3 mt-10 text-2xl font-semibold">
+                    <div className="text-4xl">Statistics</div>
+                    <div className="items-center">{start_date_string} ~ {end_date_string}</div>
                 </div>
+                <MaginotChart />
                 <div className="flex items-center justify-center w-full gap-3 my-10 text-2xl font-semibold">
                     <div className="border rounded">
                         <div className="px-10 pt-5">수입</div>
@@ -59,45 +39,12 @@ const MoneyBookStatistics = () => {
                         <ExpenseStatistics data={out_static} />
                     </div>
                 </div>
-                <div className="h-[40rem] w-full">
-                    <ResponsiveRadar
-                        data={data}
-                        keys={['chardonay', 'carmenere', 'syrah']}
-                        indexBy="taste"
-                        valueFormat=">-.2f"
-                        margin={{ top: 70, right: 80, bottom: 40, left: 80 }}
-                        borderColor={{ from: 'color' }}
-                        gridLabelOffset={36}
-                        dotSize={10}
-                        dotColor={{ theme: 'background' }}
-                        dotBorderWidth={2}
-                        colors={{ scheme: 'nivo' }}
-                        blendMode="multiply"
-                        motionConfig="wobbly"
-                        legends={[
-                            {
-                                anchor: 'top-left',
-                                direction: 'column',
-                                translateX: -50,
-                                translateY: -40,
-                                itemWidth: 80,
-                                itemHeight: 20,
-                                itemTextColor: '#999',
-                                symbolSize: 12,
-                                symbolShape: 'circle',
-                                effects: [
-                                    {
-                                        on: 'hover',
-                                        style: {
-                                            itemTextColor: '#000'
-                                        }
-                                    }
-                                ]
-                            }
-                        ]}
-                    />
+                <div className="w-full mb-10">
+                    <div className="text-2xl font-semibold mb-7">수입 및 지출 위치</div>
+                    {flowMapData ? <KakaoMap flowMapData={flowMapData} /> : <div className="w-full h-[30rem] flex items-center justify-center">
+                        <MdOutlineSpeakerNotesOff size={50} />
+                    </div>}
                 </div>
-                <KakaoMap />
             </div>
         </div>
     )
