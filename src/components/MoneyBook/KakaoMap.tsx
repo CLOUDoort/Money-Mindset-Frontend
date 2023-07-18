@@ -1,79 +1,43 @@
-import { Map, MapMarker } from 'react-kakao-maps-sdk';
-import { useAtom, useSetAtom } from 'jotai';
-import { useEffect, useRef, useState } from 'react';
-
-import { expenseLocation } from '../../store/initialState';
-
-const KakaoMap = () => {
-    const [location, setLoacation] = useState({
-        latitude: 0,
-        longitude: 0
-    }); // 현재 위치를 저장할 상태
-    const { latitude, longitude } = location
-    useEffect(() => {
-        navigator.geolocation.getCurrentPosition(successHandler, errorHandler); // 성공시 successHandler, 실패시 errorHandler 함수가 실행된다.
-    }, []);
-    const successHandler = (response: { coords: { latitude: number, longitude: number } }) => {
-        console.log(response); // coords: GeolocationCoordinates {latitude: 위도, longitude: 경도, …} timestamp: 1673446873903
-        const { latitude, longitude } = response.coords;
-        setLoacation({ latitude, longitude });
-    };
-
-    const errorHandler = (error: any) => {
-        console.log(error);
-    };
-
-    const locations = [
-        { title: '현재 위치', latlng: { lat: latitude, lng: longitude } },
-    ];
+import { useState } from 'react';
+import { Map, MapMarker, useMap } from 'react-kakao-maps-sdk';
+import { FlowDetailType, MapDataType } from '../../type/expenseData';
 
 
-    // const [coordinates, setCoordinates] = useState({
-    //     center: {
-    //         lat: "",
-    //         lng: ""
-    //     },
-    // }); // 현재 위치의 좌표값을 저장할 상태
-    // const mapRef = useRef<any>();
 
-    // const getCoordinates = () => {
-    //     const map = mapRef.current;
+const KakaoMap = ({ flowMapData }: { flowMapData: FlowDetailType[] }) => {
+    const data = flowMapData.map((item: FlowDetailType) => {
+        return {
+            content: <div className='p-2'>{item.detail.detail}</div>,
+            flow_idx: item.detail.flow_idx,
+            flow_id: item.flow_id,
+            lat: item.detail.lat,
+            lng: item.detail.lng
+        }
+    })
 
-    //     setCoordinates({
-    //         center: {
-    //             lat: map.getCenter().getLat(),
-    //             lng: map.getCenter().getLng(),
-    //         },
-    //     });
-    // };
-    const [position, setPosition] = useAtom(expenseLocation)
+    const EventMarkerContainer = ({ position, content, flow_id }: { position: any, content: any, flow_id: number }) => {
+        const map = useMap()
+        const [isVisible, setIsVisible] = useState(false)
+        return (
+            <MapMarker position={position} onClick={(marker) => map.panTo(marker.getPosition())} onMouseOver={() => setIsVisible(true)} onMouseOut={() => setIsVisible(false)} image={{
+                src: `${flow_id <= 4 ? '/bluepng.png' : '/redpng.png'}`,
+                size: { width: 24, height: 35 },
+            }}>
+                {isVisible && content}
+            </MapMarker>
+        )
+    }
     return (
         <div className='flex items-center'>
-            {location &&
-                <Map
-                    center={{ lat: latitude, lng: longitude }}
-                    style={{ width: '100%', height: '15rem' }}
-                    level={3}
-                    onClick={(_t, MouseEvent) => setPosition({
-                        lat: MouseEvent.latLng.getLat(),
-                        lng: MouseEvent.latLng.getLng()
-                    })}
-                // ref={mapRef}
-                >
-                    {position && <MapMarker position={position} />}
-                    {locations.map((loc, idx) => (
-                        <MapMarker
-                            key={`${loc.title}-${loc.latlng}`}
-                            position={loc.latlng}
-                            image={{
-                                src: 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png',
-                                size: { width: 24, height: 35 },
-                            }}
-                            title={loc.title}
-                        />
-                    ))}
-                </Map>
-            }
+            <Map
+                center={{ lat: flowMapData[0].detail.lat, lng: flowMapData[0].detail.lng }}
+                style={{ width: '100%', height: '30rem' }}
+                level={4}
+            >
+                {data.map((value: MapDataType) => (
+                    <EventMarkerContainer key={value.flow_idx} position={{ lat: value.lat, lng: value.lng }} content={value.content} flow_id={value.flow_id} />
+                ))}
+            </Map>
         </div>
     )
 };

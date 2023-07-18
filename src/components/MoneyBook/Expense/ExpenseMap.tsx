@@ -32,7 +32,7 @@ const ExpenseMap = ({ lat, lng }: any) => {
         <div className='flex items-center'>
             {location &&
                 <Map
-                    center={{ lat: lat ? lat : latitude, lng: lng ? lng : longitude }}
+                    center={{ lat: latitude, lng: longitude }}
                     style={{ width: '100%', height: '15rem' }}
                     level={3}
                     onClick={(_t, MouseEvent) => setPosition({
