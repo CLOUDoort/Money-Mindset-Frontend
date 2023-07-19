@@ -7,7 +7,7 @@ import KakaoMap from "../KakaoMap"
 import MaginotChart from "../MaginotLine/MaginotChart"
 import { useGetFlowData } from "../../../react-query/Expense/ExpenseFlowData"
 import { MdOutlineSpeakerNotesOff } from "react-icons/md"
-import { PropsFlowItem } from "../../../type/expenseData"
+import { PropsFlowItem } from "../../../type"
 
 const MoneyBookStatistics = () => {
     const { data: in_static } = useGetExpenseStatisticsIncomeData({ start_date, end_date, flow_type: 0 })

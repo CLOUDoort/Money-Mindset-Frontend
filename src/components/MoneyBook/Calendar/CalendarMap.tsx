@@ -1,5 +1,5 @@
 import { MdOutlineSpeakerNotesOff } from "react-icons/md"
-import { FlowDetailType, PropsFlowItem } from "../../../type/expenseData"
+import { FlowDetailType, PropsFlowItem } from "../../../type"
 import KakaoMap from "../KakaoMap"
 
 const CalendarMap = ({ num, flow_data }: { num: number, flow_data: any }) => {

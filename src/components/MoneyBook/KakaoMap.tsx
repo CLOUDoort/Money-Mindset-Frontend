@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Map, MapMarker, useMap } from 'react-kakao-maps-sdk';
-import { FlowDetailType, MapDataType } from '../../type/expenseData';
+import { FlowDetailType, MapDataType } from '../../type';
 
 
 

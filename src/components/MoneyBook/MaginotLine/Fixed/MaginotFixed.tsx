@@ -2,10 +2,10 @@ import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai";
 import React, { useState } from "react"
 import { useGetFixedData, usePostFixedData } from "../../../../react-query/MaginotData/MaginotFixedData";
 
-import { FixedData } from "../../../../type/fixedData";
 import MaginotFixedItem from "./MaginotFixedItem"
 import { finalMaginot } from "../../../../store/initialState";
 import { useAtom } from "jotai";
+import { FixedData } from "../../../../type";
 
 const defaultValue = {
     fixed_expenditure: "",

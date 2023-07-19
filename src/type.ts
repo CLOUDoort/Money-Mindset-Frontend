@@ -1,3 +1,12 @@
+export interface FixedData {
+    expenditure_amount: number,
+    expenditure_date: string,
+    fixed_expenditure: string,
+    idx: number,
+    user: User,
+    user_idx: number
+}
+
 export type FlowDetailType = {
     detail: {
         detail: string,
@@ -29,4 +38,25 @@ export interface PropsFlowItem {
     flow_id: number,
     idx: number,
     user_idx: number
+}
+
+export interface GoalData {
+    amount: number,
+    goal: string,
+    idx: number,
+    line: number,
+    ranking: number,
+    user: {email: string, nickname: string},
+    user_idx: number
+}
+
+export interface Asset {
+    amount: number
+}
+
+export interface User {
+    asset: Asset,
+    email: string,
+    idx: number,
+    nickname: string
 }
