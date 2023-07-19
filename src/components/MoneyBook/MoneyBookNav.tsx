@@ -1,4 +1,4 @@
-import { Link, Outlet, useNavigate } from "react-router-dom"
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom"
 import { accessToken, finalMaginot, userAsset, userEmail, userIdx, userNickname } from "../../store/initialState"
 import { useAtom, useSetAtom } from "jotai"
 import { usePrefetchExpenseStatisticsIncomeData, usePrefetchExpenseStatisticsOutComeData } from "../../react-query/Expense/ExpenseStatisticsData"
@@ -29,6 +29,8 @@ const MoneyBookNav = () => {
     usePrefetchChartData({ start_date, end_date })
     usePrefetchExpenseStatisticsIncomeData({ start_date, end_date, flow_type: 0 })
     usePrefetchExpenseStatisticsOutComeData({ start_date, end_date, flow_type: 1 })
+    const location = useLocation().pathname
+    console.log('lo', location)
     const navigate = useNavigate()
     const [token, setToken] = useAtom(accessToken)
     const [idx, setIdx] = useAtom(userIdx)
@@ -103,45 +105,45 @@ const MoneyBookNav = () => {
         }
     }
     return (
-        <div className="flex w-full">
-            <nav className="fixed top-0 left-0 z-40 flex-col justify-between hidden h-full bg-white border-r lg:flex w-52">
-                <ul className="flex flex-col items-start justify-center py-2">
-                    <li className="flex gap-2 p-4 whitespace-nowrap">
+        <div className="relative flex flex-col w-full h-full">
+            <nav className="fixed top-0 left-0 z-[9999] flex-col justify-between hidden h-full bg-white border-r lg:flex w-56">
+                <ul className="flex flex-col items-start justify-center w-full pb-2">
+                    <li className={`flex w-full gap-2 p-4 whitespace-nowrap ${location === '/money-book/dashboard' && "border-r-4 border-red-500"}`}>
                         <MdDashboard size={25} />
                         <Link to='/money-book/dashboard'>Dashboard</Link>
                     </li>
-                    <li className="flex gap-2 p-4 whitespace-nowrap">
+                    <li className={`flex w-full gap-2 p-4 whitespace-nowrap ${location === '/money-book/expense' && "border-r-4 border-red-500"}`}>
                         <ImFileOpenoffice size={25} />
                         <Link to='/money-book/expense'>Income & Outcome</Link>
                     </li>
-                    <li className="flex gap-2 p-4 whitespace-nowrap">
+                    <li className={`flex w-full gap-2 p-4 whitespace-nowrap ${location === '/money-book/maginot-line' && "border-r-4 border-red-500"}`}>
                         <GiGoalKeeper size={25} />
                         <Link to='/money-book/maginot-line'>Maginot Line</Link>
                     </li>
-                    <li className="flex gap-2 p-4 whitespace-nowrap">
+                    <li className={`flex w-full gap-2 p-4 whitespace-nowrap ${location === '/money-book/calendar' && "border-r-4 border-red-500"}`}>
                         <AiTwotoneCalendar size={25} />
                         <Link to='/money-book/calendar'>Calendar</Link>
                     </li>
-                    <li className="flex gap-2 p-4 whitespace-nowrap">
+                    <li className={`flex w-full gap-2 p-4 whitespace-nowrap ${location === '/money-book/statistics' && "border-r-4 border-red-500"}`}>
                         <AiOutlineBarChart size={25} />
                         <Link to='/money-book/statistics'>Statistics</Link>
                     </li>
                 </ul>
-                <ul className="flex flex-col items-start justify-center py-2 w-52">
-                    <li className="flex gap-2 p-4 whitespace-nowrap">
+                <ul className="flex flex-col items-start justify-center w-full pt-2">
+                    <li className={`flex w-full gap-2 p-4 whitespace-nowrap ${location === '/money-book/setting' && "border-r-4 border-red-500"}`}>
                         <IoSettingsSharp size={25} />
                         <Link to='/money-book/setting'>Setting</Link>
                     </li>
-                    <li className="flex gap-2 p-4 whitespace-nowrap">
+                    <li className={`flex w-full gap-2 p-4 whitespace-nowrap`}>
                         <IoExitOutline size={25} />
                         <button onClick={clickLogout} >Sign out</button>
                     </li>
                 </ul>
             </nav>
             {/* 1024px 이하 아이콘만 표시 */}
-            <nav className="fixed top-0 left-0 z-[9999] flex flex-col justify-between h-full bg-white border-r w-14 lg:hidden lg:w-52">
-                <ul className="flex flex-col items-start justify-center py-2">
-                    <li className="relative flex items-center gap-2 p-4 group whitespace-nowrap">
+            <nav className="fixed top-0 left-0 z-[9999] flex flex-col justify-between h-full bg-white border-r w-14 lg:hidden lg:w-56">
+                <ul className="flex flex-col items-start justify-center w-full pb-2">
+                    <li className={`relative w-full flex items-center gap-2 p-4 group whitespace-nowrap ${location === '/money-book/dashboard' && "border-r-2 border-red-500"} `}>
                         <Link to='/money-book/dashboard'>
                             <MdDashboard size={25} />
                         </Link>
@@ -149,7 +151,7 @@ const MoneyBookNav = () => {
                             Dashboard
                         </div>
                     </li>
-                    <li className="relative flex items-center gap-2 p-4 group whitespace-nowrap">
+                    <li className={`relative w-full flex items-center gap-2 p-4 group whitespace-nowrap ${location === '/money-book/expense' && "border-r-2 border-red-500"} `}>
                         <Link to='/money-book/expense'>
                             <ImFileOpenoffice size={25} />
                         </Link>
@@ -157,7 +159,7 @@ const MoneyBookNav = () => {
                             Income & Outcome
                         </div>
                     </li>
-                    <li className="relative flex items-center gap-2 p-4 group whitespace-nowrap">
+                    <li className={`relative w-full flex items-center gap-2 p-4 group whitespace-nowrap ${location === '/money-book/maginot-line' && "border-r-2 border-red-500"} `}>
                         <Link to='/money-book/maginot-line'>
                             <GiGoalKeeper size={25} />
                         </Link>
@@ -165,7 +167,7 @@ const MoneyBookNav = () => {
                             Maginot Line
                         </div>
                     </li>
-                    <li className="relative flex items-center gap-2 p-4 group whitespace-nowrap">
+                    <li className={`relative w-full flex items-center gap-2 p-4 group whitespace-nowrap ${location === '/money-book/calendar' && "border-r-2 border-red-500"} `}>
                         <Link to='/money-book/calendar'>
                             <AiTwotoneCalendar size={25} />
                         </Link>
@@ -173,7 +175,7 @@ const MoneyBookNav = () => {
                             Calendar
                         </div>
                     </li>
-                    <li className="relative flex items-center gap-2 p-4 group whitespace-nowrap">
+                    <li className={`relative w-full flex items-center gap-2 p-4 group whitespace-nowrap ${location === '/money-book/statistics' && "border-r-2 border-red-500"} `}>
                         <Link to='/money-book/statistics'>
                             <AiOutlineBarChart size={25} />
                         </Link>
@@ -182,8 +184,8 @@ const MoneyBookNav = () => {
                         </div>
                     </li>
                 </ul>
-                <ul className="flex flex-col items-start justify-center py-2 w-14">
-                    <li className="relative flex items-center gap-2 p-4 group whitespace-nowrap">
+                <ul className="flex flex-col items-start justify-center w-full pt-2">
+                    <li className={`relative w-full flex items-center gap-2 p-4 group whitespace-nowrap ${location === '/money-book/setting' && "border-r-2 border-red-500"} `}>
                         <Link to='/money-book/setting'>
                             <IoSettingsSharp size={25} />
                         </Link>
@@ -191,7 +193,7 @@ const MoneyBookNav = () => {
                             Setting
                         </div>
                     </li>
-                    <li className="relative flex items-center gap-2 p-4 group whitespace-nowrap">
+                    <li className={`relative w-full flex items-center gap-2 p-4 group whitespace-nowrap `}>
                         <button onClick={clickLogout} >
                             <IoExitOutline size={25} />
                         </button>

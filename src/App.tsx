@@ -47,7 +47,7 @@ const App = () => {
             </Route>
           </Routes>
         </SkeletonTheme>
-        <ReactQueryDevtools />
+        {/* <ReactQueryDevtools /> */}
       </QueryClientProvider>
       <ToastContainer />
     </>

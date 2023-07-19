@@ -60,7 +60,7 @@ const ForgotForm = () => {
                             <SignInGoogle />
                         </form>
                     </div>
-                </div> : <ModifyPassword />
+                </div> : <ModifyPassword close={() => setValid(!valid)} />
             }
 
         </section>

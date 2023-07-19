@@ -6,7 +6,7 @@ import { useState } from "react"
 import { userEmail } from '../store/initialState'
 import Input from './InputForm'
 
-const ModifyPassword = () => {
+const ModifyPassword = ({ close }: { close: () => void }) => {
     const navigate = useNavigate()
     const email = useAtomValue(userEmail)
     const [formData, setFormData] = useState({
@@ -28,13 +28,13 @@ const ModifyPassword = () => {
                     email, changedPw: password
                 })
                 console.log('submit', submitResponse.data)
-                toast("Modify Success! Retry Login")
-                navigate('/')
+                toast("Modify Success!")
+                navigate('/money-book/dashboard')
             }
+            else toast.error("확인 비밀번호가 다릅니다!")
         } catch (e: any) {
             toast.error(e.response.data.message)
         }
-
     }
     return (
         <section className='flex items-center justify-center w-full h-full'>
@@ -46,7 +46,10 @@ const ModifyPassword = () => {
                         <Input type="password" name="password" value={password} placeholder="password" onChange={changeHandler} />
                         <div className='mb-2 font-semibold'>Password Check</div>
                         <Input type="password" name="checkPassword" value={checkPassword} placeholder="password check" onChange={changeHandler} />
-                        <button className='w-full py-3 font-semibold text-white uppercase transition bg-blue-600 rounded shadow-md px-7 hover:bg-blue-700 active:bg-blue-800 hover:shadow-lg duration 150' type='submit'>Modify</button>
+                        <div className='flex gap-3'>
+                            <button className='w-full py-3 font-semibold text-white uppercase transition bg-red-600 rounded shadow-md px-7 hover:bg-red-700 active:bg-red-800 hover:shadow-lg duration 150' type='button' onClick={close}>Cancel</button>
+                            <button className='w-full py-3 font-semibold text-white uppercase transition bg-blue-600 rounded shadow-md px-7 hover:bg-blue-700 active:bg-blue-800 hover:shadow-lg duration 150' type='submit'>Modify</button>
+                        </div>
                     </form>
                 </div>
             </div>

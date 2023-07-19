@@ -5,13 +5,13 @@ import { FlowDetailType, MapDataType } from '../../type/expenseData';
 
 
 const KakaoMap = ({ flowMapData }: { flowMapData: FlowDetailType[] }) => {
-    const data = flowMapData.map((item: FlowDetailType) => {
+    const data = flowMapData?.map((item: FlowDetailType) => {
         return {
-            content: <div className='p-2'>{item.detail.detail}</div>,
-            flow_idx: item.detail.flow_idx,
-            flow_id: item.flow_id,
-            lat: item.detail.lat,
-            lng: item.detail.lng
+            content: <div className='p-2'>{item?.detail?.detail}</div>,
+            flow_idx: item?.detail?.flow_idx,
+            flow_id: item?.flow_id,
+            lat: item?.detail?.lat,
+            lng: item?.detail?.lng
         }
     })
 
@@ -30,11 +30,11 @@ const KakaoMap = ({ flowMapData }: { flowMapData: FlowDetailType[] }) => {
     return (
         <div className='flex items-center'>
             <Map
-                center={{ lat: flowMapData[0].detail.lat, lng: flowMapData[0].detail.lng }}
+                center={{ lat: flowMapData[0]?.detail?.lat, lng: flowMapData[0]?.detail?.lng }}
                 style={{ width: '100%', height: '30rem' }}
                 level={4}
             >
-                {data.map((value: MapDataType) => (
+                {data?.map((value: MapDataType) => (
                     <EventMarkerContainer key={value.flow_idx} position={{ lat: value.lat, lng: value.lng }} content={value.content} flow_id={value.flow_id} />
                 ))}
             </Map>

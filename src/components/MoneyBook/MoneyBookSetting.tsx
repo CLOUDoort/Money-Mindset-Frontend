@@ -16,11 +16,11 @@ const MoneyBookSetting = () => {
     const clickModifyPassword = () => setModify(!modify)
     const deleteUser = async () => {
         try {
-            console.log('idx', idx)
-            const clickResponse = await apiInstance.delete(`/user/${idx}`)
-            console.log('click', clickResponse)
-            toast.success("탈퇴 성공")
-            navigate('/')
+            if (window.confirm("탈퇴하시겠습니까?")) {
+                const clickResponse = await apiInstance.delete(`/user/${idx}`)
+                toast.success("탈퇴 성공")
+                navigate('/')
+            }
         }
         catch (e: any) {
             console.log(e.response)
@@ -28,29 +28,25 @@ const MoneyBookSetting = () => {
 
     }
     return (
-        <>{modify ? <ModifyPassword /> :
-            <div className='flex-1 lg:ml-52 ml-14 bg-[#fbfbfb] min-w-[35rem]'>
-                <div className='flex flex-col items-center justify-center lg:w-[75%] max-w-[70rem] w-[80%] lg:p-5'>
-                    <div>
-                        setting
-                        <button className="border" onClick={clickModifyPassword}>Modify password</button>
+        <div className='bg-white min-w-[55rem] lg:ml-[14rem] ml-[3.5rem] flex justify-center items-center h-full'>
+            {!modify ?
+                <div className='flex flex-col items-center justify-center max-w-[65rem] lg:p-5 min-w-[50rem]'>
+                    <div className="flex items-center justify-center w-full gap-3 mt-10 text-4xl font-semibold">
+                        Setting
                     </div>
-                    <div>
-                        <span className="cursor-pointer">
-                            <BsSun size={35} />
-                        </span>
-                        <span className="cursor-pointer">
-                            <IoIosNotificationsOutline size={35} />
-                        </span>
+                    <div className='flex w-[30rem] gap-10 justify-center items-start'>
+                        <div className='flex flex-col justify-center gap-3 mt-10 font-semibold w-44'>
+                            <div className='text-2xl'>비밀번호 변경</div>
+                            <button className="py-3 font-semibold text-white uppercase transition bg-blue-600 rounded shadow-md px-7 hover:bg-blue-700 active:bg-blue-800 hover:shadow-lg duration 150" onClick={clickModifyPassword}>Modify</button>
+                        </div>
+                        <div className='flex flex-col justify-center gap-3 mt-10 font-semibold w-44'>
+                            <div className='text-2xl'>회원탈퇴</div>
+                            <button className="py-3 font-semibold text-white uppercase transition bg-red-600 rounded shadow-md px-7 hover:bg-red-700 active:bg-red-800 hover:shadow-lg duration 150" onClick={deleteUser}>회원탈퇴</button>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <button onClick={deleteUser} className='text-3xl text-red-600'>회원탈퇴</button>
-                </div>
-            </div>
-        }
-            <ExpenseItemSkeleton />
-        </>
+                : <ModifyPassword close={clickModifyPassword} />}
+        </div>
     )
 }
 
