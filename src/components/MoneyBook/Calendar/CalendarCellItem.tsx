@@ -16,7 +16,6 @@ const CalendarCellItem = ({ day }: { day: Date }) => {
         response()
     }, [day, user_idx])
     const filter_data = data.filter((_: any, index: any) => index < 4)
-    console.log('data', data)
     return (
         <>
             {filter_data && filter_data.map((item: PropsFlowItem) => (

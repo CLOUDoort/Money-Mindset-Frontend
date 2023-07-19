@@ -4,7 +4,7 @@ import format from 'date-fns/format'
 
 const CalendarHeader = ({ currentMonth, nextMonth, preMonth, goToday }: any) => {
     return (
-        <div className='flex items-center justify-between min-w-[45rem] w-[55rem] text-3xl gap-3 font-semibold border p-5 rounded rounded-b-none'>
+        <div className='flex items-center justify-between w-full gap-3 p-5 text-3xl font-semibold border rounded rounded-b-none'>
             <div className='gap-3'>
                 <span className='mr-3'>
                     {format(currentMonth, 'yyyy')}월

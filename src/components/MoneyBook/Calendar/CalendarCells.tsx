@@ -21,10 +21,12 @@ const CalendarCells = ({ currentMonth, onDateClick, selectedDate, clickModal, cl
     let days = []
     let day = startDate
     let formattedDate = ''
+    let num = 0;
     while (day <= endDate) {
         for (let i = 0; i < 7; i++) {
             formattedDate = format(day, 'yyyy-MM-dd')
             const cloneDay = day
+            num++
             days.push(
                 <div className={`w-full h-[10.5rem] relative gap-1 border rounded pb-[12%] text-end ${format(currentMonth, 'M') !== format(day, 'M') ? 'bg-gray-100 text-gray-300' : 'cursor-pointer'}`} key={formattedDate} onClick={() => {
                     clickModal()
@@ -34,7 +36,7 @@ const CalendarCells = ({ currentMonth, onDateClick, selectedDate, clickModal, cl
                         {format(day, 'd')}
                     </span>
                     <CalendarCellItem day={day} />
-                    {click && formattedDate === selectedDate && format(currentMonth, 'M') === format(day, 'M') && <CalendarModal select={selectedDate} day={Number(format(day, 'd'))} date={day} />}
+                    {click && formattedDate === selectedDate && format(currentMonth, 'M') === format(day, 'M') && <CalendarModal select={selectedDate} date={day} num={num} />}
                 </div>
             )
             day = addDays(day, 1)
@@ -48,7 +50,7 @@ const CalendarCells = ({ currentMonth, onDateClick, selectedDate, clickModal, cl
     }
 
     return (
-        <div className="flex items-center flex-col justify-between min-w-[45rem] w-[55rem] border border-t-0 border-collapse p-1 gap-1 rounded rounded-t-none">
+        <div className="flex flex-col items-center justify-between w-full gap-1 p-1 border border-t-0 border-collapse rounded rounded-t-none">
             {rows}
         </div>
     )
