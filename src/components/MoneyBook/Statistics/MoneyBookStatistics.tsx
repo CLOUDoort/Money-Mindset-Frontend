@@ -22,26 +22,30 @@ const MoneyBookStatistics = () => {
         }
     })
     return (
-        <div className="lg:ml-52 ml-14 bg-white min-w-[55rem] w-full flex justify-center items-center">
-            <div className="flex flex-col items-center justify-center max-w-[65rem] lg:p-5 min-w-[50rem]">
+        <div className="bg-white min-w-[55rem] lg:ml-[14rem] ml-[3.5rem] flex justify-center items-center">
+            <div className="flex flex-col items-center justify-center w-full max-w-[65rem] lg:px-5 px-10">
                 <div className="flex flex-col w-full gap-3 mt-10 text-2xl font-semibold">
                     <div className="text-4xl">Statistics</div>
-                    <div className="items-center">{start_date_string} ~ {end_date_string}</div>
+                    <div className="items-center">{start_date_string} ~ {end_date_string} 지출 그래프</div>
                 </div>
                 <MaginotChart />
-                <div className="flex items-center justify-center w-full gap-3 my-10 text-2xl font-semibold">
-                    <div className="border rounded">
-                        <div className="px-10 pt-5">수입</div>
-                        <ExpenseStatistics data={in_static} />
+                <div className="flex items-center justify-between w-full gap-5 my-10 text-2xl font-semibold lg:text-3xl">
+                    <div className="flex flex-col">
+                        <div className="pb-5">수입</div>
+                        <div className="border rounded">
+                            <ExpenseStatistics data={in_static} />
+                        </div>
                     </div>
-                    <div className="border rounded">
-                        <div className="px-10 pt-5">지출</div>
-                        <ExpenseStatistics data={out_static} />
+                    <div className="flex flex-col">
+                        <div className="pb-5">지출</div>
+                        <div className="border rounded">
+                            <ExpenseStatistics data={out_static} />
+                        </div>
                     </div>
                 </div>
                 <div className="w-full mb-10">
-                    <div className="text-2xl font-semibold mb-7">수입 및 지출 위치</div>
-                    {flowMapData ? <KakaoMap flowMapData={flowMapData} /> : <div className="w-full h-[30rem] flex items-center justify-center">
+                    <div className="text-2xl font-semibold lg:text-3xl mb-7">수입 및 지출 위치</div>
+                    {flowMapData?.length ? <KakaoMap flowMapData={flowMapData} /> : <div className="w-full h-[30rem] border rounded flex items-center justify-center">
                         <MdOutlineSpeakerNotesOff size={50} />
                     </div>}
                 </div>
