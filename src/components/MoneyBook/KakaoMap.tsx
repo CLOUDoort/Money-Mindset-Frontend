@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { MdOutlineSpeakerNotesOff } from 'react-icons/md';
 import { Map, MapMarker, useMap } from 'react-kakao-maps-sdk';
 import { FlowDetailType, MapDataType } from '../../type';
 
@@ -14,7 +15,6 @@ const KakaoMap = ({ flowMapData }: { flowMapData: FlowDetailType[] }) => {
             lng: item?.detail?.lng
         }
     })
-
     const EventMarkerContainer = ({ position, content, flow_id }: { position: any, content: any, flow_id: number }) => {
         const map = useMap()
         const [isVisible, setIsVisible] = useState(false)
@@ -28,8 +28,8 @@ const KakaoMap = ({ flowMapData }: { flowMapData: FlowDetailType[] }) => {
         )
     }
     return (
-        <div className='flex items-center'>
-            <Map
+        <div className='w-full h-[30rem] border rounded flex items-center justify-center'>
+            {flowMapData[0]?.detail ? <Map
                 center={{ lat: flowMapData[0]?.detail?.lat, lng: flowMapData[0]?.detail?.lng }}
                 style={{ width: '100%', height: '30rem' }}
                 level={4}
@@ -37,7 +37,10 @@ const KakaoMap = ({ flowMapData }: { flowMapData: FlowDetailType[] }) => {
                 {data?.map((value: MapDataType) => (
                     <EventMarkerContainer key={value.flow_idx} position={{ lat: value.lat, lng: value.lng }} content={value.content} flow_id={value.flow_id} />
                 ))}
-            </Map>
+            </Map> : <div className="w-full h-[30rem] border rounded flex items-center justify-center">
+                <MdOutlineSpeakerNotesOff size={50} />
+            </div>}
+
         </div>
     )
 };
