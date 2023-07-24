@@ -1,44 +1,13 @@
-import { useEffect, useState } from 'react'
-
+import { ExpenseStatisticsType } from '../../../type'
 import { MdOutlineSpeakerNotesOff } from 'react-icons/md'
 import { ResponsivePie } from '@nivo/pie'
 
-const color = [
-    "#ff0000",
-    "#490184",
-    "#1d039d",
-    "#3e6ab0",
-    "#135607",
-    "#d9f409",
-    "#ee8803",
-    "#d60101",
-    "#694e80",
-    "#50487c",
-    "#3b4e6d",
-    "#3f5d3a",
-    "#dde3ad",
-    "#f1d6b1",
-]
+const ExpenseStatistics = ({ data }: { data: ExpenseStatisticsType[] }) => {
 
-type StatisticsType = {
-    id: number,
-    label: string,
-    value: number,
-}
-
-const ExpenseStatistics = ({ data }: { data: any }) => {
-    const statistic_data = data?.data.map((element: StatisticsType, index: number) => {
-        return {
-            id: element.label,
-            label: element.label,
-            value: element.value,
-            color: color[index]
-        }
-    })
     return (
         <div className='lg:h-[26rem] lg:w-[28rem] h-[20rem] w-[25rem] border rounded'>
-            {statistic_data?.length ? <ResponsivePie
-                data={statistic_data}
+            {data?.length ? <ResponsivePie
+                data={data}
                 margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
                 innerRadius={0.5}
                 padAngle={0.7}
