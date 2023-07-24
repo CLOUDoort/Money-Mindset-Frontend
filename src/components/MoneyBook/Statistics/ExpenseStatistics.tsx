@@ -27,22 +27,18 @@ type StatisticsType = {
 }
 
 const ExpenseStatistics = ({ data }: { data: any }) => {
-    const [stData, setData] = useState([])
-    useEffect(() => {
-        const statistic_data = data?.data.map((element: StatisticsType, index: number) => {
-            return {
-                id: element.label,
-                label: element.label,
-                value: element.value,
-                color: color[index]
-            }
-        })
-        setData(statistic_data)
-    }, [data?.data])
+    const statistic_data = data?.data.map((element: StatisticsType, index: number) => {
+        return {
+            id: element.label,
+            label: element.label,
+            value: element.value,
+            color: color[index]
+        }
+    })
     return (
-        <div className='lg:h-[26rem] lg:w-[30rem] h-[20rem] w-[25rem]'>
-            {stData?.length ? <ResponsivePie
-                data={stData}
+        <div className='lg:h-[26rem] lg:w-[28rem] h-[20rem] w-[25rem] border rounded'>
+            {statistic_data?.length ? <ResponsivePie
+                data={statistic_data}
                 margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
                 innerRadius={0.5}
                 padAngle={0.7}
