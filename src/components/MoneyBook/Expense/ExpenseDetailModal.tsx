@@ -46,7 +46,7 @@ const ExpenseItemModal = ({ clickModal, data }: { clickModal: () => void, data: 
         }
     }
     return (
-        <div className="min-w-[47rem] flex-col fixed top-0 left-0 flex items-center justify-center w-full h-full bg-white bg-opacity-90 z-50" onClick={clickModal}>
+        <div className="bg-white min-w-[50rem] lg:ml-[6rem] m-auto flex justify-center items-center flex-col fixed top-0 left-0 w-full h-full bg-opacity-90 z-50" onClick={clickModal}>
             <form onSubmit={clickSubmit} className="flex flex-col bg-white w-[40rem] border border-black rounded h-[40rem] transition-all 0.5s ease-in-out p-5" onClick={(e) => e.stopPropagation()}>
                 <div className="flex items-center justify-between">
                     <div className="p-3 text-2xl font-semibold text-left">{date}</div>

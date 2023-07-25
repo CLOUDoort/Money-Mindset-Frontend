@@ -1,13 +1,10 @@
-import { BsSun } from 'react-icons/bs'
-import { IoIosNotificationsOutline } from 'react-icons/io'
 import ModifyPassword from "../ModifyPassword"
-import { useState } from "react"
-import { useAtomValue } from 'jotai'
-import { userIdx } from '../../store/initialState'
 import { apiInstance } from '../../apis/setting'
 import { toast } from 'react-toastify'
+import { useAtomValue } from 'jotai'
 import { useNavigate } from 'react-router'
-import ExpenseItemSkeleton from './Expense/ExpenseItemSkeleton'
+import { useState } from "react"
+import { userIdx } from '../../store/initialState'
 
 const MoneyBookSetting = () => {
     const [modify, setModify] = useState(false)
@@ -28,9 +25,9 @@ const MoneyBookSetting = () => {
 
     }
     return (
-        <div className='bg-white min-w-[55rem] lg:ml-[14rem] ml-[3.5rem] flex justify-center items-center h-full'>
+        <div className='bg-white min-w-[45rem] lg:ml-[14rem] ml-[3.5rem] flex justify-center items-center h-full'>
             {!modify ?
-                <div className='flex flex-col items-center justify-center max-w-[65rem] lg:p-5 min-w-[50rem]'>
+                <div className='flex flex-col items-center justify-center w-full h-full px-10 lg:px-5'>
                     <div className="flex items-center justify-center w-full gap-3 mt-10 text-4xl font-semibold">
                         Setting
                     </div>

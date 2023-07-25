@@ -1,7 +1,6 @@
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom"
-import { accessToken, finalMaginot, userAsset, userEmail, userIdx, userNickname } from "../../store/initialState"
+import { accessToken, userAsset, userEmail, userIdx, userNickname } from "../../store/initialState"
 import { useAtom, useSetAtom } from "jotai"
-import { usePrefetchExpenseStatisticsIncomeData, usePrefetchExpenseStatisticsOutComeData } from "../../react-query/Expense/ExpenseStatisticsData"
 
 import { AiOutlineBarChart } from 'react-icons/ai'
 import { AiTwotoneCalendar } from 'react-icons/ai'
@@ -13,6 +12,7 @@ import { MdDashboard } from 'react-icons/md'
 import { apiInstance } from "../../apis/setting"
 import { toast } from "react-toastify"
 import { useEffect } from "react"
+import { usePrefetchAssetData } from "../../react-query/AssetData"
 import { usePrefetchChartData } from "../../react-query/Expense/ExpenseChartData"
 import { usePrefetchFixedData } from "../../react-query/MaginotData/MaginotFixedData"
 import { usePrefetchFlowData } from "../../react-query/Expense/ExpenseFlowData"
@@ -23,21 +23,18 @@ export const start_date = new Date(today.getFullYear(), today.getMonth(), 1).get
 export const end_date = new Date(today.getFullYear(), today.getMonth() + 1, 1).getTime() - 1
 
 const MoneyBookNav = () => {
+    usePrefetchAssetData()
     usePrefetchGoalData()
     usePrefetchFixedData()
     usePrefetchFlowData({ start_date, end_date })
     usePrefetchChartData({ start_date, end_date })
-    usePrefetchExpenseStatisticsIncomeData({ start_date, end_date, flow_type: 0 })
-    usePrefetchExpenseStatisticsOutComeData({ start_date, end_date, flow_type: 1 })
     const location = useLocation().pathname
-    console.log('lo', location)
     const navigate = useNavigate()
     const [token, setToken] = useAtom(accessToken)
     const [idx, setIdx] = useAtom(userIdx)
     const setEmail = useSetAtom(userEmail)
     const setNickname = useSetAtom(userNickname)
     const setAsset = useSetAtom(userAsset)
-    const setMaginot = useSetAtom(finalMaginot)
     // 토큰
     useEffect(() => {
         const getToken = async () => {
@@ -79,9 +76,7 @@ const MoneyBookNav = () => {
             if (idx) {
                 try {
                     const getAsset = await apiInstance.get(`/asset/user/${idx}`)
-                    setAsset(getAsset.data.amount + getAsset.data.userFlowSum)
-                    setMaginot(getAsset.data.amount - getAsset.data.fixedExpenditureAmount + getAsset.data.userFlowSum)
-                    console.log('asset', getAsset.data)
+                    setAsset(getAsset?.data?.amount + getAsset?.data?.userFlowSum)
                 }
                 catch (e: any) {
                     console.log(e.message)
@@ -89,7 +84,7 @@ const MoneyBookNav = () => {
             }
         }
         response()
-    }, [setAsset, idx, setMaginot])
+    }, [setAsset, idx])
 
     const clickLogout = async () => {
         try {

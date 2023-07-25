@@ -1,5 +1,5 @@
-import { finalMaginot, userIdx } from "../../../../store/initialState"
-import { useAtom, useAtomValue } from "jotai"
+import { userIdx } from "../../../../store/initialState"
+import { useAtomValue } from "jotai"
 import { useDeleteFixedData, usePatchFixedData } from "../../../../react-query/MaginotData/MaginotFixedData"
 
 import { IoIosRemoveCircleOutline } from "react-icons/io"
@@ -33,7 +33,6 @@ const MaginotFixedItem = ({ item }: any) => {
             ...newValue, [name]: value
         })
     }
-    const [finalLine, setFinalLine] = useAtom(finalMaginot)
     const deleteItem = useDeleteFixedData()
     const patchFunction = usePatchFixedData(idx)
     const clickPatch = () => {
@@ -44,7 +43,6 @@ const MaginotFixedItem = ({ item }: any) => {
             expenditure_date: newExpenditure_date
         })
         setState(defaultState)
-        setFinalLine(finalLine + (Number(expenditure_amount) - Number(newExpenditure_amount)))
     }
     return (
         <>
@@ -54,7 +52,6 @@ const MaginotFixedItem = ({ item }: any) => {
                 {!third ? <div className="w-[33%] cursor-pointer" onClick={() => handleClick("third")}>{expenditure_amount} 원</div> : <input required autoComplete='off' className="w-[33%] transition ease-in-out bg-white border-gray-400 rounded text-center h-12 px-4 py-2" type="number" value={newExpenditure_amount} placeholder="지출 금액" name="newExpenditure_amount" onChange={handleChange}></input>}
                 {(!first && !second && !third) && <IoIosRemoveCircleOutline onClick={() => {
                     deleteItem(idx)
-                    setFinalLine(finalLine + expenditure_amount)
                 }
                 } size={25} className="absolute hidden cursor-pointer right-2 group-hover:block hover:text-red-500" />}
             </div>

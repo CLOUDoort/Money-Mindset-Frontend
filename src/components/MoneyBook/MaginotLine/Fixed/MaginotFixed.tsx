@@ -2,10 +2,8 @@ import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai";
 import React, { useState } from "react"
 import { useGetFixedData, usePostFixedData } from "../../../../react-query/MaginotData/MaginotFixedData";
 
-import MaginotFixedItem from "./MaginotFixedItem"
-import { finalMaginot } from "../../../../store/initialState";
-import { useAtom } from "jotai";
 import { FixedData } from "../../../../type";
+import MaginotFixedItem from "./MaginotFixedItem"
 
 const defaultValue = {
     fixed_expenditure: "",
@@ -17,7 +15,6 @@ const DATE_SELECTOR = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17
 
 const MaginotFixed = () => {
     const [goalValue, setValue] = useState(defaultValue)
-    const [finalLine, setFinalLine] = useAtom(finalMaginot)
     const { fixed_expenditure, expenditure_amount, expenditure_date } = goalValue
     const { data } = useGetFixedData()
     const [plus, setPlus] = useState(false)
@@ -41,7 +38,6 @@ const MaginotFixed = () => {
         e.preventDefault()
         try {
             mutate({ fixed_expenditure, expenditure_amount: Number(expenditure_amount), expenditure_date })
-            setFinalLine(finalLine - Number(expenditure_amount))
             setValue(defaultValue)
         }
         catch (e: any) {
