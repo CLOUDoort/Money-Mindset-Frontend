@@ -28,7 +28,7 @@ const CalendarCells = ({ currentMonth, onDateClick, selectedDate, clickModal, cl
             const cloneDay = day
             num++
             days.push(
-                <div className={`w-full h-[10.5rem] relative gap-1 border rounded pb-[12%] text-end ${format(currentMonth, 'M') !== format(day, 'M') ? 'bg-gray-100 text-gray-300' : 'cursor-pointer'}`} key={formattedDate} onClick={() => {
+                <div className={`w-full h-[10.5rem] relative gap-1 border rounded pb-[12%] text-end ${format(currentMonth, 'M') !== format(day, 'M') ? 'bg-gray-100 text-gray-300' : 'cursor-pointer'}`} key={num} onClick={() => {
                     clickModal()
                     onDateClick(cloneDay)
                 }} >
@@ -42,7 +42,7 @@ const CalendarCells = ({ currentMonth, onDateClick, selectedDate, clickModal, cl
             day = addDays(day, 1)
         }
         rows.push(
-            <div className="flex w-full gap-1">
+            <div className="flex w-full gap-1" key={num}>
                 {days}
             </div>
         )

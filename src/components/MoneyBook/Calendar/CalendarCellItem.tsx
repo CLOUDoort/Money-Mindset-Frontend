@@ -1,9 +1,10 @@
-import { addDays } from "date-fns"
-import { useAtomValue } from "jotai"
 import { useEffect, useState } from "react"
+
+import { FlowDataType } from "../../../type"
+import { addDays } from "date-fns"
 import { apiInstance } from "../../../apis/setting"
+import { useAtomValue } from "jotai"
 import { userIdx } from "../../../store/initialState"
-import { PropsFlowItem } from "../../../type"
 
 const CalendarCellItem = ({ day }: { day: Date }) => {
     const [data, setData] = useState([])
@@ -18,8 +19,8 @@ const CalendarCellItem = ({ day }: { day: Date }) => {
     const filter_data = data.filter((_: any, index: any) => index < 4)
     return (
         <>
-            {filter_data && filter_data.map((item: PropsFlowItem) => (
-                <li className={`flex items-center justify-between p-1 px-2 ${item.flow_id <= 4 ? "text-blue-500" : "text-red-500"} text-xs font-semibold rounded whitespace-nowrap" key={item.idx}`}>
+            {filter_data && filter_data.map((item: FlowDataType) => (
+                <li className={`flex items-center justify-between p-1 px-2 ${item.flow_id <= 4 ? "text-blue-500" : "text-red-500"} text-xs font-semibold rounded whitespace-nowrap" key={item.idx}`} key={item.idx}>
                     <span>
                         {item.flowName}
                     </span>

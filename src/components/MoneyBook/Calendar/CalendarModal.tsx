@@ -36,7 +36,7 @@ const CalendarModal = ({ select, date, num }: { select: string, date: Date, num:
                 {select}
             </div>
             <div onClick={clickFlow} className="p-4 cursor-pointer border-b-black/20" >
-                사용내역
+                수입 지출 내역
             </div>
             <div onClick={clickMap} className="p-4 cursor-pointer">
                 위치
