@@ -7,4 +7,5 @@ export const queryKeys = {
     chartData: "chartData",
     ExpenseStatisticsIncomeData: "ExpenseStatisticsIncomeData",
     ExpenseStatisticsOutcomeData: "ExpenseStatisticsOutcomeData",
+    assetData: "assetData"
 }

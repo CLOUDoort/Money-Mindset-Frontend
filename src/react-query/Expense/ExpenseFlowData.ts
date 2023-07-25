@@ -45,7 +45,9 @@ export const usePostFlow = () => {
     const { mutate } = useMutation((value: FlowType) => postFlow(idx, value), {
         onSuccess: () => {
             queryClient.invalidateQueries([queryKeys.flowData])
+            queryClient.invalidateQueries([queryKeys.goalData])
             queryClient.invalidateQueries([queryKeys.chartData])
+            queryClient.invalidateQueries([queryKeys.assetData])
             queryClient.invalidateQueries([queryKeys.ExpenseStatisticsIncomeData])
             queryClient.invalidateQueries([queryKeys.ExpenseStatisticsOutcomeData])
             notifySuccess()
@@ -62,7 +64,9 @@ export const usePatchFlow = (itemIdx: number) => {
     const { mutate } = useMutation((value: FlowType) => patchFlow(itemIdx, value), {
         onSuccess: () => {
             queryClient.invalidateQueries([queryKeys.flowData])
+            queryClient.invalidateQueries([queryKeys.goalData])
             queryClient.invalidateQueries([queryKeys.chartData])
+            queryClient.invalidateQueries([queryKeys.assetData])
             queryClient.invalidateQueries([queryKeys.ExpenseStatisticsIncomeData])
             queryClient.invalidateQueries([queryKeys.ExpenseStatisticsOutcomeData])
             notifySuccess()
@@ -79,7 +83,9 @@ export const useDeleteFlow = () => {
     const { mutate } = useMutation(deleteFlow, {
         onSuccess: () => {
             queryClient.invalidateQueries([queryKeys.flowData])
+            queryClient.invalidateQueries([queryKeys.goalData])
             queryClient.invalidateQueries([queryKeys.chartData])
+            queryClient.invalidateQueries([queryKeys.assetData])
             queryClient.invalidateQueries([queryKeys.ExpenseStatisticsIncomeData])
             queryClient.invalidateQueries([queryKeys.ExpenseStatisticsOutcomeData])
             notifySuccess()
