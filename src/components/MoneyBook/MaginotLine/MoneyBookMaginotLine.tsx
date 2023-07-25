@@ -1,68 +1,58 @@
-import { finalMaginot, userAsset } from "../../../store/initialState"
-import { useEffect, useState } from "react"
+import { GoalData, LineData, graph_color } from "../../../type"
 
-import { GoalData } from "../../../type/goalData"
-import Loading from "../../Loading"
 import MaginotChart from "./MaginotChart"
 import MaginotFixed from "./Fixed/MaginotFixed"
 import MaginotGoal from "./Goal/MaginotGoal"
+import { MdOutlineSpeakerNotesOff } from "react-icons/md"
 import moment from "moment"
-import { useAtomValue } from "jotai"
+import { useGetAssetData } from "../../../react-query/AssetData"
 import { useGetGoalData } from "../../../react-query/MaginotData/MaginotGoalData"
-
-export type LineData = {
-    legend: string,
-    value: number
-}
 
 const today = moment().toDate()
 export const start_date_string = new Date(today.getFullYear(), today.getMonth(), 1).toLocaleDateString()
 export const end_date_string = new Date(today.getFullYear(), today.getMonth() + 1, 0).toLocaleDateString()
 
 const MoneyBookMaginotLine = () => {
-    const asset = useAtomValue(userAsset)
-    const finalLine = useAtomValue(finalMaginot)
-    const { data, isLoading } = useGetGoalData()
-    const [line, setLine] = useState([])
-
-    useEffect(() => {
-        console.log("data", data?.data)
-        let sum = 0;
-        try {
-            const lineData = data?.data?.map((line: GoalData) => {
-                sum += line.amount
-                return {
-                    "legend": line.goal,
-                    "value": finalLine - sum,
-                }
-            })
-            lineData.unshift({ "legend": "생존", "value": finalLine })
-            setLine(lineData)
+    const { data: asset } = useGetAssetData()
+    const { data: goal_data } = useGetGoalData()
+    let sum = 0;
+    const lineData = goal_data?.data?.map((line: GoalData, index: number) => {
+        sum += line.amount
+        return {
+            "idx": line.idx,
+            "legend": line.goal,
+            "value": asset?.data?.amount + asset?.data?.userIncome - asset?.data?.fixedExpenditureAmount - sum
         }
-        catch (e: any) {
-            console.log(e)
-        }
-    }, [data?.data, finalLine])
+    })
+    lineData?.unshift({ "legend": "생존", "value": asset?.data?.amount + asset?.data?.userIncome - asset?.data?.fixedExpenditureAmount })
     return (
-        <>
-            {(!isLoading && line) ? <div className="lg:ml-52 ml-14 relative bg-[#fbfbfb] min-w-[47rem] w-full flex flex-col justify-center items-center">
-                <div className="flex flex-col items-center justify-center lg:w-[85%] max-w-[70rem] w-[80%] lg:p-5">
-                    <div className='flex items-center w-full gap-3 my-10 text-2xl font-semibold'>
-                        <div>{start_date_string} ~</div>
-                        <div>{end_date_string}</div>
+        <div className="bg-white min-w-[50rem] lg:ml-[14rem] ml-[3.5rem] flex justify-center items-center">
+            <div className="flex flex-col items-center max-w-[65rem] justify-center w-full px-10">
+                <div className="flex flex-col w-full gap-3 mt-10 text-2xl font-semibold">
+                    <div className="text-4xl">Maginot Line</div>
+                    <div className="flex items-center justify-between w-full">
+                        <div className="items-center">{start_date_string} ~ {end_date_string}</div>
+                        <div>현재 자산 : {asset?.data?.amount + asset?.data?.userIncome - asset?.data?.userExpense} 원</div>
                     </div>
-                    <div className="my-5 text-3xl font-semibold">현재 자산 : {asset} 원</div>
-                    {line && line?.map((line: LineData) => {
-                        return (
-                            <div key={line.value} className="my-5 text-2xl font-semibold">{line.legend} 방어선 : {line.value} 원</div>
-                        )
-                    })}
-                    {line && <MaginotChart line={line} />}
-                    <MaginotGoal />
-                    <MaginotFixed />
                 </div>
-            </div> : <Loading />}
-        </>
+                {lineData ?
+                    <div className="grid w-full grid-cols-2 gap-3 my-10 text-2xl">
+                        {lineData?.map((item: LineData) => (
+                            <div key={item.idx} className={`flex flex-col items-center ${asset?.data?.userExpense > item.value ? "bg-red-300" : "bg-green-300"} text-white justify-center font-semibold w-full h-[10rem] border rounded-3xl`}>
+                                <div>
+                                    {item.value - asset?.data?.userExpense < 0 ? "파괴" : item.value - asset?.data?.userExpense + "원 사용가능"}
+                                    <div>{item.legend} 방어선</div>
+                                </div>
+                            </div>
+                        ))}
+                    </div> : <div className="w-full h-[30rem] border rounded flex items-center justify-center">
+                        <MdOutlineSpeakerNotesOff size={50} />
+                    </div>}
+                {lineData && <MaginotChart line={lineData} max={asset?.data?.amount + asset?.data?.userIncome} />}
+                <MaginotGoal />
+                <MaginotFixed />
+            </div>
+        </div>
     )
 }
 

@@ -1,23 +1,10 @@
+import { LineData, graph_color } from '../../../type'
 import { end_date, start_date } from '../MoneyBookNav'
 
-import { LineData } from './MoneyBookMaginotLine'
 import { ResponsiveLine } from '@nivo/line'
-import { finalMaginot } from '../../../store/initialState'
-import { useAtomValue } from 'jotai'
 import { useGetChartData } from '../../../react-query/Expense/ExpenseChartData'
 
-const color = [
-    "#ff0000",
-    "#490184",
-    "#1d039d",
-    "#3e6ab0",
-    "#135607",
-    "#d9f409",
-    "#ee8803",
-]
-
-const MaginotChart = ({ line }: any) => {
-    const finalLine = useAtomValue(finalMaginot)
+const MaginotChart = ({ line, max }: any) => {
     const { data: flow_data } = useGetChartData({ start_date, end_date })
     const chart_data = [
         {
@@ -29,17 +16,17 @@ const MaginotChart = ({ line }: any) => {
     const markers = line?.map((element: LineData, index: number) => {
         return {
             "axis": 'y',
-            "legend": element.legend,
+            // "legend": element.legend,
             "lineStyle": {
-                stroke: color[index],
-                strokeWidth: 3
+                stroke: graph_color[index],
+                strokeWidth: 4,
             },
             "value": element.value,
-            "legendPosition": "right"
+            "legendPosition": "right",
         }
     })
     return (
-        <div className='h-[30rem] w-full'>
+        <div className='h-[40rem] w-full'>
             {chart_data && <ResponsiveLine
                 data={chart_data}
                 margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
@@ -47,14 +34,15 @@ const MaginotChart = ({ line }: any) => {
                 yScale={{
                     type: 'linear',
                     min: 'auto',
-                    max: finalLine + 100000,
+                    max: max,
                     stacked: true,
                     reverse: false
                 }}
                 markers={markers}
                 yFormat=" >-.2f"
                 axisTop={null}
-                axisRight={null}
+                axisRight={{
+                }}
                 axisBottom={{
                     tickSize: 5,
                     tickPadding: 5,
