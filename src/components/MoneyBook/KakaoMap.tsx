@@ -1,9 +1,8 @@
-import { useState } from 'react';
-import { MdOutlineSpeakerNotesOff } from 'react-icons/md';
-import { Map, MapMarker, useMap } from 'react-kakao-maps-sdk';
 import { FlowDetailType, MapDataType } from '../../type';
+import { Map, MapMarker, useMap } from 'react-kakao-maps-sdk';
 
-
+import { MdOutlineSpeakerNotesOff } from 'react-icons/md';
+import { useState } from 'react';
 
 const KakaoMap = ({ flowMapData }: { flowMapData: FlowDetailType[] }) => {
     const data = flowMapData?.map((item: FlowDetailType) => {
@@ -32,7 +31,7 @@ const KakaoMap = ({ flowMapData }: { flowMapData: FlowDetailType[] }) => {
             {flowMapData[0]?.detail ? <Map
                 center={{ lat: flowMapData[0]?.detail?.lat, lng: flowMapData[0]?.detail?.lng }}
                 style={{ width: '100%', height: '30rem' }}
-                level={4}
+                level={6}
             >
                 {data?.map((value: MapDataType) => (
                     <EventMarkerContainer key={value.flow_idx} position={{ lat: value.lat, lng: value.lng }} content={value.content} flow_id={value.flow_id} />
