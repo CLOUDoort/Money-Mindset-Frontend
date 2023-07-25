@@ -2,26 +2,21 @@ import { apiInstance } from '../apis/setting'
 import { toast } from 'react-toastify'
 import { useAtomValue } from 'jotai'
 import { useNavigate } from 'react-router-dom'
-import { useState } from "react"
 import { userEmail } from '../store/initialState'
 import Input from './InputForm'
+import { SubmitHandler, useForm } from 'react-hook-form'
+
+type FieldsValues = {
+    password: string,
+    checkPassword: string
+}
 
 const ModifyPassword = ({ close }: { close: () => void }) => {
     const navigate = useNavigate()
     const email = useAtomValue(userEmail)
-    const [formData, setFormData] = useState({
-        password: "",
-        checkPassword: ""
-    })
-    const { password, checkPassword } = formData
-    const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target
-        setFormData({
-            ...formData, [name]: value
-        })
-    }
-    const submitHandler = async (e: React.SyntheticEvent) => {
-        e.preventDefault()
+    const { register, handleSubmit, formState: { errors } } = useForm<FieldsValues>()
+    const submitHandler: SubmitHandler<FieldsValues> = async (FieldsValues) => {
+        const { password, checkPassword } = FieldsValues
         try {
             if (password === checkPassword) {
                 const submitResponse = await apiInstance.post(`/user/forget`, {
@@ -41,12 +36,14 @@ const ModifyPassword = ({ close }: { close: () => void }) => {
             <div className="flex flex-wrap items-center justify-center w-full max-w-6xl mx-auto ">
                 <div className="flex w-full flex-col md:w-[67%] lg:w-[40%]">
                     <h1 className="mb-8 text-4xl font-bold text-center lg:text-4xl">Modify Password</h1>
-                    <form onSubmit={submitHandler}>
-                        <div className='mb-2 font-semibold'>Password</div>
-                        <Input type="password" name="password" value={password} placeholder="password" onChange={changeHandler} />
-                        <div className='mb-2 font-semibold'>Password Check</div>
-                        <Input type="password" name="checkPassword" value={checkPassword} placeholder="password check" onChange={changeHandler} />
-                        <div className='flex gap-3'>
+                    <form onSubmit={handleSubmit(submitHandler)}>
+                        <div className='my-1 font-semibold'>Password</div>
+                        <Input type="password" placeholder="password" register={{ ...register("password", { required: true }) }} />
+                        {errors.password && <span className='text-red-500'>This field is required</span>}
+                        <div className='my-1 font-semibold'>Password Check</div>
+                        <Input type="password" placeholder="password check" register={{ ...register("checkPassword", { required: true }) }} />
+                        {errors.checkPassword && <span className='-mt-10 text-red-500 '>This field is required</span>}
+                        <div className='flex gap-3 mt-3'>
                             <button className='w-full py-3 font-semibold text-white uppercase transition bg-red-600 rounded shadow-md px-7 hover:bg-red-700 active:bg-red-800 hover:shadow-lg duration 150' type='button' onClick={close}>Cancel</button>
                             <button className='w-full py-3 font-semibold text-white uppercase transition bg-blue-600 rounded shadow-md px-7 hover:bg-blue-700 active:bg-blue-800 hover:shadow-lg duration 150' type='submit'>Modify</button>
                         </div>

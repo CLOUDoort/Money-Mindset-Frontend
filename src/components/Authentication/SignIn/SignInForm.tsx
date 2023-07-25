@@ -16,11 +16,9 @@ const SignInForm = () => {
     const [showPassword, setShowPassword] = useState(false)
     const { register, handleSubmit } = useForm()
     const clickSubmit = async (FieldValues: any) => {
+        const { email, password } = FieldValues
         try {
-            const submitResponse = await apiInstance.post(`/user/signin`, {
-                email: FieldValues.email,
-                password: FieldValues.password
-            })
+            const submitResponse = await apiInstance.post(`/user/signin`, { email, password })
             toast.success("로그인 성공!")
             navigate('/money-book/dashboard')
             setToken(submitResponse.data.accessToken)
@@ -30,8 +28,8 @@ const SignInForm = () => {
 
     }
     return (
-        <section className='flex items-center justify-center w-full h-full'>
-            <div className="flex flex-wrap items-center justify-center w-full max-w-6xl p-5 mx-auto ">
+        <section className='w-full h-full pt-[5rem]'>
+            <div className="flex flex-wrap items-center justify-center w-full h-full max-w-6xl px-5 mx-auto">
                 <div className="flex w-full flex-col md:w-[55%] lg:w-[40%]">
                     <h1 className="mb-8 text-4xl font-bold text-center lg:text-4xl">Sign-in</h1>
                     <form onSubmit={handleSubmit(clickSubmit)}>
@@ -40,7 +38,7 @@ const SignInForm = () => {
                         <div className='font-semibold'>Password</div>
                         <div className="relative">
                             <Input type={showPassword ? 'text' : "password"} placeholder="password" register={{ ...register("password") }} />
-                            {showPassword ? <AiFillEyeInvisible onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-6' /> : <AiFillEye onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-6' />}
+                            {showPassword ? <AiFillEyeInvisible onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-5' /> : <AiFillEye onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-5' />}
                         </div>
                         <div className='flex justify-between text-sm whitespace-nowrap'>
                             <p className='mb-6'>

@@ -45,8 +45,8 @@ const SignUpForm = () => {
         else toast.error("Password dose not match!")
     }
     return (
-        <section className='flex items-center justify-center w-full h-full'>
-            <div className="flex flex-wrap items-center justify-center w-full max-w-6xl p-5 mx-auto ">
+        <section className='w-full h-full pt-[5rem]'>
+            <div className="flex flex-wrap items-center justify-center w-full h-full max-w-6xl px-5 mx-auto">
                 <div className="flex w-full flex-col md:w-[55%] lg:w-[40%]">
                     <h1 className="mb-8 text-4xl font-bold text-center lg:text-4xl">Sign-Up</h1>
                     <form onSubmit={handleSubmit(clickSubmit)}>
@@ -83,7 +83,7 @@ const SignUpForm = () => {
                     </form>
                 </div>
             </div>
-        </section>
+        </section >
     )
 }
 
