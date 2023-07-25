@@ -7,15 +7,19 @@ html, body {
     width: 100%;
     font-family: 'Open Sans', sans-serif;
     background-color: #ffffff;
-    -webkit-user-select:none;
+    /* -webkit-user-select:none;
     -moz-user-select:none;
     -ms-user-select:none;
-    user-select:none
+    user-select:none, */
+}
+::-webkit-scrollbar {
+  display: none;
 }
 
 #root {
     height: 100%;
     width: 100%;
+    -ms-overflow-style: none;
 }
 
 @layer base {

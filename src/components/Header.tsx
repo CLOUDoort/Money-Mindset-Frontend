@@ -42,9 +42,9 @@ const Header = () => {
         else navigate("/sign-in")
     }
     return (
-        <div className='flex flex-col h-full'>
-            <div className='bg-#FBFBFB border-b shadow-sm static top-0 py-3 mb-10'>
-                <header className='flex items-center justify-between max-w-6xl px-3 mx-auto'>
+        <div className='relative w-full h-full'>
+            <nav className='bg-white w-full z-[9999] h-[5rem] shadow-sm fixed left-0 top-0 py-3'>
+                <header className='flex items-center justify-between w-full max-w-6xl px-3 mx-auto'>
                     <div>
                         <img onClick={() => navigate("/")} className="cursor-pointer h-14" src="/MoneyMindsetLogo.svg" alt="logo" />
                     </div>
@@ -55,7 +55,7 @@ const Header = () => {
                         </ul>
                     </div>
                 </header>
-            </div>
+            </nav>
             <Outlet />
         </div>
     )
