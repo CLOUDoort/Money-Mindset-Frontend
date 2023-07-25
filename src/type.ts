@@ -25,7 +25,7 @@ export type MapDataType = {
     lng: number
 }
 
-export interface PropsFlowItem {
+export interface FlowDataType {
     amount: number,
     flowDetail: {
         flow_idx: number,
@@ -59,4 +59,45 @@ export interface User {
     email: string,
     idx: number,
     nickname: string
+}
+
+export type LineData = {
+    legend: string,
+    value: number,
+    idx:number
+}
+
+export type UserAssetType = {
+    amount: number,
+    fixedExpenditureAmount: number | null,
+    user: {
+        email: string,
+        nickname: string,
+    },
+    userFlowSum: number | null,
+    user_idx: number
+}
+
+export const graph_color = [
+    "#ff0000",
+    "#490184",
+    "#1d039d",
+    "#3e6ab0",
+    "#135607",
+    "#d9f409",
+    "#ee8803",
+    "#d60101",
+    "#694e80",
+    "#50487c",
+    "#3b4e6d",
+    "#3f5d3a",
+    "#dde3ad",
+    "#f1d6b1",
+]
+
+export type ExpenseStatisticsType = {
+    id: number,
+    label: string,
+    value: number,
+    color: string
 }
