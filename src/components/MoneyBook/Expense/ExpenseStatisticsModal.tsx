@@ -1,41 +1,19 @@
+import { ExpenseStatisticsType, graph_color } from '../../../type'
 import { useEffect, useState } from 'react'
 
 import { AiOutlineArrowRight } from 'react-icons/ai'
 import { MdOutlineSpeakerNotesOff } from 'react-icons/md'
 import { ResponsivePie } from '@nivo/pie'
 
-const color = [
-    "#ff0000",
-    "#490184",
-    "#1d039d",
-    "#3e6ab0",
-    "#135607",
-    "#d9f409",
-    "#ee8803",
-    "#d60101",
-    "#694e80",
-    "#50487c",
-    "#3b4e6d",
-    "#3f5d3a",
-    "#dde3ad",
-    "#f1d6b1",
-]
-
-type StatisticsType = {
-    id: number,
-    label: string,
-    value: number,
-}
-
 const ExpenseStatisticsModal = ({ click, data }: { click: () => void, data: any }) => {
     const [stData, setData] = useState([])
     useEffect(() => {
-        const statistic_data = data?.data.map((element: StatisticsType, index: number) => {
+        const statistic_data = data?.data?.map((element: ExpenseStatisticsType, index: number) => {
             return {
                 id: element.label,
                 label: element.label,
                 value: element.value,
-                color: color[index]
+                color: graph_color[index]
             }
         })
         setData(statistic_data)

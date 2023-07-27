@@ -28,6 +28,7 @@ const ExpenseModal = ({ setModal, item, modalData }: any) => {
         }
     })
 
+    // scroll fix
     useEffect(() => {
         document.body.style.cssText = `
         position: fixed; 

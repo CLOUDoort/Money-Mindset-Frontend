@@ -9,7 +9,6 @@ const ExpenseItem = ({ data }: any) => {
     const { flow_date, flowName, amount, idx } = data
     const temp = new Date(flow_date)
     const getDay = (dateIn: Date) => {
-        // getMonth() is zero-based
         var dd = dateIn.getDate()
         return String(dd + '일 ')
     }

@@ -16,7 +16,6 @@ const MaginotChart = ({ line, max }: any) => {
     const markers = line?.map((element: LineData, index: number) => {
         return {
             "axis": 'y',
-            // "legend": element.legend,
             "lineStyle": {
                 stroke: graph_color[index],
                 strokeWidth: 4,

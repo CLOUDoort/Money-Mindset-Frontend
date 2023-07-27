@@ -32,12 +32,8 @@ const ExpenseItemModal = ({ clickModal, data }: { clickModal: () => void, data: 
     const postMutate = usePostDetailData(idx)
     const clickSubmit = () => {
         try {
-            if (flowDetail) {
-                patchMutate({ detail: detail, lat: position.lat, lng: position.lng })
-            }
-            else {
-                postMutate({ detail: detail, lat: position.lat, lng: position.lng })
-            }
+            if (flowDetail) patchMutate({ detail: detail, lat: position.lat, lng: position.lng })
+            else postMutate({ detail: detail, lat: position.lat, lng: position.lng })
             clickModal()
             setPosition({ lat: 0, lng: 0 })
         }

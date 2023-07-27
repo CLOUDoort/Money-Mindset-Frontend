@@ -42,8 +42,6 @@ const ExpenseInput = ({ showCalendar, setShowCalendar, handleFlowList, data, set
                 toast.error('항목을 모두 채워주세요!')
                 return
             }
-            console.log('flow_date', flow_date)
-            console.log('flow_date', new Date(flow_date))
             mutate({ flow_id, amount: Number(amount), flow_date })
             setFlow(defaultValue)
             setDate(today)
