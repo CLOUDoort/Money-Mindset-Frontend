@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 
-const FifthSection = () => {
+const FifthPicture = () => {
     const element = useRef<HTMLDivElement | null>(null)
     const [inviewPort, setInviewPort] = useState<boolean>(false)
     useEffect(() => {
@@ -20,12 +20,16 @@ const FifthSection = () => {
         }
     }, [])
     return (
-        <section className={`w-full min-h-[calc(100vh-5rem)] bg-gray-100`}>
+        <section className={`w-full min-h-[calc(100vh-5rem)] bg-white`}>
             <div className="flex flex-col items-center justify-center w-full h-full">
                 <div ref={element} className={`${inviewPort ? "opacity-100" : "opacity-0"} transition-all duration-1000`}>
-                    <div className="text-4xl font-semibold leading-normal whitespace-pre-wrap">
-                        통계 그래프와 지도를 통해 <br />
-                        기록물을 한눈에 보세요!
+                    <div className="flex items-center justify-center gap-5">
+                        <div className={`w-[32rem] h-[20rem] mb-[5rem] ${inviewPort && "animate-fade-right animate-ease-in"} shadow-xl`}>
+                            <img src="/expenseStatistics.png" className="object-cover" alt="maginot" />
+                        </div>
+                        <div className={`w-[32rem] h-[20rem] ${inviewPort && "animate-fade-left animate-ease-in shadow-xl"} mt-[5rem]`}>
+                            <img src="/expenseMap.png" className="object-cover" alt="maginot" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -33,4 +37,4 @@ const FifthSection = () => {
     )
 }
 
-export default FifthSection
+export default FifthPicture

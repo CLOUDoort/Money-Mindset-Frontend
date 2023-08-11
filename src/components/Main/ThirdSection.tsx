@@ -20,16 +20,12 @@ const ThirdSection = () => {
         }
     }, [])
     return (
-        <section className={`w-full min-h-[calc(100vh-5rem)] bg-white`}>
+        <section className={`w-full min-h-[calc(100vh-5rem)] bg-gray-100`}>
             <div className="flex flex-col items-center justify-center w-full h-full">
                 <div ref={element} className={`${inviewPort ? "opacity-100" : "opacity-0"} transition-all duration-1000`}>
-                    <div className="flex items-center justify-center gap-5">
-                        <div className={`w-[32rem] h-[20rem] mb-[5rem] ${inviewPort && "animate-fade-right animate-ease-in"} shadow-xl`}>
-                            <img src="/maginot.png" className="object-cover" alt="maginot" />
-                        </div>
-                        <div className={`w-[32rem] h-[20rem] ${inviewPort && "animate-fade-left animate-ease-in"} mt-[5rem]`}>
-                            <img src="/maginot_chart.png" className="object-cover" alt="maginot" />
-                        </div>
+                    <div className="text-4xl font-semibold leading-normal whitespace-pre-wrap">
+                        자신의 수입과 지출을 기록하고 <br />
+                        상세 내용과 위치도 기록해보세요
                     </div>
                 </div>
             </div>
