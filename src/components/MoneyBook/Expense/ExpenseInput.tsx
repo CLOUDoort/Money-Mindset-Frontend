@@ -82,8 +82,8 @@ const ExpenseInput = ({ showCalendar, setShowCalendar, handleFlowList, data, set
                                 <Calendar className="absolute z-50 rounded top-16" locale={ko} months={1} date={date} onChange={onChangeDate} dateDisplayFormat={'yyyy.mm.dd'} />
                             )}
                             <div className={`w-full h-12 px-4 py-3 mt-2 mb-4 text-center ${date === today && "text-gray-500"} whitespace-nowrap transition ease-in-out bg-white border border-gray-400 rounded cursor-pointer`} onClick={() => {
-                                setShowCalendar(!showCalendar)
                                 setFlowList(false)
+                                setShowCalendar(!showCalendar)
                             }}>{date.toLocaleDateString()}</div>
                         </div>
                         <div className="flex items-center justify-center w-[34%] relative" onClick={(e) => e.stopPropagation()} >
@@ -103,7 +103,9 @@ const ExpenseInput = ({ showCalendar, setShowCalendar, handleFlowList, data, set
                             </div>}
                         </div>
                         <div className="w-[33%]">
-                            <Input type="number" value={amount} name="amount" onChange={handleChange} placeholder="금액" />
+                            <div className="h-12 mb-4">
+                                <Input type="number" value={amount} name="amount" onChange={handleChange} placeholder="금액" />
+                            </div>
                         </div>
                     </div>
                     <button type="submit" className="w-full py-3 my-3 font-semibold text-white uppercase transition bg-blue-600 rounded shadow-md px-7 hover:bg-blue-700 active:bg-blue-800 hover:shadow-lg duration 150">저장</button>

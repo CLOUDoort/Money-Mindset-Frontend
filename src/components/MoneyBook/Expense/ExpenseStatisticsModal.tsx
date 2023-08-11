@@ -22,7 +22,7 @@ const ExpenseStatisticsModal = ({ click, data }: { click: () => void, data: any 
         <div className='w-[50rem] relative flex justify-center'>
             <AiOutlineArrowRight className='absolute cursor-pointer right-5 top-5' size={25} onClick={click} />
             <div className='h-[40rem] w-[45rem]'>
-                {!stData.length ?
+                {!stData?.length ?
                     <div className='flex items-center justify-center w-full h-full m-auto text-2xl font-semibold'>
                         <MdOutlineSpeakerNotesOff size={50} />
                     </div>

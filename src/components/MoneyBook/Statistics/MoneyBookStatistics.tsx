@@ -17,7 +17,7 @@ const MoneyBookStatistics = () => {
     })
     const in_expense = flow_data?.data?.filter((item: FlowDataType) => { return item.flow_id <= 4 })?.map((item: FlowDataType, index: number) => {
         return {
-            id: item.idx,
+            id: item.flow_id,
             label: item.flowName,
             value: item.amount,
             color: graph_color[index]
@@ -25,7 +25,7 @@ const MoneyBookStatistics = () => {
     })
     const out_expense = flow_data?.data?.filter((item: FlowDataType) => { return item.flow_id > 4 })?.map((item: FlowDataType, index: number) => {
         return {
-            id: item.idx,
+            id: item.flow_id,
             label: item.flowName,
             value: item.amount,
             color: graph_color[index]
