@@ -1,14 +1,19 @@
+import { useEffect, useState } from "react"
+
 import CalendarFlow from "./CalendarFlow"
 import CalendarMap from "./CalendarMap"
-import { useEffect, useState } from "react"
 import { addDays } from "date-fns"
 import { apiInstance } from "../../../apis/setting"
 import { useAtomValue } from "jotai"
 import { userIdx } from "../../../store/initialState"
 
+type Props = {
+    select: string,
+    date: Date,
+    num: number
+}
 
-
-const CalendarModal = ({ select, date, num }: { select: string, date: Date, num: number }) => {
+const CalendarModal = ({ select, date, num }: Props) => {
     const condition = num % 7 > 0 && num % 7 <= 3
     const [flowModal, setFlowModal] = useState(false)
     const [mapModal, setMapModal] = useState(false)

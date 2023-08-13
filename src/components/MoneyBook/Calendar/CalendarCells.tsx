@@ -1,7 +1,7 @@
 import { addDays, endOfMonth, endOfWeek, format, startOfMonth, startOfWeek } from "date-fns"
 
-import CalendarModal from "./CalendarModal"
 import CalendarCellItem from "./CalendarCellItem"
+import CalendarModal from "./CalendarModal"
 
 interface Props {
     currentMonth: Date,

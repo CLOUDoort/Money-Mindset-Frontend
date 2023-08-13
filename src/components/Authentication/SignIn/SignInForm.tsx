@@ -1,21 +1,26 @@
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom'
+import { SubmitHandler, useForm } from 'react-hook-form'
 
 import Input from '../../InputForm'
 import SignInGoogle from '../GoogleAuth'
 import { accessToken } from '../../../store/initialState'
 import { apiInstance } from '../../../apis/setting'
 import { toast } from 'react-toastify'
-import { useForm } from 'react-hook-form'
 import { useSetAtom } from 'jotai'
 import { useState } from "react"
+
+type FormData = {
+    email: string,
+    password: string
+}
 
 const SignInForm = () => {
     const navigate = useNavigate()
     const setToken = useSetAtom(accessToken)
     const [showPassword, setShowPassword] = useState(false)
-    const { register, handleSubmit } = useForm()
-    const clickSubmit = async (FieldValues: any) => {
+    const { register, handleSubmit } = useForm<FormData>()
+    const clickSubmit: SubmitHandler<FormData> = async (FieldValues) => {
         const { email, password } = FieldValues
         try {
             const submitResponse = await apiInstance.post(`/user/signin`, { email, password })
