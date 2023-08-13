@@ -15,7 +15,7 @@ const MoneyBookCalendar = () => {
     const [click, setModal] = useState(false)
     const clickModal = () => setModal(!click)
     return (
-        <div className="bg-white min-w-[62.5rem] lg:ml-[14rem] ml-[3.5rem] flex justify-center items-center pb-10" onClick={() => setModal(false)}>
+        <section className="bg-white min-w-[62.5rem] lg:ml-[14rem] ml-[3.5rem] flex justify-center items-center pb-10" onClick={() => setModal(false)}>
             <div className="flex flex-col items-center justify-center w-full max-w-[65rem] lg:px-10 px-10" onClick={(e) => e.stopPropagation()}>
                 <div className="w-full gap-3 mt-10 mb-5 text-4xl font-semibold">
                     Calendar
@@ -24,7 +24,7 @@ const MoneyBookCalendar = () => {
                 <CalendarDays />
                 <CalendarCells click={click} clickModal={clickModal} currentMonth={currentMonth} onDateClick={onDateClick} selectedDate={selectedDate} />
             </div>
-        </div>
+        </section>
     )
 }
 

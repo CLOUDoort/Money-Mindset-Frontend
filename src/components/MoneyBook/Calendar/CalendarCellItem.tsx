@@ -16,7 +16,7 @@ const CalendarCellItem = ({ day }: { day: Date }) => {
         }
         response()
     }, [day, user_idx])
-    const filter_data = data.filter((_: any, index: any) => index < 4)
+    const filter_data = data.filter((_: any, index: number) => index < 4)
     return (
         <>
             {filter_data && filter_data.map((item: FlowDataType) => (

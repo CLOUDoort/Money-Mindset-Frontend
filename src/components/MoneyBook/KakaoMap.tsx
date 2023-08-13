@@ -14,7 +14,12 @@ const KakaoMap = ({ flowMapData }: { flowMapData: FlowDetailType[] }) => {
             lng: item?.detail?.lng
         }
     })
-    const EventMarkerContainer = ({ position, content, flow_id }: { position: any, content: any, flow_id: number }) => {
+    const EventMarkerContainer = ({ position, content, flow_id }: {
+        position: {
+            lat: number;
+            lng: number;
+        }, content: JSX.Element, flow_id: number
+    }) => {
         const map = useMap()
         const [isVisible, setIsVisible] = useState(false)
         return (
@@ -39,7 +44,6 @@ const KakaoMap = ({ flowMapData }: { flowMapData: FlowDetailType[] }) => {
             </Map> : <div className="w-full h-[30rem] border rounded flex items-center justify-center">
                 <MdOutlineSpeakerNotesOff size={50} />
             </div>}
-
         </div>
     )
 };
