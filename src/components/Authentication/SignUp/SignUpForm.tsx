@@ -1,5 +1,6 @@
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import { accessToken, userEmail, userIdx, userNickname } from '../../../store/initialState'
 
 import Input from '../../InputForm'
@@ -8,7 +9,13 @@ import { apiInstance } from '../../../apis/setting'
 import { toast } from 'react-toastify'
 import { useSetAtom } from 'jotai'
 import { useState } from "react"
-import { useForm } from 'react-hook-form'
+
+type FormData = {
+    email: string,
+    nickname: string,
+    password: string,
+    passwordCheck: string
+}
 
 const SignUpForm = () => {
     const setAccessToken = useSetAtom(accessToken)
@@ -17,8 +24,8 @@ const SignUpForm = () => {
     const setNickname = useSetAtom(userNickname)
     const navigate = useNavigate()
     const [showPassword, setShowPassword] = useState(false)
-    const { register, handleSubmit } = useForm()
-    const clickSubmit = async (formValues: any) => {
+    const { register, handleSubmit } = useForm<FormData>()
+    const clickSubmit: SubmitHandler<FormData> = async (formValues) => {
         const { email, nickname, password, passwordCheck } = formValues
         if (password === passwordCheck) {
             try {
@@ -42,7 +49,7 @@ const SignUpForm = () => {
                 toast.error(e.response.data.message)
             }
         }
-        else toast.error("Password dose not match!")
+        else toast.error("Password does not match!")
     }
     return (
         <section className='w-full h-full pt-[5rem]'>
