@@ -51,6 +51,8 @@ const MoneyBookNav = () => {
     // 토큰으로부터 데이터 저장
     useEffect(() => {
         const getToken = async () => {
+            // 새로고침 시 데이터 유지보다는 home 으로 보내는 것을 선택
+            if (!token) navigate('/', { replace: true })
             if (token) {
                 try {
                     const userData = await apiInstance.get('user/validate', {
@@ -69,7 +71,7 @@ const MoneyBookNav = () => {
             }
         }
         getToken()
-    }, [setEmail, setIdx, setNickname, token])
+    }, [setEmail, setIdx, setNickname, token, navigate])
     // 추출한 idx로 자산 업데이트
     useEffect(() => {
         const response = async () => {
