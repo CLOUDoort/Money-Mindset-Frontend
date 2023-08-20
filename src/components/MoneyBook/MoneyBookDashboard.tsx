@@ -15,7 +15,6 @@ const MoneyBookDashboard = () => {
     const { data: flow_data } = useGetFlowData({ start_date, end_date })
     const { data: asset } = useGetAssetData()
     const { data: goal_data } = useGetGoalData()
-    console.log('asset', asset?.data)
     const in_expense = flow_data?.data?.filter((item: FlowDataType) => { return item.flow_id <= 4 })?.map((item: FlowDataType, index: number) => {
         return {
             id: item.idx,

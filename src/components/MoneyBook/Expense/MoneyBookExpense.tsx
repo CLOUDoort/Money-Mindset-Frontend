@@ -20,12 +20,8 @@ const MoneyBookExpense = () => {
     let income_sum = 0;
     let outcome_sum = 0;
     flow_data?.data.forEach((item: any) => {
-        if (item.flow_id <= 4) {
-            income_sum += item.amount
-        }
-        if (item.flow_id > 4) {
-            outcome_sum += item.amount
-        }
+        if (item.flow_id <= 4) income_sum += item.amount
+        else outcome_sum += item.amount
     })
     return (
         <div className="bg-white min-w-[50rem] lg:ml-[14rem] ml-[3.5rem] flex justify-center items-center" onClick={clickFalse}>

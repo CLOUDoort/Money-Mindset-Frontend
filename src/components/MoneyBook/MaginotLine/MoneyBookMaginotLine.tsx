@@ -1,4 +1,4 @@
-import { GoalData, LineData, graph_color } from "../../../type"
+import { GoalData, LineData } from "../../../type"
 
 import MaginotChart from "./MaginotChart"
 import MaginotFixed from "./Fixed/MaginotFixed"
@@ -16,7 +16,7 @@ const MoneyBookMaginotLine = () => {
     const { data: asset } = useGetAssetData()
     const { data: goal_data } = useGetGoalData()
     let sum = 0;
-    const lineData = goal_data?.data?.map((line: GoalData, index: number) => {
+    const lineData = goal_data?.data?.map((line: GoalData) => {
         sum += line.amount
         return {
             "idx": line.idx,
