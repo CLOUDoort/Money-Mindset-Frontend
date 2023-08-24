@@ -3,8 +3,8 @@ import { useCallback, useState } from "react"
 import { useGetFlowList, usePatchFlow } from "../../../react-query/Expense/ExpenseFlowData"
 
 import { Calendar } from "react-date-range"
-import { FLOW_DATA } from "./ExpenseInput"
 import ko from "date-fns/locale/ko"
+import { FLOW_DATA } from "../../../types"
 
 const defaultState = {
     first: false,

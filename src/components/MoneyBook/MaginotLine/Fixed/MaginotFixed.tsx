@@ -2,7 +2,7 @@ import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai";
 import React, { useState } from "react"
 import { useGetFixedData, usePostFixedData } from "../../../../react-query/MaginotData/MaginotFixedData";
 
-import { FixedData } from "../../../../type";
+import { FixedData } from "../../../../types";
 import MaginotFixedItem from "./MaginotFixedItem"
 
 const defaultValue = {

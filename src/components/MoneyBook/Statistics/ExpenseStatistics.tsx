@@ -1,4 +1,4 @@
-import { ExpenseStatisticsType } from '../../../type'
+import { ExpenseStatisticsType } from '../../../types'
 import { MdOutlineSpeakerNotesOff } from 'react-icons/md'
 import { ResponsivePie } from '@nivo/pie'
 

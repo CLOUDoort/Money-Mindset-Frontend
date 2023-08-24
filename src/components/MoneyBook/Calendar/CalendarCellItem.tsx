@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-import { FlowDataType } from "../../../type"
+import { FlowDataType } from "../../../types"
 import { addDays } from "date-fns"
 import { apiInstance } from "../../../apis/setting"
 import { useAtomValue } from "jotai"

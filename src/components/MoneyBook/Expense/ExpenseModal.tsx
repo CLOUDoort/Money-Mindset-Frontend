@@ -1,4 +1,4 @@
-import { FlowDataType, graph_color } from "../../../type"
+import { FlowDataType, graph_color } from "../../../types"
 import { end_date, start_date } from "../MoneyBookNav"
 import { useEffect, useState } from "react"
 

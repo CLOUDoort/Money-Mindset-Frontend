@@ -1,4 +1,4 @@
-import { LineData, graph_color } from '../../../type'
+import { LineData, graph_color } from '../../../types'
 import { end_date, start_date } from '../MoneyBookNav'
 
 import { ResponsiveLine } from '@nivo/line'

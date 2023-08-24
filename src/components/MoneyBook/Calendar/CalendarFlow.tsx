@@ -1,4 +1,4 @@
-import { FlowDataType } from "../../../type"
+import { FlowDataType } from "../../../types"
 import { MdOutlineSpeakerNotesOff } from "react-icons/md"
 
 const CalendarFlow = ({ num, flow_data }: { num: number, flow_data: any }) => {

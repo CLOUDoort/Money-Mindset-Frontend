@@ -1,4 +1,4 @@
-import { FlowDetailType, MapDataType } from '../../type';
+import { FlowDetailType, MapDataType } from '../../types';
 import { Map, MapMarker, useMap } from 'react-kakao-maps-sdk';
 
 import { MdOutlineSpeakerNotesOff } from 'react-icons/md';

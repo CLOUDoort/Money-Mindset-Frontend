@@ -1,4 +1,4 @@
-import { GoalData, LineData } from "../../../type"
+import { GoalData, LineData } from "../../../types"
 
 import MaginotChart from "./MaginotChart"
 import MaginotFixed from "./Fixed/MaginotFixed"

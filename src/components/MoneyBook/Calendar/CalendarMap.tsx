@@ -1,4 +1,4 @@
-import { FlowDataType, FlowDetailType } from "../../../type"
+import { FlowDataType, FlowDetailType } from "../../../types"
 
 import KakaoMap from "../KakaoMap"
 

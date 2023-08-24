@@ -7,6 +7,12 @@ export interface FixedData {
     user_idx: number
 }
 
+export type FLOW_DATA = {
+    id: number,
+    type: string,
+    name: string,
+}
+
 export type FlowDetailType = {
     detail: {
         detail: string,

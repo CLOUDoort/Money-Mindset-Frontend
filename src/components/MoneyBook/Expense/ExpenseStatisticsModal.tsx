@@ -1,4 +1,4 @@
-import { ExpenseStatisticsType, graph_color } from '../../../type'
+import { ExpenseStatisticsType, graph_color } from '../../../types'
 import { useEffect, useState } from 'react'
 
 import { AiOutlineArrowRight } from 'react-icons/ai'
