@@ -1,7 +1,9 @@
 import { CgMathMinus, CgMathPlus } from "react-icons/cg"
 import { useCallback, useState } from "react"
 
+import { AxiosResponse } from "axios"
 import { Calendar } from "react-date-range"
+import { FLOW_DATA } from "../../../types"
 import Input from "../../InputForm"
 import { endOfDay } from "date-fns/esm"
 import { formatISO } from "date-fns"
@@ -9,30 +11,41 @@ import ko from "date-fns/locale/ko"
 import moment from "moment"
 import { toast } from "react-toastify"
 import { usePostFlow } from "../../../react-query/Expense/ExpenseFlowData"
+import Button from "../../ButtonForm"
+
+type Props = {
+    showCalendar: boolean,
+    setShowCalendar: React.Dispatch<React.SetStateAction<boolean>>,
+    flowList: boolean,
+    setFlowList: React.Dispatch<React.SetStateAction<boolean>>,
+    data: AxiosResponse<any, any> | undefined
+}
 
 const defaultValue = {
     flow_id: 0,
     amount: "",
     flow_date: ""
 }
-export type FLOW_DATA = {
-    id: number,
-    type: string,
-    name: string,
-}
 const today = moment().toDate()
 
-const ExpenseInput = ({ showCalendar, setShowCalendar, handleFlowList, data, setFlowList, flowList }: any) => {
+const ExpenseInput = ({ showCalendar, setShowCalendar, flowList, setFlowList, data }: Props) => {
     const [flow, setFlow] = useState(defaultValue)
+    const { flow_id, amount, flow_date } = flow
     const [date, setDate] = useState<Date>(today)
     const [flowName, setFlowName] = useState("선택")
-    const { flow_id, amount, flow_date } = flow
     const onChangeDate = useCallback((date: Date): void | undefined => {
         if (!date) return
         setDate(date)
         setFlow({ ...flow, flow_date: formatISO(endOfDay(date), { representation: 'date' }) })
         setShowCalendar(false)
     }, [flow, setShowCalendar])
+    const flowClick = (id: number, name: string) => {
+        setFlow({
+            ...flow, flow_id: id
+        })
+        setFlowName(name)
+        setFlowList(false)
+    }
 
     const mutate = usePostFlow()
     const handleSubmit = async (e: React.SyntheticEvent) => {
@@ -51,19 +64,6 @@ const ExpenseInput = ({ showCalendar, setShowCalendar, handleFlowList, data, set
             console.log(e.message)
         }
     }
-    const flowClick = (id: number, name: string) => {
-        setFlow({
-            ...flow, flow_id: id
-        })
-        setFlowName(name)
-        setFlowList(false)
-    }
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { value, name } = e.target
-        setFlow({
-            ...flow, [name]: value
-        })
-    }
     return (
         <form onSubmit={handleSubmit}>
             <div>
@@ -77,6 +77,7 @@ const ExpenseInput = ({ showCalendar, setShowCalendar, handleFlowList, data, set
                 </div>
                 <div className="flex flex-col">
                     <div className="relative flex items-center justify-center gap-3">
+                        {/* 달력 */}
                         <div className="w-[33%]" onClick={(e) => e.stopPropagation()}>
                             {showCalendar && (
                                 <Calendar className="absolute z-50 rounded top-16" locale={ko} months={1} date={date} onChange={onChangeDate} dateDisplayFormat={'yyyy.mm.dd'} />
@@ -86,9 +87,10 @@ const ExpenseInput = ({ showCalendar, setShowCalendar, handleFlowList, data, set
                                 setShowCalendar(!showCalendar)
                             }}>{date.toLocaleDateString()}</div>
                         </div>
+                        {/* 항목 */}
                         <div className="flex items-center justify-center w-[34%] relative" onClick={(e) => e.stopPropagation()} >
                             <div className={`w-full h-12 px-4 py-3 mt-2 mb-4 text-center ${flowName === "선택" && "text-gray-500"} transition whitespace-nowrap ease-in-out bg-white border border-gray-400 rounded cursor-pointer`} onClick={() => {
-                                handleFlowList()
+                                setFlowList(!flowList)
                                 setShowCalendar(false)
                             }}>{flowName}</div>
                             {flowList && <div className="absolute z-40 h-60 p-2 overflow-y-scroll transition-all 0.5s bg-white border left-0 top-16 w-full rounded">
@@ -102,13 +104,14 @@ const ExpenseInput = ({ showCalendar, setShowCalendar, handleFlowList, data, set
                                 ))}
                             </div>}
                         </div>
+                        {/* 금액 */}
                         <div className="w-[33%]">
                             <div className="h-12 mb-4">
-                                <Input type="number" value={amount} name="amount" onChange={handleChange} placeholder="금액" />
+                                <Input type="number" value={amount} name="amount" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFlow({ ...flow, [e.target.name]: e.target.value })} placeholder="금액" />
                             </div>
                         </div>
                     </div>
-                    <button type="submit" className="w-full py-3 my-3 font-semibold text-white uppercase transition bg-blue-600 rounded shadow-md px-7 hover:bg-blue-700 active:bg-blue-800 hover:shadow-lg duration 150">저장</button>
+                    <Button type="submit" name="저장"></Button>
                 </div>
             </div>
         </form>

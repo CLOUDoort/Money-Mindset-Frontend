@@ -8,17 +8,15 @@ import { start_date_string } from "../MaginotLine/MoneyBookMaginotLine"
 import { useState } from "react"
 
 const MoneyBookExpense = () => {
-    const { data } = useGetFlowList()
+    const { data: flow_list_data } = useGetFlowList()
     const { data: flow_data } = useGetFlowData({ start_date, end_date })
     const [showCalendar, setShowCalendar] = useState<boolean>(false)
     const [flowList, setFlowList] = useState(false)
-    const handleFlowList = () => setFlowList(!flowList)
     const clickFalse = () => {
         setShowCalendar(false)
         setFlowList(false)
     }
-    let income_sum = 0;
-    let outcome_sum = 0;
+    let income_sum = 0, outcome_sum = 0;
     flow_data?.data.forEach((item: any) => {
         if (item.flow_id <= 4) income_sum += item.amount
         else outcome_sum += item.amount
@@ -32,7 +30,7 @@ const MoneyBookExpense = () => {
                 </div>
                 <div className="flex flex-col items-center justify-center w-full">
                     <div className="flex flex-col w-full p-10 m-10 border rounded">
-                        <ExpenseInput showCalendar={showCalendar} setShowCalendar={setShowCalendar} handleFlowList={handleFlowList} data={data} setFlowList={setFlowList} flowList={flowList} />
+                        <ExpenseInput showCalendar={showCalendar} setShowCalendar={setShowCalendar} data={flow_list_data} setFlowList={setFlowList} flowList={flowList} />
                     </div>
                 </div>
                 {flow_data && <ExpenseItemList data={flow_data?.data} />}
