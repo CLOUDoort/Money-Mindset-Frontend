@@ -2,6 +2,7 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
+import Button from '../../ButtonForm'
 import Input from '../../InputForm'
 import SignInGoogle from '../GoogleAuth'
 import { accessToken } from '../../../store/initialState'
@@ -56,7 +57,7 @@ const SignInForm = () => {
                                 <Link to="/forgot">Forgot password?</Link>
                             </p>
                         </div>
-                        <button className='w-full py-3 font-semibold text-white uppercase transition bg-blue-600 rounded shadow-md px-7 hover:bg-blue-700 active:bg-blue-800 hover:shadow-lg duration 150' type='submit'>Sign in</button>
+                        <Button type="submit" name="Sign in" />
                         <div className='flex items-center my-3 before:border-t before:border-gray-300 before:flex-1 after:border-t after:border-gray-300 after:flex-1'>
                             <p className='mx-3 font-semibold text-center'>OR</p>
                         </div>
