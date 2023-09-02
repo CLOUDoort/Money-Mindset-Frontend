@@ -40,6 +40,7 @@ specifiers:
   react-router-dom: ^6.8.2
   react-scripts: 5.0.1
   react-toastify: ^9.1.1
+  tailwind-merge: ^1.14.0
   tailwindcss: ^3.2.7
   tailwindcss-animated: ^1.0.1
   typescript: ^4.9.5
@@ -82,6 +83,7 @@ dependencies:
   react-router-dom: 6.8.2_biqbaboplfbrettd7655fr4n2y
   react-scripts: 5.0.1_ttstqpwd5x4n2qlxnjlizm3yxq
   react-toastify: 9.1.1_biqbaboplfbrettd7655fr4n2y
+  tailwind-merge: 1.14.0
   tailwindcss-animated: 1.0.1_tailwindcss@3.2.7
   typescript: 4.9.5
   web-vitals: 2.1.4
@@ -10266,6 +10268,10 @@ packages:
 
   /symbol-tree/3.2.4:
     resolution: {integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==}
+    dev: false
+
+  /tailwind-merge/1.14.0:
+    resolution: {integrity: sha512-3mFKyCo/MBcgyOTlrY8T7odzZFx+w+qKSMAmdFzRvqBfLlSigU6TZnlFHK0lkMwj9Bj8OYU+9yW9lmGuS0QEnQ==}
     dev: false
 
   /tailwindcss-animated/1.0.1_tailwindcss@3.2.7:
