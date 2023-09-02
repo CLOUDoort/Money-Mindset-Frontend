@@ -1,18 +1,15 @@
 import { BsFileEarmarkPlus, BsFileEarmarkPlusFill } from "react-icons/bs"
 
 import ExpenseDetailModal from "./ExpenseDetailModal"
+import { FlowDataType } from "../../../types"
 import { IoIosRemoveCircleOutline } from "react-icons/io"
 import { useDeleteFlow } from "../../../react-query/Expense/ExpenseFlowData"
 import { useState } from "react"
 
-const ExpenseItem = ({ data }: any) => {
+const ExpenseItem = ({ data }: { data: FlowDataType }) => {
     const { flow_date, flowName, amount, idx } = data
-    const temp = new Date(flow_date)
-    const getDay = (dateIn: Date) => {
-        var dd = dateIn.getDate()
-        return String(dd + '일 ')
-    }
-    const date = getDay(temp)
+    const getDay = (dateIn: Date) => String(dateIn.getDate() + '일 ')
+    const date = getDay(new Date(flow_date))
     const deleteItem = useDeleteFlow()
     const [modal, setModal] = useState(false);
     const clickModal = () => setModal(!modal)

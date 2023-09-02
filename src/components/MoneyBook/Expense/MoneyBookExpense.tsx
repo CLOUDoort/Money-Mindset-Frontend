@@ -3,21 +3,25 @@ import { useGetFlowData, useGetFlowList, } from "../../../react-query/Expense/Ex
 
 import ExpenseInput from './ExpenseInput'
 import ExpenseItemList from "./ExpenseItemList"
+import { FlowDataType } from "../../../types"
 import { end_date_string } from "../MaginotLine/MoneyBookMaginotLine"
 import { start_date_string } from "../MaginotLine/MoneyBookMaginotLine"
 import { useState } from "react"
 
 const MoneyBookExpense = () => {
-    const { data: flow_list_data } = useGetFlowList()
-    const { data: flow_data } = useGetFlowData({ start_date, end_date })
+    // 항목 데이터와 modal state
+    const { data: flowItem } = useGetFlowList()
+    const [flowItemList, setFlowItemList] = useState(false)
     const [showCalendar, setShowCalendar] = useState<boolean>(false)
-    const [flowList, setFlowList] = useState(false)
     const clickFalse = () => {
         setShowCalendar(false)
-        setFlowList(false)
+        setFlowItemList(false)
     }
-    let income_sum = 0, outcome_sum = 0;
-    flow_data?.data.forEach((item: any) => {
+    // flow 목록
+    const { data: flowData } = useGetFlowData({ start_date, end_date })
+    // 수입과 지출 구분
+    let income_sum = 0, outcome_sum = 0
+    flowData?.data?.forEach((item: FlowDataType) => {
         if (item.flow_id <= 4) income_sum += item.amount
         else outcome_sum += item.amount
     })
@@ -30,10 +34,10 @@ const MoneyBookExpense = () => {
                 </div>
                 <div className="flex flex-col items-center justify-center w-full">
                     <div className="flex flex-col w-full p-10 m-10 border rounded">
-                        <ExpenseInput showCalendar={showCalendar} setShowCalendar={setShowCalendar} data={flow_list_data} setFlowList={setFlowList} flowList={flowList} />
+                        <ExpenseInput showCalendar={showCalendar} setShowCalendar={setShowCalendar} flowItem={flowItem} setFlowItemList={setFlowItemList} flowItemList={flowItemList} />
                     </div>
                 </div>
-                {flow_data && <ExpenseItemList data={flow_data?.data} />}
+                {flowData && <ExpenseItemList data={flowData?.data} />}
                 <div className='flex items-center w-full gap-3 mb-10 text-2xl font-semibold'>
                     <div className='text-start w-[50%] text-blue-500'>수입: {income_sum} 원</div>
                     <div className='text-start w-[50%] text-red-500'>지출: {outcome_sum} 원</div>

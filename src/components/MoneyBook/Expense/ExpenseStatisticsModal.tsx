@@ -1,34 +1,35 @@
-import { ExpenseStatisticsType, graph_color } from '../../../types'
-import { useEffect, useState } from 'react'
+import { FlowDataType, graph_color } from '../../../types'
+import { end_date, start_date } from '../MoneyBookNav'
 
 import { AiOutlineArrowRight } from 'react-icons/ai'
 import { MdOutlineSpeakerNotesOff } from 'react-icons/md'
 import { ResponsivePie } from '@nivo/pie'
+import { useGetFlowData } from '../../../react-query/Expense/ExpenseFlowData'
 
-const ExpenseStatisticsModal = ({ click, data }: { click: () => void, data: any }) => {
-    const [stData, setData] = useState([])
-    useEffect(() => {
-        const statistic_data = data?.data?.map((element: ExpenseStatisticsType, index: number) => {
-            return {
-                id: element.label,
-                label: element.label,
-                value: element.value,
-                color: graph_color[index]
-            }
-        })
-        setData(statistic_data)
-    }, [data?.data])
+const ExpenseStatisticsModal = ({ click, dataName }: { click: () => void, dataName: string }) => {
+    const { data: flow_data } = useGetFlowData({ start_date, end_date })
+    const statisticsData = flow_data?.data?.filter((item: FlowDataType) => {
+        if (dataName === "수입") return item.flow_id <= 4
+        else return item.flow_id > 4
+    })?.map((item: FlowDataType, index: number) => {
+        return {
+            id: item.idx,
+            label: item.flowName,
+            value: item.amount,
+            color: graph_color[index]
+        }
+    })
     return (
         <div className='w-[50rem] relative flex justify-center'>
             <AiOutlineArrowRight className='absolute cursor-pointer right-5 top-5' size={25} onClick={click} />
             <div className='h-[40rem] w-[45rem]'>
-                {!stData?.length ?
+                {!statisticsData?.length ?
                     <div className='flex items-center justify-center w-full h-full m-auto text-2xl font-semibold'>
                         <MdOutlineSpeakerNotesOff size={50} />
                     </div>
                     :
                     <ResponsivePie
-                        data={stData}
+                        data={statisticsData}
                         margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
                         innerRadius={0.5}
                         padAngle={0.7}

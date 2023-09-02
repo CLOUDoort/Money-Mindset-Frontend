@@ -1,28 +1,16 @@
-import { useEffect, useState } from "react"
 import { usePatchDetailData, usePostDetailData } from "../../../react-query/Expense/ExpenseDetailData"
 
 import { AiOutlineArrowRight } from "react-icons/ai"
+import Button from "../../ButtonForm"
 import ExpenseMap from "./ExpenseMap"
+import { FlowDataType } from "../../../types"
 import Input from "../../InputForm"
-import { apiInstance } from "../../../apis/setting"
 import { expenseLocation } from "../../../store/initialState"
 import { format } from "date-fns"
 import { useAtom } from "jotai"
+import { useState } from "react"
 
-type ItemType = {
-    flow_date: string,
-    flowName: string,
-    amount: number,
-    idx: number,
-    flowDetail: {
-        detail: string,
-        flow_idx: number,
-        lat: number,
-        lng: number
-    } | null
-}
-
-const ExpenseItemModal = ({ clickModal, data }: { clickModal: () => void, data: ItemType }) => {
+const ExpenseDetailModal = ({ clickModal, data }: { clickModal: () => void, data: FlowDataType }) => {
     const { flow_date, flowName, amount, idx, flowDetail } = data
     const date = format(new Date(flow_date), 'yyyy-MM-dd')
     const [position, setPosition] = useAtom(expenseLocation)
@@ -56,13 +44,11 @@ const ExpenseItemModal = ({ clickModal, data }: { clickModal: () => void, data: 
                     <div className="text-left">상세내용</div>
                     <Input type="text" placeholder="상세내용" value={detail} onChange={handleChange} name={detail} ></Input>
                 </div>
-                <div className="p-3">
-                    <ExpenseMap lat={position.lat} lng={position.lng} />
-                </div>
-                <button className='w-full px-5 py-2 mt-5 font-semibold text-white transition bg-blue-600 rounded shadow-md hover:bg-blue-700 active:bg-blue-800 hover:shadow-lg duration 150' type='submit'>저장</button>
+                <ExpenseMap lat={flowDetail?.lat} lng={flowDetail?.lng} />
+                <Button type="submit" name="저장" />
             </form>
         </div>
     )
 }
 
-export default ExpenseItemModal
+export default ExpenseDetailModal
