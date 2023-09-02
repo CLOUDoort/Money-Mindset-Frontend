@@ -1,3 +1,4 @@
+import { FlowPeriod, FlowType } from "../../types";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
 import { apiInstance } from "../../apis/setting";
@@ -10,17 +11,6 @@ const getFlowList = async () => apiInstance.get(`/flow`)
 
 export const useGetFlowList = () => {
     return useQuery([queryKeys.flowList], () => getFlowList())
-}
-
-type FlowType = {
-    flow_id: number,
-    amount: number,
-    flow_date: string
-}
-
-export type FlowPeriod = {
-    start_date: number,
-    end_date: number
 }
 
 const getFlowData = async (user_idx: number, value: FlowPeriod ) => await apiInstance.get(`/flow/user/${user_idx}`, { params: value })

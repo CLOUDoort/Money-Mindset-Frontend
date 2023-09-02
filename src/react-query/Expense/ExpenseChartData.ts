@@ -1,6 +1,6 @@
 import { useQuery, useQueryClient } from "react-query";
 
-import { FlowPeriod } from "./ExpenseFlowData";
+import { FlowPeriod } from "../../types";
 import { apiInstance } from "../../apis/setting";
 import { queryKeys } from "../constants";
 import { useAtomValue } from "jotai";

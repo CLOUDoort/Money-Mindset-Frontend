@@ -31,8 +31,29 @@ export type MapDataType = {
     lng: number
 }
 
-export interface FlowDataType {
+export type FlowType = {
+    flow_id: number,
     amount: number,
+    flow_date: string
+}
+
+export type FlowPeriod = {
+    start_date: number,
+    end_date: number
+}
+
+export interface Asset {
+    amount: number
+}
+
+export interface FlowItemType extends Asset {
+    idx: number,
+    user_idx: number,
+    flow_id: number,
+    flow_date: Date
+}
+
+export interface FlowDataType extends FlowItemType {
     flowDetail: {
         flow_idx: number,
         detail: string,
@@ -40,14 +61,10 @@ export interface FlowDataType {
         lng: number
     } | null,
     flowName: string,
-    flow_date: Date,
-    flow_id: number,
-    idx: number,
-    user_idx: number
 }
 
-export interface GoalData {
-    amount: number,
+
+export interface GoalData extends Asset {
     goal: string,
     idx: number,
     line: number,
@@ -56,12 +73,8 @@ export interface GoalData {
     user_idx: number
 }
 
-export interface Asset {
-    amount: number
-}
 
-export interface User {
-    asset: Asset,
+export interface User extends Asset {
     email: string,
     idx: number,
     nickname: string
@@ -70,11 +83,10 @@ export interface User {
 export type LineData = {
     legend: string,
     value: number,
-    idx:number
+    idx: number
 }
 
-export type UserAssetType = {
-    amount: number,
+export interface UserAssetType extends Asset {
     fixedExpenditureAmount: number | null,
     user: {
         email: string,
