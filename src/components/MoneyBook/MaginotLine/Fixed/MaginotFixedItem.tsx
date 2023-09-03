@@ -1,9 +1,10 @@
-import { userIdx } from "../../../../store/initialState"
-import { useAtomValue } from "jotai"
 import { useDeleteFixedData, usePatchFixedData } from "../../../../react-query/MaginotData/MaginotFixedData"
 
+import { FixedData } from "../../../../types"
 import { IoIosRemoveCircleOutline } from "react-icons/io"
+import { useAtomValue } from "jotai"
 import { useState } from "react"
+import { userIdx } from "../../../../store/initialState"
 
 const defaultState = {
     first: false,
@@ -11,7 +12,7 @@ const defaultState = {
     third: false
 }
 
-const MaginotFixedItem = ({ item }: any) => {
+const MaginotFixedItem = ({ item }: { item: FixedData }) => {
     const user_idx = useAtomValue(userIdx)
     const { idx, expenditure_date, fixed_expenditure, expenditure_amount } = item
     const [newValue, setNewValue] = useState({

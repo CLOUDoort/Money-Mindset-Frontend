@@ -21,7 +21,7 @@ const ExpenseChart = () => {
                 yScale={{
                     type: 'linear',
                     min: 'auto',
-                    max: 'auto',
+                    max: flow_data?.data[flow_data?.data.length - 1].y + 100000,
                     stacked: true,
                     reverse: false
                 }}

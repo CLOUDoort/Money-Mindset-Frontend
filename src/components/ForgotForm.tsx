@@ -12,9 +12,7 @@ const ForgotForm = () => {
     const [email, setEmail] = useState('')
     const setUserEmail = useSetAtom(userEmail)
     const [valid, setValid] = useState(false);
-    const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setEmail(e.target.value)
-    }
+    const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)
     const submitHandler = async (e: React.SyntheticEvent) => {
         e.preventDefault()
         try {

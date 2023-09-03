@@ -13,7 +13,7 @@ const ExpenseStatisticsModal = ({ click, dataName }: { click: () => void, dataNa
         else return item.flow_id > 4
     })?.map((item: FlowDataType, index: number) => {
         return {
-            id: item.idx,
+            id: item.flowName,
             label: item.flowName,
             value: item.amount,
             color: graph_color[index]

@@ -7,10 +7,6 @@ html, body {
     width: 100%;
     font-family: 'Open Sans', sans-serif;
     background-color: #ffffff;
-    /* -webkit-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select:none;
-    user-select:none, */
 }
 ::-webkit-scrollbar {
   display: none;
