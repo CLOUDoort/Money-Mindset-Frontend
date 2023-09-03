@@ -1,14 +1,11 @@
-import { FlowDataType, MapDataType } from '../../types';
+import { FlowDataType, MapDataType } from "../../../types"
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
-import { end_date, start_date } from './MoneyBookNav';
 
-import NoItem from './NoItem';
-import { useGetFlowData } from '../../react-query/Expense/ExpenseFlowData';
-import { useState } from 'react';
+import NoItem from "../NoItem";
+import { useState } from "react"
 
-const KakaoMap = () => {
-    const { data: flow_data } = useGetFlowData({ start_date, end_date })
-    const flowMapData = flow_data?.data?.filter((item: FlowDataType) => item.flowDetail)?.map((item: FlowDataType) => {
+const CalendarKakaoMap = ({ flow_data }: { flow_data: any }) => {
+    const flowMapData = flow_data?.filter((item: FlowDataType) => item.flowDetail)?.map((item: FlowDataType) => {
         return {
             content: <div className='p-2'>{item?.flowDetail?.detail}</div>,
             flow_idx: item?.flowDetail?.flow_idx,
@@ -49,6 +46,6 @@ const KakaoMap = () => {
                 : <NoItem styleProp="w-full h-[30rem]" />}
         </div>
     )
-};
+}
 
-export default KakaoMap
+export default CalendarKakaoMap

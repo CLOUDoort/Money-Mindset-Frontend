@@ -2,6 +2,7 @@ import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai";
 import React, { useState } from "react"
 import { useGetFixedData, usePostFixedData } from "../../../../react-query/MaginotData/MaginotFixedData";
 
+import Button from "../../../ButtonForm";
 import { FixedData } from "../../../../types";
 import MaginotFixedItem from "./MaginotFixedItem"
 
@@ -48,9 +49,9 @@ const MaginotFixed = () => {
         <div className="flex flex-col w-full p-10 my-10 border rounded" onClick={() => setDateList(false)}>
             <div className="flex items-center mb-2 text-2xl font-semibold">
                 <span>고정 지출 항목</span>
-                {!plus ? <div className="transition ease-in-out all">
+                {!plus ?
                     <AiOutlinePlusCircle className="ml-4 cursor-pointer" size={30} onClick={handlePlus} />
-                </div> : <AiOutlineMinusCircle className="ml-4 cursor-pointer" size={30} onClick={handlePlus} />}
+                    : <AiOutlineMinusCircle className="ml-4 cursor-pointer" size={30} onClick={handlePlus} />}
             </div>
             <form onSubmit={handleSubmit}>
                 <div>
@@ -78,7 +79,7 @@ const MaginotFixed = () => {
                         <input required autoComplete='off' className="w-[34%] h-12 px-4 py-2 mt-2 mb-4 text-center transition ease-in-out bg-white border-gray-400 rounded" type="text" placeholder="지출 항목" value={fixed_expenditure} name="fixed_expenditure" onChange={handleChange} />
                         <input required autoComplete='off' className="w-[33%] h-12 px-4 py-2 mt-2 mb-4 text-center transition ease-in-out bg-white border-gray-400 rounded" type="number" value={expenditure_amount} name="expenditure_amount" onChange={handleChange} placeholder="금액" />
                     </div>
-                    <button type="submit" className="w-full py-3 my-3 font-semibold text-white uppercase transition bg-blue-600 rounded shadow-md px-7 hover:bg-blue-700 active:bg-blue-800 hover:shadow-lg duration 150">저장</button>
+                    <Button type="submit" name="저장" />
                 </div>}
             </form>
         </div>

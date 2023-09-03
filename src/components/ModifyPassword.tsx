@@ -1,10 +1,12 @@
+import { SubmitHandler, useForm } from 'react-hook-form'
+
+import Button from './ButtonForm'
+import Input from './InputForm'
 import { apiInstance } from '../apis/setting'
 import { toast } from 'react-toastify'
 import { useAtomValue } from 'jotai'
 import { useNavigate } from 'react-router-dom'
 import { userEmail } from '../store/initialState'
-import Input from './InputForm'
-import { SubmitHandler, useForm } from 'react-hook-form'
 
 type FieldsValues = {
     password: string,
@@ -22,7 +24,6 @@ const ModifyPassword = ({ close }: { close: () => void }) => {
                 const submitResponse = await apiInstance.post(`/user/forget`, {
                     email, changedPw: password
                 })
-                console.log('submit', submitResponse.data)
                 toast("Modify Success!")
                 navigate('/money-book/dashboard')
             }
@@ -42,10 +43,10 @@ const ModifyPassword = ({ close }: { close: () => void }) => {
                         {errors.password && <span className='text-red-500'>This field is required</span>}
                         <div className='my-1 font-semibold'>Password Check</div>
                         <Input type="password" placeholder="password check" register={{ ...register("checkPassword", { required: true }) }} />
-                        {errors.checkPassword && <span className='-mt-10 text-red-500 '>This field is required</span>}
+                        {errors.checkPassword && <span className='-mt-10 text-red-500'>This field is required</span>}
                         <div className='flex gap-3 mt-3'>
-                            <button className='w-full py-3 font-semibold text-white uppercase transition bg-red-600 rounded shadow-md px-7 hover:bg-red-700 active:bg-red-800 hover:shadow-lg duration 150' type='button' onClick={close}>Cancel</button>
-                            <button className='w-full py-3 font-semibold text-white uppercase transition bg-blue-600 rounded shadow-md px-7 hover:bg-blue-700 active:bg-blue-800 hover:shadow-lg duration 150' type='submit'>Modify</button>
+                            <Button type="button" styleProp="bg-red-600 hover:bg-red-700 active:bg-red-800" click={close} name="Cancel" />
+                            <Button type="submit" name="Modify" />
                         </div>
                     </form>
                 </div>

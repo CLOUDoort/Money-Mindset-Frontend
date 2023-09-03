@@ -1,5 +1,7 @@
 import { usePatchGoalData, useRemoveGoalData } from "../../../../react-query/MaginotData/MaginotGoalData"
 
+import Button from "../../../ButtonForm"
+import { GoalData } from "../../../../types"
 import { IoIosRemoveCircleOutline } from "react-icons/io"
 import { useState } from "react"
 
@@ -9,7 +11,7 @@ const defaultState = {
     third: false
 }
 
-const MaginotGoalItem = ({ item }: any) => {
+const MaginotGoalItem = ({ item }: { item: GoalData }) => {
     const { idx, ranking, goal, amount } = item
     const [newValue, setNewValue] = useState({
         newRanking: ranking,
@@ -49,8 +51,8 @@ const MaginotGoalItem = ({ item }: any) => {
                 {(!first && !second && !third) && <IoIosRemoveCircleOutline onClick={() => deleteItem(idx)} size={25} className="absolute hidden cursor-pointer right-2 group-hover:block hover:text-red-500" />}
             </div>
             {(first || second || third) && <div className="flex justify-around gap-3 mb-4">
-                <button type="button" onClick={() => setState(defaultState)} className="w-full py-3 font-semibold text-white uppercase transition bg-blue-600 rounded shadow-md hover:bg-blue-700 active:bg-blue-800 hover:shadow-lg duration 150">취소</button>
-                <button type="button" onClick={() => clickPatch()} className="w-full py-3 font-semibold text-white uppercase transition bg-blue-600 rounded shadow-md hover:bg-blue-700 active:bg-blue-800 hover:shadow-lg duration 150">수정</button>
+                <Button type="button" click={() => setState(defaultState)} name="취소" styleProp="my-0" />
+                <Button type="button" click={() => clickPatch()} name="수정" styleProp="my-0" />
             </div>}
         </>
     )
