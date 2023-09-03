@@ -1,26 +1,22 @@
-export interface FixedData {
-    expenditure_amount: number,
-    expenditure_date: string,
+export type PostFixedData = {
     fixed_expenditure: string,
+    expenditure_amount: number,
+    expenditure_date: string
+}
+
+export interface PatchFixedData extends PostFixedData {
+    user_idx: number,
+}
+
+export interface FixedData extends PatchFixedData {
     idx: number,
     user: User,
-    user_idx: number
 }
 
 export type FLOW_DATA = {
     id: number,
     type: string,
     name: string,
-}
-
-export type FlowDetailType = {
-    detail: {
-        detail: string,
-        flow_idx: number,
-        lat: number,
-        lng: number
-    },
-    flow_id: number,
 }
 
 export type MapDataType = {
@@ -63,12 +59,14 @@ export interface FlowDataType extends FlowItemType {
     flowName: string,
 }
 
-
-export interface GoalData extends Asset {
+export interface PostGoalData extends Asset {
+    ranking: number,
     goal: string,
+}
+
+export interface GoalData extends PostGoalData {
     idx: number,
     line: number,
-    ranking: number,
     user: {email: string, nickname: string},
     user_idx: number
 }

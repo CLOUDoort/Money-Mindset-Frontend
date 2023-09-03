@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
+import { PostGoalData } from "../../types";
 import { apiInstance } from "../../apis/setting";
 import { queryKeys } from "../constants";
 import { toast } from "react-toastify";
@@ -19,19 +20,14 @@ export const useGetGoalData = () => {
     return useQuery([queryKeys.goalData], () => getGoalData(idx))
 }
 
-type MutationParams = {
-    ranking: number,
-    goal: string,
-    amount: number
-}
 
-const postGoalData = async (userIdx: number, value: MutationParams) => apiInstance.post(`/maginot/user/${userIdx}`, value)
+const postGoalData = async (userIdx: number, value: PostGoalData) => apiInstance.post(`/maginot/user/${userIdx}`, value)
 
 export const usePostGoalData = () => {
     const idx = useAtomValue(userIdx)
     const queryClient = useQueryClient()
     const notifySuccess = () => toast.success('추가 완료')
-    const { mutate } = useMutation((value: MutationParams) => postGoalData(idx, value), {
+    const { mutate } = useMutation((value: PostGoalData) => postGoalData(idx, value), {
         onSuccess: () => {
             queryClient.invalidateQueries([queryKeys.goalData])
             notifySuccess()
@@ -40,12 +36,12 @@ export const usePostGoalData = () => {
     return mutate
 }
 
-const patchGoalData = async (itemIdx: number, value: MutationParams) => apiInstance.patch(`/maginot/${itemIdx}`, value)
+const patchGoalData = async (itemIdx: number, value: PostGoalData) => apiInstance.patch(`/maginot/${itemIdx}`, value)
 
 export const usePatchGoalData = (itemIdx: number) => {
     const queryClient = useQueryClient()
     const notifySuccess = () => toast.success("수정 완료")
-    const { mutate } = useMutation((value: MutationParams) => patchGoalData(itemIdx, value), {
+    const { mutate } = useMutation((value: PostGoalData) => patchGoalData(itemIdx, value), {
         onSuccess: () => {
             queryClient.invalidateQueries([queryKeys.goalData])
             notifySuccess()

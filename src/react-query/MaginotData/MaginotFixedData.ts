@@ -1,3 +1,4 @@
+import { PatchFixedData, PostFixedData } from "../../types";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
 import { apiInstance } from "../../apis/setting";
@@ -19,25 +20,13 @@ export const usePrefetchFixedData = () => {
     queryClient.prefetchQuery(queryKeys.fixedData, () => getFixedData(idx))
 }
 
-type MutationParams = {
-    fixed_expenditure: string,
-    expenditure_amount: number,
-    expenditure_date: string
-}
-type PatchMutationParams = {
-    user_idx: number,
-    fixed_expenditure: string,
-    expenditure_amount: number,
-    expenditure_date: string
-}
-
-const postFixedData = async (userIdx:number, value: MutationParams) => await apiInstance.post(`/asset/user/${userIdx}/expenditure`, value)
+const postFixedData = async (userIdx:number, value: PostFixedData) => await apiInstance.post(`/asset/user/${userIdx}/expenditure`, value)
 
 export const usePostFixedData = () => {
     const idx = useAtomValue(userIdx)
     const queryClient = useQueryClient()
     const notifySuccess = () => toast.success("추가 완료")
-    const { mutate } = useMutation((value: MutationParams) => postFixedData(idx, value), {
+    const { mutate } = useMutation((value: PostFixedData) => postFixedData(idx, value), {
         onSuccess: () => {
             queryClient.invalidateQueries([queryKeys.fixedData])
             notifySuccess()
@@ -46,12 +35,12 @@ export const usePostFixedData = () => {
     return mutate
 }
 
-const patchFixedData = async (itemIdx: number, value: PatchMutationParams) => await apiInstance.patch(`/asset/expenditure/${itemIdx}`, value)
+const patchFixedData = async (itemIdx: number, value: PatchFixedData) => await apiInstance.patch(`/asset/expenditure/${itemIdx}`, value)
 
 export const usePatchFixedData = (itemIdx: number) => {
     const queryClient = useQueryClient()
     const notifySuccess = () => toast.success("수정 완료")
-    const { mutate } = useMutation((value: PatchMutationParams) => patchFixedData(itemIdx, value), {
+    const { mutate } = useMutation((value: PatchFixedData) => patchFixedData(itemIdx, value), {
         onSuccess: () => {
             queryClient.invalidateQueries([queryKeys.fixedData])
             notifySuccess()
