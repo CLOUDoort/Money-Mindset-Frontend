@@ -7,7 +7,6 @@ specifiers:
   '@nivo/core': ^0.82.1
   '@nivo/line': ^0.82.1
   '@nivo/pie': ^0.83.0
-  '@nivo/radar': ^0.83.0
   '@tailwindcss/forms': ^0.5.3
   '@testing-library/jest-dom': ^5.16.5
   '@testing-library/react': ^13.4.0
@@ -30,11 +29,9 @@ specifiers:
   react: ^18.2.0
   react-date-range: ^1.4.0
   react-dom: ^18.2.0
-  react-error-boundary: ^4.0.4
   react-hook-form: ^7.43.5
   react-icons: ^4.8.0
   react-kakao-maps-sdk: ^1.1.9
-  react-loading-skeleton: ^3.2.1
   react-query: ^3.39.3
   react-router: ^6.8.2
   react-router-dom: ^6.8.2
@@ -53,7 +50,6 @@ dependencies:
   '@nivo/core': 0.82.1_v2m5e27vhdewzwhryxwfaorcca
   '@nivo/line': 0.82.1_dbqs4rctncjwqypkbiscvfu2lu
   '@nivo/pie': 0.83.0_v2m5e27vhdewzwhryxwfaorcca
-  '@nivo/radar': 0.83.0_v2m5e27vhdewzwhryxwfaorcca
   '@testing-library/jest-dom': 5.16.5
   '@testing-library/react': 13.4.0_biqbaboplfbrettd7655fr4n2y
   '@testing-library/user-event': 13.5.0_@testing-library+dom@9.0.0
@@ -73,11 +69,9 @@ dependencies:
   react: 18.2.0
   react-date-range: 1.4.0_kzhlcyde2l6xjiirkbg7jzhosa
   react-dom: 18.2.0_react@18.2.0
-  react-error-boundary: 4.0.4_react@18.2.0
   react-hook-form: 7.43.5_react@18.2.0
   react-icons: 4.8.0_react@18.2.0
   react-kakao-maps-sdk: 1.1.9_biqbaboplfbrettd7655fr4n2y
-  react-loading-skeleton: 3.2.1_react@18.2.0
   react-query: 3.39.3_biqbaboplfbrettd7655fr4n2y
   react-router: 6.8.2_react@18.2.0
   react-router-dom: 6.8.2_biqbaboplfbrettd7655fr4n2y
@@ -2464,26 +2458,6 @@ packages:
       '@nivo/legends': 0.83.0_biqbaboplfbrettd7655fr4n2y
       '@nivo/tooltip': 0.83.0_v2m5e27vhdewzwhryxwfaorcca
       '@types/d3-shape': 2.1.3
-      d3-shape: 1.3.7
-      react: 18.2.0
-    transitivePeerDependencies:
-      - prop-types
-      - react-dom
-    dev: false
-
-  /@nivo/radar/0.83.0_v2m5e27vhdewzwhryxwfaorcca:
-    resolution: {integrity: sha512-l7Jmm6HwponE2MCmGXSxwoHNA6LFhMoiaM3XNmwzRUq4aQ/ufKXexNYcMXTc/3n1XAfgjVCjaXNGijXQ/lXpKw==}
-    peerDependencies:
-      react: '>= 16.14.0 < 19.0.0'
-    dependencies:
-      '@nivo/colors': 0.83.0_biqbaboplfbrettd7655fr4n2y
-      '@nivo/core': 0.83.0_v2m5e27vhdewzwhryxwfaorcca
-      '@nivo/legends': 0.83.0_biqbaboplfbrettd7655fr4n2y
-      '@nivo/tooltip': 0.83.0_v2m5e27vhdewzwhryxwfaorcca
-      '@react-spring/web': 9.7.2_biqbaboplfbrettd7655fr4n2y
-      '@types/d3-scale': 3.3.2
-      '@types/d3-shape': 2.1.3
-      d3-scale: 3.3.0
       d3-shape: 1.3.7
       react: 18.2.0
     transitivePeerDependencies:
@@ -9195,15 +9169,6 @@ packages:
       scheduler: 0.23.0
     dev: false
 
-  /react-error-boundary/4.0.4_react@18.2.0:
-    resolution: {integrity: sha512-AbqMFx8bCsob8rCHZvJYQ42MQijK0/034RUvan9qrqyJCpazr8d9vKHrysbxcr6odoHLZvQEcYomFPoIqH9fow==}
-    peerDependencies:
-      react: '>=16.13.1'
-    dependencies:
-      '@babel/runtime': 7.21.0
-      react: 18.2.0
-    dev: false
-
   /react-error-overlay/6.0.11:
     resolution: {integrity: sha512-/6UZ2qgEyH2aqzYZgQPxEnz33NJ2gNsnHA2o5+o4wW9bLM/JYQitNP9xPhsXwC08hMMovfGe/8retsdDsczPRg==}
     dev: false
@@ -9257,14 +9222,6 @@ packages:
       react: 0.14 || 15 - 18
     dependencies:
       prop-types: 15.8.1
-      react: 18.2.0
-    dev: false
-
-  /react-loading-skeleton/3.2.1_react@18.2.0:
-    resolution: {integrity: sha512-e1KwEOuBa1REXWoseELIJXlsqWTCHL5IQnqhVhI33WmnuTK7LK1DXl4mmcOLsWVcwqXeOATU9VFJEjz2ytZSng==}
-    peerDependencies:
-      react: '>=16.8.0'
-    dependencies:
       react: 18.2.0
     dev: false
 
