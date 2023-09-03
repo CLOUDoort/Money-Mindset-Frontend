@@ -25,7 +25,7 @@ const SignUpForm = () => {
     const setNickname = useSetAtom(userNickname)
     const navigate = useNavigate()
     const [showPassword, setShowPassword] = useState(false)
-    const { register, handleSubmit } = useForm<FormData>()
+    const { register, handleSubmit, formState: { errors } } = useForm<FormData>()
     const clickSubmit: SubmitHandler<FormData> = async (formValues) => {
         const { email, nickname, password, passwordCheck } = formValues
         if (password === passwordCheck) {
@@ -59,19 +59,23 @@ const SignUpForm = () => {
                     <h1 className="mb-8 text-4xl font-bold text-center lg:text-4xl">Sign-Up</h1>
                     <form onSubmit={handleSubmit(clickSubmit)}>
                         <div className='font-semibold'>Nickname</div>
-                        <Input type="text" placeholder="nickname" register={{ ...register("nickname") }} />
+                        <Input type="text" placeholder="nickname" register={{ ...register("nickname", { required: true }) }} />
+                        {errors.nickname && <span className='text-red-500'>This field is required</span>}
                         <div className='font-semibold'>Email</div>
-                        <Input type="email" placeholder="example@google.com" register={{ ...register("email") }} />
+                        <Input type="email" placeholder="example@google.com" register={{ ...register("email", { required: true }) }} />
+                        {errors.email && <span className='text-red-500'>This field is required</span>}
                         <div className='font-semibold'>Password</div>
                         <div className="relative">
-                            <Input type={showPassword ? 'text' : "password"} placeholder="password" register={{ ...register("password") }} />
+                            <Input type={showPassword ? 'text' : "password"} placeholder="password" register={{ ...register("password", { required: true }) }} />
                             {showPassword ? <AiFillEyeInvisible onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-6' /> : <AiFillEye onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-6' />}
                         </div>
+                        {errors.password && <span className='text-red-500'>This field is required</span>}
                         <div className='font-semibold'>Password Check</div>
                         <div className="relative">
-                            <Input type={showPassword ? 'text' : "password"} placeholder="password check" register={{ ...register("passwordCheck") }} />
+                            <Input type={showPassword ? 'text' : "password"} placeholder="password check" register={{ ...register("passwordCheck", { required: true }) }} />
                             {showPassword ? <AiFillEyeInvisible onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-6' /> : <AiFillEye onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-6' />}
                         </div>
+                        {errors.passwordCheck && <span className='text-red-500'>This field is required</span>}
                         <div className='flex justify-between text-sm whitespace-nowrap'>
                             <p className='mb-6'>
                                 Have a account?
