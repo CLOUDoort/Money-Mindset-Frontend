@@ -67,13 +67,13 @@ const SignUpForm = () => {
                         <div className='font-semibold'>Password</div>
                         <div className="relative">
                             <Input type={showPassword ? 'text' : "password"} placeholder="password" register={{ ...register("password", { required: true }) }} />
-                            {showPassword ? <AiFillEyeInvisible onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-6' /> : <AiFillEye onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-6' />}
+                            {showPassword ? <AiFillEyeInvisible onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-5' /> : <AiFillEye onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-5' />}
                         </div>
                         {errors.password && <span className='text-red-500'>This field is required</span>}
                         <div className='font-semibold'>Password Check</div>
                         <div className="relative">
                             <Input type={showPassword ? 'text' : "password"} placeholder="password check" register={{ ...register("passwordCheck", { required: true }) }} />
-                            {showPassword ? <AiFillEyeInvisible onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-6' /> : <AiFillEye onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-6' />}
+                            {showPassword ? <AiFillEyeInvisible onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-5' /> : <AiFillEye onClick={() => setShowPassword(!showPassword)} className='absolute text-xl cursor-pointer right-3 top-5' />}
                         </div>
                         {errors.passwordCheck && <span className='text-red-500'>This field is required</span>}
                         <div className='flex justify-between text-sm whitespace-nowrap'>
