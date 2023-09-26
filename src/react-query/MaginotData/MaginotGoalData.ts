@@ -1,11 +1,11 @@
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useMutation, useQuery, useQueryClient } from 'react-query'
 
-import { PostGoalData } from "../../types";
-import { apiInstance } from "../../apis/setting";
-import { queryKeys } from "../constants";
-import { toast } from "react-toastify";
-import { useAtomValue } from "jotai";
-import { userIdx } from "../../store/initialState";
+import { PostGoalData } from '../../types'
+import { apiInstance } from '../../apis/setting'
+import { queryKeys } from '../constants'
+import { toast } from 'react-toastify'
+import { useAtomValue } from 'jotai'
+import { userIdx } from '../../store/initialState'
 
 const getGoalData = async (userIdx: number) => await apiInstance.get(`/maginot/user/${userIdx}`)
 
@@ -20,7 +20,6 @@ export const useGetGoalData = () => {
     return useQuery([queryKeys.goalData], () => getGoalData(idx))
 }
 
-
 const postGoalData = async (userIdx: number, value: PostGoalData) => apiInstance.post(`/maginot/user/${userIdx}`, value)
 
 export const usePostGoalData = () => {
@@ -30,8 +29,9 @@ export const usePostGoalData = () => {
     const { mutate } = useMutation((value: PostGoalData) => postGoalData(idx, value), {
         onSuccess: () => {
             queryClient.invalidateQueries([queryKeys.goalData])
+            queryClient.invalidateQueries([queryKeys.assetData])
             notifySuccess()
-        }
+        },
     })
     return mutate
 }
@@ -40,12 +40,13 @@ const patchGoalData = async (itemIdx: number, value: PostGoalData) => apiInstanc
 
 export const usePatchGoalData = (itemIdx: number) => {
     const queryClient = useQueryClient()
-    const notifySuccess = () => toast.success("수정 완료")
+    const notifySuccess = () => toast.success('수정 완료')
     const { mutate } = useMutation((value: PostGoalData) => patchGoalData(itemIdx, value), {
         onSuccess: () => {
             queryClient.invalidateQueries([queryKeys.goalData])
+            queryClient.invalidateQueries([queryKeys.assetData])
             notifySuccess()
-        }
+        },
     })
     return mutate
 }
@@ -58,8 +59,9 @@ export const useRemoveGoalData = () => {
     const { mutate } = useMutation(removeGoalData, {
         onSuccess: () => {
             queryClient.invalidateQueries([queryKeys.goalData])
+            queryClient.invalidateQueries([queryKeys.assetData])
             notifySuccess()
-        }
+        },
     })
     return mutate
 }
