@@ -1,4 +1,4 @@
-import { GoalData, LineData, graph_color } from '../../../types'
+import { GoalData, graph_color } from '../../../types'
 import { end_date, start_date } from '../MoneyBookNav'
 
 import MaginotLineDetail from './MaginotLineDetail'
@@ -9,6 +9,8 @@ import { useGetGoalData } from '../../../react-query/MaginotData/MaginotGoalData
 
 const MaginotLineChart = () => {
     const { data: flow_data } = useGetChartData({ start_date, end_date })
+    const { data: asset } = useGetAssetData()
+    const { data: goal_data } = useGetGoalData()
     const chart_data = [
         {
             id: "지출",
@@ -16,34 +18,50 @@ const MaginotLineChart = () => {
             data: flow_data?.data.length ? flow_data?.data : [{ x: 0, y: 0 }]
         },
     ]
-    const { data: asset } = useGetAssetData()
 
-    const { data: goal_data } = useGetGoalData()
+    // 방어선 
+    const currentAsset = asset?.data?.amount + asset?.data?.userIncome - asset?.data?.userExpense - asset?.data?.fixedExpenditureAmount
     let sum = 0;
     const lineData = goal_data?.data?.map((line: GoalData) => {
         sum += line.amount
         return {
             idx: line.idx,
             legend: line.goal,
-            value: asset?.data?.amount + asset?.data?.userIncome - asset?.data?.fixedExpenditureAmount - sum
+            value: currentAsset - sum
         }
     })
-    lineData?.unshift({ idx: 100, legend: "생존", value: asset?.data?.amount + asset?.data?.userIncome - asset?.data?.fixedExpenditureAmount })
-    const markers = lineData?.map((element: LineData, index: number) => {
+    lineData?.unshift({ idx: 100, legend: "생존", value: currentAsset })
+
+
+    // 마커
+    const markerCurrentAsset = asset?.data?.amount + asset?.data?.userIncome - asset?.data?.fixedExpenditureAmount
+    sum = 0
+    const markers = goal_data?.data?.map((element: GoalData, index: number) => {
+        sum += element.amount
         return {
             axis: "y",
             lineStyle: {
-                stroke: graph_color[index],
+                stroke: graph_color[index + 1],
                 strokeWidth: 4,
             },
-            value: element.value,
+            value: markerCurrentAsset - sum,
             legendPosition: "right",
         }
     })
+    markers?.unshift({
+        axis: "y",
+        lineStyle: {
+            stroke: graph_color[0],
+            strokeWidth: 4,
+        },
+        value: markerCurrentAsset,
+        legendPosition: "right",
+    })
+    const maxMarker = asset?.data?.amount + asset?.data?.userIncome + asset?.data?.userExpense + 100000
     return (
         <>
             {/* 방어선 */}
-            <MaginotLineDetail lineData={lineData} asset={asset} />
+            <MaginotLineDetail lineData={lineData} />
             {/* 차트 */}
             <div className='h-[40rem] w-full'>
                 <ResponsiveLine
@@ -53,7 +71,7 @@ const MaginotLineChart = () => {
                     yScale={{
                         type: 'linear',
                         min: 'auto',
-                        max: chart_data[0].data[0].y + 1000000,
+                        max: maxMarker,
                         stacked: true,
                         reverse: false
                     }}

@@ -10,6 +10,7 @@ export const end_date_string = new Date(today.getFullYear(), today.getMonth() + 
 
 const MoneyBookMaginotLine = () => {
     const { data: asset } = useGetAssetData()
+    const currentAsset = asset?.data?.amount + asset?.data?.userIncome - asset?.data?.userExpense
     return (
         <div className="bg-white min-w-[50rem] lg:ml-[14rem] ml-[3.5rem] flex justify-center items-center">
             <div className="flex flex-col items-center max-w-[65rem] justify-center w-full px-10">
@@ -17,7 +18,7 @@ const MoneyBookMaginotLine = () => {
                     <div className="text-4xl">Maginot Line</div>
                     <div className="flex items-center justify-between w-full">
                         <div className="items-center">{start_date_string} ~ {end_date_string}</div>
-                        <div>현재 자산 : {asset?.data?.amount + asset?.data?.userIncome - asset?.data?.userExpense} 원</div>
+                        <div>현재 자산 : {currentAsset} 원</div>
                     </div>
                 </div>
                 <MaginotLineChart />
