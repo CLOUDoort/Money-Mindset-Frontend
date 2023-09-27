@@ -61,7 +61,7 @@ const MaginotLineChart = () => {
     return (
         <>
             {/* 방어선 */}
-            <MaginotLineDetail lineData={lineData} />
+            <MaginotLineDetail lineData={lineData} expense={asset?.data?.userExpense} />
             {/* 차트 */}
             <div className='h-[40rem] w-full'>
                 <ResponsiveLine
